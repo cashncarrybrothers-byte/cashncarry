@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
                   <tr>
                     <td style="background: linear-gradient(135deg, #8B1538 0%, #5A0F25 100%); padding: 40px 30px; text-align: center;">
                       <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">New Contact Form Submission</h1>
-                      <p style="color: #f3d7a0; margin: 10px 0 0 0; font-size: 14px;">Anmol Sweets & Restaurant</p>
+                      <p style="color: #f3d7a0; margin: 10px 0 0 0; font-size: 14px;">Brothers Cash & Carry</p>
                     </td>
                   </tr>
                   <tr>
@@ -128,7 +128,7 @@ export async function POST(request: NextRequest) {
                   <tr>
                     <td style="background-color: #8B1538; padding: 20px 30px; text-align: center;">
                       <p style="margin: 0; color: #f3d7a0; font-size: 12px;">
-                        © ${new Date().getFullYear()} Anmol Sweets & Restaurant. All rights reserved.
+                         © ${new Date().getFullYear()} Brothers Cash \u0026 Carry. All rights reserved.
                       </p>
                     </td>
                   </tr>

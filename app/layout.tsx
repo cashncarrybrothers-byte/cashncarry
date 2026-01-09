@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-favicon.png",
+    shortcut: "https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-favicon.png",
+    apple: "https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-favicon.png",
   },
   // verification: {
   //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
