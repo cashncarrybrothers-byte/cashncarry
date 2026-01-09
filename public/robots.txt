@@ -1,0 +1,24 @@
+# robots.txt for Brothers Cash & Carry
+
+User-agent: *
+Allow: /
+
+# Disallow cart and checkout (no need to index)
+Disallow: /cart
+Disallow: /checkout
+Disallow: /my-account
+
+# Allow all product and content pages
+Allow: /shop
+Allow: /product
+Allow: /product-category
+Allow: /brand
+Allow: /posts
+Allow: /about
+Allow: /contact
+
+# Sitemap
+Sitemap: https://cashncarry.se/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

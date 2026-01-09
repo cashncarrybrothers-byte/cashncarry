@@ -1,0 +1,122 @@
+Category ID,Category Name,Old URL Slug,Image Path,Recommended New Slug
+222,"Fruits & Vegetables",,,fruits-vegetables
+223,"Fruits",,catalog/fruits-cat-logo.png,fruits
+224,"Vegetables",,catalog/vegetables-cat-logo.jpg,vegetables
+225,"Rice",,,rice
+226,"Basmati rice",,catalog/basmatirice-cat-logo.jpg,basmati-rice
+227,"Jasmin rice",,catalog/jasminerice-cat-logo.jpg,jasmin-rice
+228,"Round rice",,catalog/roundrice-cat-logo.jpg,round-rice
+229,"Sona Masoori Rice",,catalog/sonamasoririce-cat-logo.jpg,sona-masoori-rice
+230,"Ponny Rice",,catalog/ponnyrice-cat-logo.jpg,ponny-rice
+231,"Idly rice",,catalog/idlirice-cat-logo.jpg,idly-rice
+232,"Other varieties",,catalog/mixrice-cat-logo.jpg,other-varieties
+233,"Poha",,catalog/poharice-cat-logo.jpg,poha
+235,"Mamra/Puffed Rice",,catalog/mamrarice-cat-logo.jpg,mamrapuffed-rice
+236,"Flour",,,flour
+237,"Chapati flour",,catalog/breadflour-cat-logo.jpg,chapati-flour
+238,"Rice flour",,catalog/riceflour-cat-logo.jpg,rice-flour
+239,"Semolina",,catalog/samolina-cat-logo.jpg,semolina
+240,"Corn flour",,catalog/cornflour-cat-logo.jpg,corn-flour
+241,"Chickpea flour",,catalog/chickpeaflour-cat-logo.jpg,chickpea-flour
+242,"Other",,catalog/otherflours-cat-logo.jpg,other
+243,"Pulses",,,pulses
+244,"Beans",,catalog/beans-cat-logo.jpg,beans
+245,"Peas",,catalog/peas-cat-logo.jpg,peas
+246,"Lentils",,catalog/lentils-cat-logo.jpg,lentils
+247,"Spices; Sauces and Seasonings",,,spices-sauces-and-seasonings
+248,"Seeds",,catalog/foodseeds-cat-logo.jpg,seeds
+249,"Whole",,catalog/wholespices-cat-logo.jpg,whole
+250,"Crushed / Coarsely ground ",,catalog/crushed-cat-logo.jpg,crushed-coarsely-ground-
+251,"Powder",,catalog/foodpowder-cat-logo.jpg,powder
+252,"Spice Mix",,catalog/spicemix-cat-logo.jpg,spice-mix
+253,"Sauces",,catalog/sauces-cat-logo.jpg,sauces
+254,"Food color",,catalog/foodcolors-cat-logo.jpg,food-color
+255,"Flavor",,catalog/flavorspices-cat-logo.jpg,flavor
+256,"Bulgur; Pasta & Vermicelli",,,bulgur-pasta-vermicelli
+257,"Bulgur",,catalog/bulgur-cat-logo.png,bulgur
+258,"Pasta",,catalog/pasta-cat-logo.jpg,pasta
+259,"Vermicelli",,catalog/vermicelli-cat-logo.jpg,vermicelli
+260,"Pickle; Paste & Chutney",,,pickle-paste-chutney
+261,"Pickled goods",,catalog/pickledgoods-cat-logo.jpg,pickled-goods
+262,"Pickle",,catalog/pickles-cat-logo.jpg,pickle
+263,"Paste",,catalog/paste-cat-logo.jpg,paste
+264,"Chutney",,catalog/chutney-cat-logo.jpg,chutney
+265,"Salt; Sugar & Jaggery",,,salt-sugar-jaggery
+266,"Salt",,catalog/salt-cat-logo.jpg,salt
+267,"Sugar",,catalog/sugar-cat-logo.jpg,sugar
+268,"Jaggery & Shakkar",,catalog/jaggery-cat-logo.jpg,jaggery-shakkar
+269,"Ready to eat",,,ready-to-eat
+270,"Ashoka’s",,catalog/ashoka_logo.png,ashokas
+271,"MTR’s",,catalog/mtr-logo.png,mtrs
+272,"Gits",,catalog/gits-logo.jpg,gits
+273,"Other",,catalog/readytoeat-cat-logo.jpg,other
+274,"Ready to cook",,,ready-to-cook
+275,"Haleem",,catalog/readytocookhaleem-cat-logo.jpg,haleem
+276,"Other",,catalog/readytocookothers.jpg,other
+277,"Noodles",,,noodles
+278,"Instant noodles",,catalog/quicknoodles-cat-logo.jpg,instant-noodles
+279,"Other noodles",,catalog/noodles-cat-logo.jpg,other-noodles
+280,"Desserts",,,desserts
+281,"Fresh sweets",,catalog/freshsweets-cat-logo.jpg,fresh-sweets
+282,"Ready Mix",,catalog/readymixdesserts-cat-logo.jpg,ready-mix
+283,"Gelé",,catalog/gele-cat-logo.jpg,gel
+284,"Kulfi Ice",,catalog/kulfice-cat-logo.jpg,kulfi-ice
+285,"Nuts; Dried Fruits & Dates",,,nuts-dried-fruits-dates
+286,"Nuts",,catalog/dryfruits-cat-logo.jpg,nuts
+287,"Dried Fruits",,catalog/dryfruits1-cat-logo.jpg,dried-fruits
+288,"Dates",,catalog/dates-cat-logo.jpg,dates
+289,"Snacks; Cakes & Sweets",,,snacks-cakes-sweets
+290,"Salted",,catalog/saltedsnacks-cat-logo.jpg,salted
+291,"Rosted",,catalog/roastedsnacks-cat-logo.jpg,rosted
+292,"Sweet/Cookies",,catalog/sweetsnacks-cat-logo.jpg,sweetcookies
+293,"Cakes",,catalog/cakes-cat-logo.jpg,cakes
+294,"Sweets",,catalog/sweetsinsnacks-cat-logo.jpg,sweets
+295,"Other",,catalog/othersweets-cat-logo.jpg,other
+296,"Frozen",,,frozen
+297,"Kebab",,catalog/frozenkebab-cat-logo.jpg,kebab
+298,"Hamburgare",,catalog/frozenhamburger-cat-logo.jpg,hamburgare
+299,"Samosa/piroger",,catalog/frozensamosa-cat-logo.jpg,samosapiroger
+300,"Paratha",,catalog/frozenparatha-cat-logo.jpg,paratha
+301,"Naan",,catalog/frozennaan-cat-logo.jpg,naan
+302,"Meat",,catalog/frozenmeat-cat-logo.jpg,meat
+303,"Fish",,catalog/frozenfish-cat-logo.jpg,fish
+304,"Sea Food",,catalog/frozenseafood-cat-logo.jpg,sea-food
+305,"Vegetables",,catalog/frozenvegetables-cat-logo.jpg,vegetables
+306,"Other",,catalog/frozenother-cat-logo.jpg,other
+307,"Drinks",,,drinks
+308,"Tea",,catalog/tea-cat-logo.jpg,tea
+309,"Coffee",,catalog/coffee-cat-logo.jpg,coffee
+311,"MIlk",,catalog/milk-cat-logo.jpg,milk
+312,"Juice; Fruit Drinks",,catalog/fruitdrinks-cat-logo.jpg,juice-fruit-drinks
+313,"Soft Drinks",,catalog/softdrinks-cat-logo.jpg,soft-drinks
+314,"Healthy Drinks",,catalog/energydrink-cat-logo.jpg,healthy-drinks
+315,"Other",,catalog/mixdrinks-cat-logo.jpg,other
+316,"Ghee; Cream & Oil",,,ghee-cream-oil
+317,"Ghee",,catalog/ghee-cat-logo.jpg,ghee
+318,"Cream",,catalog/cream-cat-logo.jpg,cream
+319,"Oil",,catalog/oil-cat-logo.jpg,oil
+320,"Glass & Canned",,,glass-canned
+321,"Glass",,catalog/glassfoods-cat-logo.jpg,glass
+322,"Canned",,catalog/logos/trs canned foods.jpg,canned
+323,"Egg & Bread",,,egg-bread
+324,"Eggs",,catalog/eggs-cat-logo-jpg.jpg,eggs
+325,"Bread",,catalog/bread-cat-logo.jpg,bread
+326,"Cosmetics",,,cosmetics
+327,"Hand disinfectant",,catalog/handdisinfectant-cat-logo.jpg,hand-disinfectant
+328,"Soap",,catalog/soap-cat-logo.jpg,soap
+329,"Hair oil",,catalog/hairoil-cat-logo.jpg,hair-oil
+330,"Hair mask",,catalog/hairmask-cat-logo.jpg,hair-mask
+331,"Hair cream",,catalog/haircream-cat-logo.jpg,hair-cream
+332,"Shampoo",,catalog/shampoo-cat-logo.jpg,shampoo
+333,"Hair conditioner",,catalog/hairconditioner-cat-logo.png,hair-conditioner
+334,"Toothpaste",,catalog/toothpastes-cat-logo.jpg,toothpaste
+335,"Hair color",,catalog/haircolor-cat-logo.jpg,hair-color
+336,"Synthetic hair / hair extension",,catalog/hairextensions-cat-logo.jpg,synthetic-hair-hair-extension
+337,"Others",,,others
+338,"Asia",,,asia
+339,"Middle East",,,middle-east
+340,"Africa",,,africa
+341,"Latin America",,,latin-america
+342,"Balkan",,,balkan
+343,"Dried Corn",,catalog/logos/dried corn.jpg,dried-corn
+344,"Bundle Offers",,,bundle-offers

@@ -1,0 +1,19 @@
+crm.cashncary.se
+
+woocommerce api
+
+consumer key ck_d738e51a02af5b346fd3cb774e58a47c83f2b9dc
+consumer secret cs_daa026d8dfdfec532c59d22dfc1a33bb2641ee96
+
+old website sitemap https://cashncarry.se/index.php?route=information/sitemap
+
+
+
+opencart api
+
+https://cashncarry.se/
+
+D5nc8Zzfu46SCefYZtEvLbdXNf8xQsQRqoZgSuJiSmDD6nWgrCCfAgEm7jvB3Kbg1MpHoMvpzUfyadqPiIZLaDBy5Frzn3p1vfVKuZu2pZaSZRRXDkFaDmC1PnsAwmk2gbp5Kn7oAECW3WIwDWibr2NUSFBUf50eKggqdtfYTilU4TIFIgIQLkMMJksFQCfGqKdVWyECNQAquxOtC5fay8brHyVJ5DTKUrZ8C0N2j45ZHEoG4QvPEmZbVKj476ud
+
+
+woo aplication password. application name Fourlines@321!   pasword : Flzj 9px9 WglI zUaP BKaF eCU4

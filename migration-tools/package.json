@@ -1,0 +1,19 @@
+{
+  "name": "opencart-to-woocommerce-migration",
+  "version": "1.0.0",
+  "description": "Migration tools for OpenCart to WooCommerce",
+  "type": "module",
+  "scripts": {
+    "parse": "node parse-sql.js",
+    "migrate:categories": "node migrate-categories.js",
+    "migrate:products": "node migrate-products.js",
+    "migrate:customers": "node migrate-customers.js",
+    "migrate:all": "node migrate-all.js"
+  },
+  "dependencies": {
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "form-data": "^4.0.5",
+    "node-fetch": "^3.3.2"
+  }
+}
