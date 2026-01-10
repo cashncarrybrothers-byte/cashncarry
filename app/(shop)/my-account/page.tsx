@@ -392,7 +392,7 @@ function MyAccountContent() {
                 ) : (
                   <div className="grid gap-4">
                     {wishlistItems.map((item) => (
-                      <div key={item.key} className="flex items-center gap-4 rounded-lg border p-4 hover:bg-accent/5 transition-colors">
+                      <div key={item.id} className="flex items-center gap-4 rounded-lg border p-4 hover:bg-accent/5 transition-colors">
                         <div className="relative h-20 w-20 flex-shrink-0">
                           {item.product.images?.[0]?.src ? (
                             <Image
@@ -421,7 +421,7 @@ function MyAccountContent() {
                             size="sm"
                             className="gap-2"
                             onClick={() => {
-                              moveToCart(item.key);
+                              moveToCart(item.id);
                               toast.success('Item moved to cart');
                             }}
                           >
@@ -433,7 +433,7 @@ function MyAccountContent() {
                             variant="outline"
                             className="text-destructive hover:text-destructive gap-2"
                             onClick={() => {
-                              removeFromWishlist(item.key);
+                              removeFromWishlist(item.id);
                               toast.success('Item removed from wishlist');
                             }}
                           >
