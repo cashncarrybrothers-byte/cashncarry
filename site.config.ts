@@ -12,6 +12,6 @@ type SiteConfig = {
 export const siteConfig: SiteConfig = {
   site_name: "Brothers Cash & Carry",
   site_description: "Your trusted source for authentic international groceries from Asia, Africa, Latin America, and the Middle East. Quality products at affordable prices, delivered to your door in Sweden.",
-  site_domain: "https://cashncarry.se",
+  site_domain: "https://www.cashncarry.se",
   site_tagline: "Quality @ Affordability",
 };
