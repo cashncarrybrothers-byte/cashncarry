@@ -33,9 +33,9 @@ export function MobileFloatingCTA() {
                         className="flex-1 bg-primary-900/95 text-white shadow-lg backdrop-blur-sm hover:bg-primary-800 border border-primary-700/50"
                         size="lg"
                     >
-                        <Link href="/bookings">
+                        <Link href="/deals">
                             <CalendarDays className="mr-2 h-4 w-4 text-secondary-500" />
-                            Book Table
+                            View Deals
                         </Link>
                     </Button>
                     <Button

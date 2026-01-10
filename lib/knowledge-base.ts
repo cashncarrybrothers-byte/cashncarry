@@ -49,9 +49,10 @@ export function searchKnowledgeBase(query: string): KnowledgeBaseResponse {
         return getCateringInfo();
     }
 
-    if (matchedKeywords.includes('reservation') || matchedKeywords.includes('book') || matchedKeywords.includes('table')) {
-        return getReservationInfo();
-    }
+    // Reservations removed - grocery store doesn't need table bookings
+    // if (matchedKeywords.includes('reservation') || matchedKeywords.includes('book') || matchedKeywords.includes('table')) {
+    //     return getReservationInfo();
+    // }
 
     if (matchedKeywords.includes('location') || matchedKeywords.includes('where') || matchedKeywords.includes('address')) {
         return getLocationInfo();
@@ -244,7 +245,7 @@ function getPriceInfo(): KnowledgeBaseResponse {
 
 function getDefaultResponse(): KnowledgeBaseResponse {
     return {
-        answer: `I'd be happy to help! At **${brandConfig.businessName}**, we offer ${brandConfig.cuisineDescription}, traditional sweets, catering services, and more.\n\nYou can:\n- Browse our [Menu](/menu/restaurant)\n- Book a [Reservation](/bookings)\n- Explore [Catering Options](/special-order)\n- Try our lunch or weekend buffets\n\nWhat would you like to know more about?`,
+        answer: `I'd be happy to help! At **${brandConfig.businessName}**, we offer ${brandConfig.cuisineDescription}.\n\nYou can:\n- Browse our [Products](/shop)\n- Check [Weekly Deals](/deals)\n- Learn about [Delivery](/delivery-information)\n- Order prepared meals like [Biryani](/prepared-meals)\n\nWhat would you like to know more about?`,
         confidence: 'low'
     };
 }
@@ -258,5 +259,5 @@ function calculateSimilarity(str1: string, str2: string): number {
 }
 
 export function getGreeting(): string {
-    return `Hello! I'm your **Anmol Assistant**. I can help you with:\n\n✨ Menu recommendations\n🍽️ Reservations\n🎉 Catering & events\n📍 Location & hours\n💬 Any questions about our food\n\nWhat can I help you with today?`;
+    return `Hello! I'm your **Brothers Assistant**. I can help you with:\n\n✨ Product recommendations\n🛒 Finding products\n📦 Order & delivery info\n📍 Location & hours\n💬 Any questions about our store\n\nWhat can I help you with today?`;
 }

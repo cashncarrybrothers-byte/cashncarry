@@ -34,7 +34,7 @@ const TransparentNavLink = ({ href, children, isTransparent }: { href: string; c
 
 export function TransparentHeader({ categories, className }: TransparentHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const logoUrl = 'https://anmolsweets.se/wp-content/uploads/2021/01/logo.png';
+  const logoUrl = '/logo.png';
 
   // Chat functionality
   const { openChat, ChatWidget } = useAIChat();
@@ -107,27 +107,13 @@ export function TransparentHeader({ categories, className }: TransparentHeaderPr
               {/* Center: Logo & Brand */}
               <div className="col-span-2 flex flex-col items-center justify-center">
                 <Link href="/" className="flex flex-col items-center group">
-                  <div className="relative h-12 w-12 mb-1 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                  <div className="relative h-20 w-32 transition-transform duration-500 group-hover:scale-110">
                     <Image
                       src={logoUrl}
-                      alt="Anmol Sweets"
+                      alt="Brothers Cash & Carry"
                       fill
                       className="object-contain"
                     />
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <span className={cn(
-                      "font-heading text-lg font-bold uppercase tracking-[0.15em] leading-none transition-colors group-hover:text-primary",
-                      isTransparent ? "text-white" : "text-foreground"
-                    )}>
-                      Anmol Sweets
-                    </span>
-                    <span className={cn(
-                      "font-heading text-[0.65rem] uppercase tracking-[0.37em] leading-tight mt-1 transition-colors",
-                      isTransparent ? "text-white/90" : "text-primary"
-                    )}>
-                      & Restaurant
-                    </span>
                   </div>
                 </Link>
               </div>
@@ -138,7 +124,7 @@ export function TransparentHeader({ categories, className }: TransparentHeaderPr
                 <TransparentNavLink href="/blog" isTransparent={isTransparent}>Blog</TransparentNavLink>
                 <TransparentNavLink href="/about" isTransparent={isTransparent}>About</TransparentNavLink>
                 <TransparentNavLink href="/contact" isTransparent={isTransparent}>Contact</TransparentNavLink>
-                <TransparentNavLink href="/bookings" isTransparent={isTransparent}>Reservations</TransparentNavLink>
+                <TransparentNavLink href="/deals" isTransparent={isTransparent}>Deals</TransparentNavLink>
               </div>
 
               {/* Extreme Right: Shop/Cart */}

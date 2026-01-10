@@ -89,11 +89,10 @@ export function Header({ className, categories = [] }: HeaderProps) {
 
               {/* Right Navigation - Spread Out */}
               <div className="col-span-4 flex justify-between items-center px-2">
-                <NavLink href="/shop">Shop</NavLink>
                 <NavLink href="/blog">Blog</NavLink>
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/contact">Contact</NavLink>
-                <NavLink href="/bookings">Reservations</NavLink>
+                <NavLink href="/deals">Deals</NavLink>
               </div>
 
               {/* Extreme Right: Shop/Cart */}
