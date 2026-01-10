@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { TopInfoBar } from "@/components/layout/top-info-bar";
 import { SchemaScript } from "@/lib/schema/schema-script";
 import { websiteSchema } from "@/lib/schema";
-import { GoogleTagManager, GoogleTagManagerNoScript, FacebookPixel } from "@/components/analytics";
+// Analytics removed to prevent cross-domain tracking issues
 import { VerticalSidebar } from "@/components/layout/vertical-sidebar";
 import { ContentHeader } from "@/components/layout/content-header";
 import { Footer } from "@/components/layout/footer";
@@ -149,15 +149,10 @@ export default async function RootLayout({
         {/* Hreflang Tags */}
         <HreflangTags canonicalUrl={siteConfig.site_domain} />
 
-        {/* Google Tag Manager */}
-        <GoogleTagManager />
+        {/* Analytics removed to prevent cross-domain tracking */}
       </head>
       <body className={cn("min-h-screen font-sans antialiased", fontSans.variable, fontHeading.variable)} suppressHydrationWarning>
-        {/* Google Tag Manager (noscript) */}
-        <GoogleTagManagerNoScript />
-
-        {/* Facebook Pixel */}
-        <FacebookPixel />
+        {/* Analytics tracking removed */}
 
         <ThemeProvider
           attribute="class"

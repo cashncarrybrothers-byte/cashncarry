@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { trackPurchase } from '@/lib/analytics';
-import { GoogleCustomerReviews } from '@/components/analytics';
 
 interface OrderSuccessTrackingProps {
   orderId: string;
@@ -21,9 +20,6 @@ export function OrderSuccessTracking({
   total,
   shippingTotal,
   lineItems,
-  customerEmail,
-  deliveryCountry = 'SE',
-  estimatedDeliveryDate,
 }: OrderSuccessTrackingProps) {
   useEffect(() => {
     // Track purchase event
@@ -36,19 +32,6 @@ export function OrderSuccessTracking({
     trackPurchase(orderNumber, totalValue, lineItems, shipping, tax);
   }, [orderId, orderNumber, total, shippingTotal, lineItems]);
 
-  // Calculate estimated delivery date (7 days from now if not provided)
-  const deliveryDate = estimatedDeliveryDate ||
-    new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-
-  return (
-    <>
-      {/* Google Customer Reviews Widget */}
-      <GoogleCustomerReviews
-        orderId={orderNumber}
-        email={customerEmail}
-        deliveryCountry={deliveryCountry}
-        estimatedDeliveryDate={deliveryDate}
-      />
-    </>
-  );
+  // Analytics tracking removed to prevent cross-domain issues
+  return null;
 }
