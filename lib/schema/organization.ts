@@ -360,14 +360,8 @@ export function brothersOrganizationSchemaFull(baseUrl: string = 'https://cashnc
       { '@type': 'LocationFeatureSpecification', name: 'Bulk Orders', value: true },
     ],
 
-    // Aggregate rating (placeholder - update with real data)
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '120',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    // Aggregate rating - REMOVED (use only real customer reviews)
+    // Do not add fake ratings - this violates Google's guidelines
 
     // Order action
     potentialAction: {

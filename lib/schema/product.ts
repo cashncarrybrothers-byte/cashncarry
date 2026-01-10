@@ -100,11 +100,13 @@ export function productSchema(
     schema['@id'] = product.url;
   }
 
-  // Description
-  const description = sanitizeSchemaText(product.description || product.shortDescription);
-  if (description) {
-    schema.description = description;
-  }
+  // Description (REQUIRED for Merchant schema - use fallback if needed)
+  const description = sanitizeSchemaText(
+    product.description ||
+    product.shortDescription ||
+    product.name // Fallback to product name if no description
+  );
+  schema.description = description;
 
   // Images
   if (product.images && product.images.length > 0) {
@@ -116,10 +118,9 @@ export function productSchema(
     }
   }
 
-  // SKU
-  if (product.sku) {
-    schema.sku = product.sku;
-    schema.mpn = product.sku; // Use SKU as MPN if no separate MPN
+  // SKU (must be valid string, not empty)
+  if (product.sku && product.sku.trim()) {
+    schema.sku = product.sku.trim();
   }
 
   // GTIN (barcode)
@@ -248,8 +249,8 @@ export function wooCommerceProductSchema(
 
   return productSchema(productInput, {
     baseUrl: options?.baseUrl,
-    brandName: options?.brandName || 'Anmol Sweets & Restaurant',
-    sellerName: options?.sellerName || 'Anmol Sweets & Restaurant',
+    brandName: options?.brandName,
+    sellerName: options?.sellerName,
   });
 }
 
