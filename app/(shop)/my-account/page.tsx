@@ -421,7 +421,7 @@ function MyAccountContent() {
                             size="sm"
                             className="gap-2"
                             onClick={() => {
-                              moveToCart(item.id);
+                              moveToCart(item.id, (p, v) => addToCart(p, 1, v));
                               toast.success('Item moved to cart');
                             }}
                           >
