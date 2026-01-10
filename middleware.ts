@@ -60,7 +60,30 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // STEP 3: If host changed (non-www to www) but path didn't need redirect
+  // STEP 3: Handle old product URLs (OpenCart pattern)
+  // Old: /Product_Name_With_Underscores
+  // New: /product/product-slug OR redirect to /shop if product not found
+
+  // Check if this looks like an old product URL pattern:
+  // - No /product/ prefix
+  // - Has underscores (old OpenCart style)
+  // - Not a known page
+  if (!pathname.startsWith('/product/') &&
+    !pathname.startsWith('/shop') &&
+    !pathname.startsWith('/blog') &&
+    !pathname.startsWith('/about') &&
+    !pathname.startsWith('/contact') &&
+    !pathname.startsWith('/delivery') &&
+    pathname.includes('_')) {
+
+    // This looks like an old product URL
+    // Redirect to shop to avoid 404 (user can search for the product)
+    url.pathname = '/shop';
+    url.search = `?search=${encodeURIComponent(pathname.slice(1).replace(/_/g, ' '))}`;
+    return NextResponse.redirect(url, 301);
+  }
+
+  // STEP 4: If host changed (non-www to www) but path didn't need redirect
   if (url.host !== host) {
     return NextResponse.redirect(url, 301);
   }
