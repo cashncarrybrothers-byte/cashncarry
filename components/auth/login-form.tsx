@@ -54,7 +54,11 @@ export function LoginForm() {
 
             // 2. Get full user details
             console.log('Getting user details...');
-            const userResult = await getCurrentUserAction(authData.token, authData.user_email);
+            const userResult = await getCurrentUserAction(
+                authData.token,
+                authData.user_email,
+                authData.user_id
+            );
             console.log('User result:', userResult);
 
             if (!userResult.success || !userResult.data) {

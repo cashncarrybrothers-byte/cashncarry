@@ -2,7 +2,7 @@
 
 import { WC_API_CONFIG } from '@/lib/woocommerce/config';
 import { RegisterData, LoginCredentials } from '@/lib/auth';
-import { getCustomerOrders } from '@/lib/woocommerce/orders';
+import { getCustomerOrders, getOrdersByEmail } from '@/lib/woocommerce/orders';
 
 export async function registerUserAction(data: RegisterData) {
     const baseUrl = WC_API_CONFIG.baseUrl;
@@ -78,6 +78,7 @@ export async function loginUserAction(credentials: LoginCredentials) {
                 user_email: data.data?.user?.user_email || data.user?.user_email,
                 user_nicename: data.data?.user?.user_nicename || data.user?.user_nicename,
                 user_display_name: data.data?.user?.user_display_name || data.user?.user_display_name,
+                user_id: data.data?.user?.id || data.user?.ID || data.user?.id || data.id,
             };
 
             return { success: true, data: transformedData };
@@ -120,6 +121,7 @@ export async function loginUserAction(credentials: LoginCredentials) {
                     user_email: data.user_email,
                     user_nicename: data.user_nicename,
                     user_display_name: data.user_display_name,
+                    user_id: data.user_id || (data.user ? data.user.id : undefined),
                 },
             };
         }
@@ -161,6 +163,7 @@ export async function loginUserAction(credentials: LoginCredentials) {
                     user_email: wpUser.email || credentials.username,
                     user_nicename: wpUser.slug || credentials.username.split('@')[0],
                     user_display_name: wpUser.name || credentials.username,
+                    user_id: wpUser.id,
                 },
             };
         }
@@ -178,7 +181,7 @@ export async function loginUserAction(credentials: LoginCredentials) {
     };
 }
 
-export async function getCurrentUserAction(token: string, userEmail?: string) {
+export async function getCurrentUserAction(token: string, userEmail?: string, userId?: number) {
     const baseUrl = WC_API_CONFIG.baseUrl;
     const consumerKey = process.env.WORDPRESS_CONSUMER_KEY;
     const consumerSecret = process.env.WORDPRESS_CONSUMER_SECRET;
@@ -187,21 +190,34 @@ export async function getCurrentUserAction(token: string, userEmail?: string) {
     console.log('User email from JWT:', userEmail);
 
     try {
-        // If we don't have the email, try to decode it from the JWT token
+        // If we don't have the email or id, try to decode it from the JWT token
         let email = userEmail;
+        let id = userId;
 
-        if (!email && token) {
+        if ((!email || !id) && token) {
             // JWT tokens have 3 parts separated by dots: header.payload.signature
             // We can decode the payload (it's base64 encoded but not encrypted)
             try {
-                const parts = token.split('.');
-                if (parts.length === 3) {
-                    const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString());
-                    email = payload.data?.user?.user_email || payload.email;
-                    console.log('Decoded email from JWT:', email);
+                // Try simple Base64 decode first (custom session token)
+                try {
+                    const decoded = JSON.parse(Buffer.from(token, 'base64').toString());
+                    if (decoded.email) email = decoded.email;
+                    if (decoded.id) id = decoded.id;
+                } catch (e) {
+                    // Not a simple session token, try JWT
+                }
+
+                if (!email || !id) {
+                    const parts = token.split('.');
+                    if (parts.length === 3) {
+                        const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString());
+                        email = payload.data?.user?.user_email || payload.email || payload.user_email;
+                        id = payload.data?.user?.id || payload.user_id || payload.id;
+                        console.log('Decoded from JWT - Email:', email, 'ID:', id);
+                    }
                 }
             } catch (decodeError) {
-                console.error('Failed to decode JWT:', decodeError);
+                console.error('Failed to decode token:', decodeError);
             }
         }
 
@@ -210,10 +226,30 @@ export async function getCurrentUserAction(token: string, userEmail?: string) {
             return { success: false, error: 'Unable to determine user email' };
         }
 
-        // Fetch WC customer details using email
+        // Fetch WC customer details using ID first, then email
         if (consumerKey && consumerSecret) {
+            // STRATEGY: Try ID lookup first (faster and more reliable)
+            if (id && id > 0) {
+                const idUrl = `${baseUrl}/customers/${id}`;
+                console.log('🔍 Fetching WC customer by ID:', idUrl);
+                try {
+                    const idResponse = await fetch(idUrl, {
+                        headers: {
+                            'Authorization': 'Basic ' + Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64'),
+                        }
+                    });
+                    if (idResponse.ok) {
+                        const customer = await idResponse.json();
+                        console.log('✅ WC Customer found by ID:', customer.id);
+                        return { success: true, data: customer };
+                    }
+                } catch (e) {
+                    console.warn('⚠️ ID-based lookup failed, falling back to email search');
+                }
+            }
+
             const customerUrl = `${baseUrl}/customers?email=${encodeURIComponent(email)}`;
-            console.log('🔍 Fetching WC customer from:', customerUrl);
+            console.log('🔍 Fetching WC customer by email from:', customerUrl);
 
             try {
                 // Add timeout to prevent hanging requests
@@ -377,9 +413,21 @@ export async function getCustomerOrdersAction(customerId: number, params?: {
     per_page?: number;
     page?: number;
     status?: string;
+    email?: string;
 }) {
     try {
-        const orders = await getCustomerOrders(customerId, params);
+        console.log('Fetching orders for customer ID:', customerId);
+        let orders = await getCustomerOrders(customerId, params);
+
+        // If no orders found by ID, try searching by email (guest orders)
+        if ((!orders || orders.length === 0) && params?.email) {
+            console.log('No orders found by ID, trying fallback search by email:', params.email);
+            const fallbackOrders = await getOrdersByEmail(params.email, params);
+            if (fallbackOrders && fallbackOrders.length > 0) {
+                return { success: true, data: fallbackOrders };
+            }
+        }
+
         return { success: true, data: orders };
     } catch (error: any) {
         console.error('Get customer orders error:', error);

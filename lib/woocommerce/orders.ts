@@ -247,6 +247,36 @@ export async function getCustomerOrders(customerId: number, params?: {
 }
 
 /**
+ * Get orders by customer email (fallback for guest orders)
+ */
+export async function getOrdersByEmail(email: string, params?: {
+    per_page?: number;
+    page?: number;
+}): Promise<Order[]> {
+    const queryParams = new URLSearchParams({
+        search: email, // WooCommerce searches billing email
+        per_page: params?.per_page?.toString() || '10',
+        page: params?.page?.toString() || '1',
+    });
+
+    const response = await fetch(
+        getWooCommerceUrl(`/orders?${queryParams.toString()}`),
+        {
+            headers: {
+                'Authorization': getWooCommerceAuthHeader(),
+            },
+            cache: 'no-store',
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch orders by email');
+    }
+
+    return parseJsonResponse(response);
+}
+
+/**
  * Get shipping zones with their locations (postcodes, regions, etc.)
  */
 export async function getShippingZones() {

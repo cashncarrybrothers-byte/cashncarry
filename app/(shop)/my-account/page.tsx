@@ -11,11 +11,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Package, User, MapPin, LogOut, Loader2, Eye, LayoutDashboard, Download, CreditCard, Edit, Save, X } from 'lucide-react';
+import { Package, User, MapPin, LogOut, Loader2, Eye, LayoutDashboard, Download, CreditCard, Edit, Save, X, Heart, Repeat2, ShoppingCart, Trash2 } from 'lucide-react';
 import { getCustomerOrdersAction, updateCustomerAction } from '@/app/actions/auth';
 import type { Order } from '@/types/woocommerce';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import { useWishlistStore } from '@/store/wishlist-store';
+import { useCartStore } from '@/store/cart-store';
 
 function MyAccountContent() {
   const { user, isAuthenticated, logout, setUser } = useAuthStore();
@@ -25,6 +27,8 @@ function MyAccountContent() {
   const [isLoadingOrders, setIsLoadingOrders] = useState(true);
   const [ordersError, setOrdersError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const { items: wishlistItems, removeItem: removeFromWishlist, moveToCart } = useWishlistStore();
+  const { addItem: addToCart } = useCartStore();
 
   // Profile editing state
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -68,7 +72,7 @@ function MyAccountContent() {
   // Handle tab query parameter
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab && ['dashboard', 'orders', 'downloads', 'addresses', 'payment', 'profile'].includes(tab)) {
+    if (tab && ['dashboard', 'orders', 'wishlist', 'addresses', 'payment', 'profile'].includes(tab)) {
       setActiveTab(tab);
     }
   }, [searchParams]);
@@ -125,6 +129,7 @@ function MyAccountContent() {
         const result = await getCustomerOrdersAction(user.id, {
           per_page: 20,
           page: 1,
+          email: user.email,
         });
 
         console.log('Orders result:', result);
@@ -285,9 +290,9 @@ function MyAccountContent() {
               <Package className="h-4 w-4" />
               <span className="hidden sm:inline">Orders</span>
             </TabsTrigger>
-            <TabsTrigger value="downloads" className="gap-2">
-              <Download className="h-4 w-4" />
-              <span className="hidden sm:inline">Downloads</span>
+            <TabsTrigger value="wishlist" className="gap-2">
+              <Heart className="h-4 w-4" />
+              <span className="hidden sm:inline">Wishlist</span>
             </TabsTrigger>
             <TabsTrigger value="addresses" className="gap-2">
               <MapPin className="h-4 w-4" />
@@ -324,15 +329,15 @@ function MyAccountContent() {
                   </div>
 
                   <div className="rounded-lg border p-4 hover:bg-accent/50 transition-colors cursor-pointer" onClick={() => {
-                    const downloadsTab = document.querySelector('[value="downloads"]') as HTMLElement;
-                    downloadsTab?.click();
+                    const wishlistTab = document.querySelector('[value="wishlist"]') as HTMLElement;
+                    wishlistTab?.click();
                   }}>
                     <div className="flex items-center gap-2 mb-2">
-                      <Download className="h-5 w-5 text-primary" />
-                      <h3 className="font-semibold">Downloads</h3>
+                      <Heart className="h-5 w-5 text-primary" />
+                      <h3 className="font-semibold">Wishlist</h3>
                     </div>
-                    <p className="text-2xl font-bold">0</p>
-                    <p className="text-sm text-muted-foreground">Available downloads</p>
+                    <p className="text-2xl font-bold">{wishlistItems.length}</p>
+                    <p className="text-sm text-muted-foreground">Saved items</p>
                   </div>
 
                   <div className="rounded-lg border p-4 hover:bg-accent/50 transition-colors cursor-pointer" onClick={() => {
@@ -369,20 +374,77 @@ function MyAccountContent() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="downloads">
+          <TabsContent value="wishlist">
             <Card>
               <CardHeader>
-                <CardTitle>Downloads</CardTitle>
-                <CardDescription>Access your downloadable products</CardDescription>
+                <CardTitle>Wishlist</CardTitle>
+                <CardDescription>Items you&apos;ve saved for later</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex h-48 flex-col items-center justify-center rounded-lg border border-dashed border-neutral-200 bg-neutral-50 text-center dark:border-neutral-800 dark:bg-neutral-900/50">
-                  <Download className="mb-2 h-8 w-8 text-neutral-400" />
-                  <p className="text-sm text-neutral-500">No downloadable products yet.</p>
-                  <Button variant="link" onClick={() => router.push('/shop')}>
-                    Browse Products
-                  </Button>
-                </div>
+                {wishlistItems.length === 0 ? (
+                  <div className="flex h-48 flex-col items-center justify-center rounded-lg border border-dashed border-neutral-200 bg-neutral-50 text-center dark:border-neutral-800 dark:bg-neutral-900/50">
+                    <Heart className="mb-2 h-8 w-8 text-neutral-400" />
+                    <p className="text-sm text-neutral-500">Your wishlist is empty.</p>
+                    <Button variant="link" onClick={() => router.push('/shop')}>
+                      Browse Products
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid gap-4">
+                    {wishlistItems.map((item) => (
+                      <div key={item.key} className="flex items-center gap-4 rounded-lg border p-4 hover:bg-accent/5 transition-colors">
+                        <div className="relative h-20 w-20 flex-shrink-0">
+                          {item.product.images?.[0]?.src ? (
+                            <Image
+                              src={item.product.images[0].src}
+                              alt={item.product.name}
+                              fill
+                              className="rounded-md object-cover"
+                            />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center rounded-md bg-muted">
+                              <Heart className="h-8 w-8 text-muted-foreground/20" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold truncate">{item.product.name}</h4>
+                          <p className="text-primary font-bold">{item.product.price} SEK</p>
+                          {item.variation && (
+                            <p className="text-xs text-muted-foreground">
+                              {item.variation.attributes.map(a => `${a.name}: ${a.option}`).join(', ')}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <Button
+                            size="sm"
+                            className="gap-2"
+                            onClick={() => {
+                              moveToCart(item.key);
+                              toast.success('Item moved to cart');
+                            }}
+                          >
+                            <ShoppingCart className="h-4 w-4" />
+                            To Cart
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="text-destructive hover:text-destructive gap-2"
+                            onClick={() => {
+                              removeFromWishlist(item.key);
+                              toast.success('Item removed from wishlist');
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            Remove
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -469,21 +531,48 @@ function MyAccountContent() {
                           )}
                         </div>
 
-                        <div className="mt-4 flex items-center justify-between border-t border-neutral-200 pt-3 dark:border-neutral-800">
+                        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 pt-3 dark:border-neutral-800">
                           <div className="text-sm">
                             <span className="text-neutral-500">Total: </span>
                             <span className="text-lg font-bold text-primary">
                               {order.currency} {order.total}
                             </span>
                           </div>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => router.push(`/my-account/orders/${order.id}`)}
-                          >
-                            <Eye className="mr-2 h-4 w-4" />
-                            View Details
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                let addedCount = 0;
+                                order.line_items.forEach((item) => {
+                                  // The mock product structure needs to match CartItem expected by addToCart
+                                  // This is a simplified version for the demo reorder
+                                  const product = {
+                                    id: item.product_id,
+                                    name: item.name,
+                                    price: item.price.toString(),
+                                    images: item.image ? [item.image] : [],
+                                  } as any;
+
+                                  addToCart(product, item.quantity, item.variation_id);
+                                  addedCount++;
+                                });
+                                toast.success(`${addedCount} items added to cart from order #${order.number || order.id}`);
+                                router.push('/cart');
+                              }}
+                            >
+                              <Repeat2 className="mr-2 h-4 w-4" />
+                              Reorder
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => router.push(`/my-account/orders/${order.id}`)}
+                            >
+                              <Eye className="mr-2 h-4 w-4" />
+                              Details
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     ))}
