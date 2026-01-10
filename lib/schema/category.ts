@@ -157,8 +157,8 @@ export function wooCategorySchema(
       websiteId: options.websiteId,
     },
     {
-      brandName: options.brandName || 'Ideal Indiska LIVS',
-      sellerName: options.sellerName || 'Ideal Indiska LIVS',
+      brandName: options.brandName || 'Brothers Cash & Carry',
+      sellerName: options.sellerName || 'Brothers Cash & Carry',
     }
   );
 }

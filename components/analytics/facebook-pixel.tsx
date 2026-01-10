@@ -1,6 +1,9 @@
 /**
  * Facebook Pixel Component
  * Integrates Meta/Facebook Pixel tracking with deferred loading
+ *
+ * DISABLED: Old Ideal Indiska pixel removed (651966044655390)
+ * TODO: Add Brothers Cash & Carry Facebook Pixel ID when available
  */
 
 'use client';
@@ -9,8 +12,17 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 
 export function FacebookPixel() {
-  const PIXEL_ID = '651966044655390';
+  // DISABLED: Old Ideal Indiska Facebook Pixel ID removed
+  // const PIXEL_ID = '651966044655390'; // OLD - Ideal Indiska
 
+  // TODO: Add your Brothers Cash & Carry Facebook Pixel ID here:
+  // const PIXEL_ID = 'XXXXXXXXXXXXXXX'; // Brothers Cash & Carry
+
+  // Return null to disable tracking until new Pixel ID is added
+  return null;
+
+  // Uncomment below when you have a new Facebook Pixel ID:
+  /*
   useEffect(() => {
     // Defer Facebook Pixel loading until after page is interactive
     const loadFacebookPixel = () => {
@@ -62,4 +74,5 @@ export function FacebookPixel() {
       />
     </noscript>
   );
+  */
 }
