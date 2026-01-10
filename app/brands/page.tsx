@@ -7,21 +7,21 @@ import { getProductBrands } from "@/lib/woocommerce/brands";
 import { Package, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: `Shop by Brand - Top Indian & Pakistani Grocery Brands | ${brandProfile.name}`,
-    description: `Discover authentic Indian and Pakistani grocery brands at ${brandProfile.name} in Stockholm. Shop from trusted brands like Ahmed, Shan, MTR, National, and more. Browse our curated selection of spices, rice, snacks, and authentic ingredients.`,
+    title: `Shop by Brand - Top International Grocery Brands | ${brandProfile.name}`,
+    description: `Discover authentic Asian, African, Latin American and Middle Eastern grocery brands at ${brandProfile.name} in Sweden. Shop from trusted brands from around the world. Browse our curated selection of spices, rice, snacks, and authentic ingredients.`,
     keywords: [
-        "Indian grocery brands Stockholm",
-        "Pakistani brands",
-        "Shan spices Stockholm",
-        "Ahmed foods Sweden",
-        "MTR products",
+        "International grocery brands Sweden",
+        "Asian brands Stockholm",
+        "African food brands",
+        "Latin American products",
+        "Middle Eastern spices",
         "Halal brands Stockholm",
         "Shop by brand",
         ...brandProfile.seo.keywords,
     ].join(", "),
     openGraph: {
-        title: `Shop Your Favorite Indian & Pakistani Grocery Brands in Stockholm`,
-        description: `Browse trusted brands at ${brandProfile.name}. From Shan's aromatic spices to Ahmed's quality products.`,
+        title: `Shop Your Favorite International Grocery Brands at Brothers Cash & Carry`,
+        description: `Browse trusted brands at ${brandProfile.name}. Authentic products from Asia, Africa, Latin America & Middle East.`,
         type: "website",
     },
 };
@@ -39,13 +39,13 @@ export default async function ShopByBrandPage() {
                 <Container>
                     <div className="max-w-4xl mx-auto text-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-                            Shop Your Favorite Indian & Pakistani Grocery Brands
+                            Shop Your Favorite International Grocery Brands
                         </h1>
                         <p className="text-xl text-muted-foreground mb-4">
-                            At {brandProfile.name}, we are proud to bring you a curated selection of the most trusted and beloved Indian and Pakistani grocery brands.
+                            At {brandProfile.name}, we are proud to bring you a curated selection of the most trusted and beloved grocery brands from Asia, Africa, Latin America, and the Middle East.
                         </p>
                         <p className="text-lg text-muted-foreground">
-                            Whether you're looking for the authentic spices of Shan, the delicious snacks from Haldiram's, or quality staples from ITC and KTC, find them all here. Explore our brand directory below and shop with confidence.
+                            Whether you&apos;re looking for authentic spices, traditional snacks, or quality staples from your home country, find them all here. Explore our brand directory below and shop with confidence.
                         </p>
                     </div>
                 </Container>
@@ -130,12 +130,12 @@ export default async function ShopByBrandPage() {
 
                         <div className="space-y-4 text-muted-foreground">
                             <p>
-                                <strong>Largest Selection of Indian and Pakistani Brands in Stockholm:</strong>{" "}
-                                We understand that when it comes to authentic Indian and Pakistani cooking, the brand matters. That's why we've partnered with the most prestigious and trusted names in South Asian groceries.
+                                <strong>Largest Selection of International Brands in Upplands Väsby:</strong>{" "}
+                                We understand that when it comes to authentic cooking, the brand matters. That&apos;s why we&apos;ve partnered with the most prestigious and trusted names in international groceries.
                             </p>
 
                             <p>
-                                <strong>Quality You Can Trust:</strong> Every brand we stock has been carefully selected for its commitment to quality, authenticity, and taste. From traditional family favorites to modern innovations, our brands deliver the genuine flavors of India and Pakistan.
+                                <strong>Quality You Can Trust:</strong> Every brand we stock has been carefully selected for its commitment to quality, authenticity, and taste. From traditional family favorites to modern innovations, our brands deliver the genuine flavors from Asia, Africa, Latin America, and the Middle East.
                             </p>
 
                             <p>
@@ -143,20 +143,18 @@ export default async function ShopByBrandPage() {
                             </p>
 
                             <h3 className="text-2xl font-heading font-bold mt-8 mb-4">
-                                Popular Brands at Our Store
+                                Discover Brands from Around the World
                             </h3>
 
                             <ul className="list-disc pl-6 space-y-2">
-                                <li><strong>Shan:</strong> Pakistan's #1 spice brand, perfect for authentic curries and biryanis</li>
-                                <li><strong>Ahmed Foods:</strong> Premium quality pickles, spices, and food products</li>
-                                <li><strong>MTR:</strong> South Indian specialties and ready-to-eat meals</li>
-                                <li><strong>National Foods:</strong> Trusted Pakistani masalas and food products</li>
-                                <li><strong>Haldiram's:</strong> India's favorite snacks and sweets</li>
-                                <li><strong>KTC:</strong> Quality oils, rice, and cooking essentials</li>
+                                <li><strong>Asia:</strong> Trusted brands like Shan, Ahmed, MTR, and National for authentic South Asian flavors.</li>
+                                <li><strong>Africa:</strong> Quality products from across the continent, bringing home tastes to Sweden.</li>
+                                <li><strong>Middle East:</strong> Aromatic spices, oils, and traditional staples from the region.</li>
+                                <li><strong>Latin America:</strong> Authentic ingredients for traditional Latin American cuisine.</li>
                             </ul>
 
                             <p className="mt-6">
-                                Visit our store in {brandProfile.address.area} or shop online at {brandProfile.website.domain} for the complete range of Indian and Pakistani brands in Stockholm.
+                                Visit our store in Upplands Väsby or shop online at {brandProfile.website.domain} for the complete range of international brands in Sweden.
                             </p>
                         </div>
                     </div>

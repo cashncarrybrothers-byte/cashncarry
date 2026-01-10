@@ -11,7 +11,7 @@ import { brandProfile } from '@/config/brand-profile';
 
 export const metadata: Metadata = {
     title: 'Frequently Asked Questions | Brothers Cash & Carry',
-    description: 'Get answers to common questions about ordering Indian and Pakistani groceries in Stockholm, delivery options across Sweden and Europe, payment methods, and our products.',
+    description: 'Get answers to common questions about ordering international groceries in Stockholm, delivery options across Sweden, payment methods, and our products.',
     alternates: {
         canonical: '/faq',
     },
@@ -23,7 +23,7 @@ const faqs = [
         questions: [
             {
                 q: "How do I place an order?",
-                a: "Placing an order is easy! Simply browse our website, add your desired items to the shopping cart, and proceed to checkout. You'll enter your delivery address, choose from Store delivery, pickup, or DHL options, and complete payment securely."
+                a: "Placing an order is easy! Simply browse our website, add your desired items to the shopping cart, and proceed to checkout. You'll enter your delivery address, choose from Local delivery, pickup, or PostNord options, and complete payment securely."
             },
             {
                 q: "What payment methods do you accept?",
@@ -31,15 +31,15 @@ const faqs = [
             },
             {
                 q: "Do I need an account to place an order?",
-                a: "No, you can check out as a guest. However, creating an account lets you view order history, save your address for faster checkout, and receive exclusive first-purchase offers and promotions."
+                a: "No, you can check out as a guest. However, creating an account lets you view order history, save your address for faster checkout, and receive exclusive offers and promotions."
             },
             {
                 q: "Can I order groceries through WhatsApp?",
-                a: "Yes! You can place orders via WhatsApp directly from product pages, cart, or checkout. Join our WhatsApp Group by scanning the QR code in the footer section for easy ordering and updates."
+                a: "Yes! You can place orders via WhatsApp directly from product pages, cart, or checkout. You can also chat with our support team for any help with your order."
             },
             {
                 q: "Do you offer discounts?",
-                a: "Yes! We're one of Stockholm's most competitively priced stores for international groceries from Asia, Africa, Latin America, and the Middle East. Check our special offers page weekly for the latest promotions and deals."
+                a: "Yes! We're one of Sweden's most competitively priced stores for international groceries. Our slogan is 'quality @ affordability'. Check our special offers page for the latest deals."
             },
         ]
     },
@@ -48,23 +48,23 @@ const faqs = [
         questions: [
             {
                 q: "Do you deliver groceries in Stockholm?",
-                a: "Absolutely! We offer our own local delivery service across all of Stockholm. We're proud to offer international groceries with matleverans i Stockholm. Visit our Delivery Information page for full details."
+                a: "Absolutely! We offer our own local delivery service across all of Stockholm. We specialize in fast and reliable delivery of international groceries. Visit our Delivery Information page for full details."
             },
             {
                 q: "Is there free delivery in Stockholm?",
-                a: "Yes! FREE local delivery on all orders of 500 kr or more anywhere in Stockholm. Orders between 300-499 kr have a flat 30 kr delivery fee."
+                a: "Yes! FREE local delivery on all orders of 500 kr or more in our local delivery areas. For orders below 500 kr, a flat delivery fee of 99 kr applies."
+            },
+            {
+                q: "Do you offer same-day delivery?",
+                a: "Yes! For local areas in North Stockholm (including Upplands Väsby, Märsta, Vallentuna, Sollentuna, Täby, Kista), we offer same-day evening delivery for orders placed before 2 PM (14:00)."
             },
             {
                 q: "Do you deliver to the rest of Sweden?",
-                a: "Yes! We deliver nationwide using our trusted partner, DHL. Shipping costs are calculated automatically at checkout based on weight and your delivery address."
+                a: "Yes! We deliver nationwide using our trusted partner, PostNord. Shipping costs are calculated automatically at checkout based on weight and your delivery address."
             },
             {
                 q: "Do you deliver to other countries in Europe?",
-                a: "Yes! We deliver across Europe (excluding fresh and perishable items) via DHL. Shipping costs are calculated automatically at checkout based on weight and destination."
-            },
-            {
-                q: "Will I have to pay customs duties in EU countries?",
-                a: "No. Since we're shipping from Sweden (an EU member) to other EU countries, there are no additional customs or import duties. The checkout price is your final price. (Standard import rules apply for non-EU countries like Norway.)"
+                a: "Currently, we focus on nationwide delivery within Sweden. For special inquiries regarding international shipping, please contact our support team."
             },
         ]
     },
@@ -77,15 +77,15 @@ const faqs = [
             },
             {
                 q: "How do you ensure the freshness of vegetables and frozen items?",
-                a: "Freshness is our priority. Fresh produce and frozen goods are currently only available for our local Stockholm delivery service. This ensures a controlled cold chain from our store to your door."
+                a: "Freshness is our priority. Fresh produce and frozen goods are handled with care and delivered through our local delivery service to maintain the cold chain from our store to your door."
             },
             {
                 q: "I'm looking for a specific brand or product not on your website.",
                 a: "We're always expanding our range! If there's a specific brand or item you'd love to see, email us at support@cashncarry.se. We value your suggestions!"
             },
             {
-                q: "What grocery brands do you stock?",
-                a: "We carry over 150 brands from around the world, specializing in authentic Indian and Pakistani products, plus select Swedish and European brands."
+                q: "What countries do your products come from?",
+                a: "We carry a wide range of products from Asia, Africa, Latin America, and the Middle East, specializing in authentic flavors from across the globe."
             },
         ]
     },
@@ -103,15 +103,16 @@ const faqs = [
         questions: [
             {
                 q: "Do you have a physical store?",
-                a: "Yes! Visit us at Regndroppsgatan 3, 194 49 Upplands Väsby, Stockholm. Find us on Apple Maps and Google Maps."
+                a: "Yes! Visit us at Regndroppsgatan 3, 194 49 Upplands Väsby, Sweden."
             },
             {
                 q: "What are your store hours?",
-                a: "Monday-Friday: 10:00 AM - 7:00 PM, Saturday: 10:00 AM - 6:00 PM, Sunday: 11:00 AM - 5:00 PM. Hours may vary on holidays."
+                a: "Monday-Friday: 09:00 - 20:00, Saturday-Sunday: 10:00 - 19:00. Note that hours may vary on public holidays."
             },
         ]
     },
 ];
+
 
 export default function FAQPage() {
     return (

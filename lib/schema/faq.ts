@@ -51,55 +51,59 @@ export function faqSchema(config: FAQInput): FAQPage {
 }
 
 /**
- * Pre-configured FAQ for Ideal Indiska LIVS
+ * Pre-configured FAQ for Brothers Cash & Carry
  * Common questions about delivery, products, and services
  */
-export function idealIndiskaFAQSchema(baseUrl: string = 'https://cashncarry.se'): FAQPage {
+export function brothersFAQSchema(baseUrl: string = 'https://cashncarry.se'): FAQPage {
     return faqSchema({
         pageUrl: `${baseUrl}/faq`,
         name: 'Frequently Asked Questions - Brothers Cash & Carry',
         description: 'Common questions about our products, delivery, and services',
         faqs: [
             {
-                question: 'Do you offer free delivery in Stockholm?',
-                answer: 'Yes! We offer FREE delivery in Stockholm for orders over 500 SEK. For orders between 300-499 SEK, delivery costs 30 SEK. Minimum order is 300 SEK.',
+                question: 'Do you offer free delivery?',
+                answer: 'Yes! We offer FREE delivery for orders over 500 SEK in our local delivery areas including Upplands Väsby, Märsta, Vallentuna, Sollentuna, and Täby. For orders under 500 SEK, a delivery fee of 99 SEK applies.',
             },
             {
-                question: 'Do you deliver outside Stockholm?',
-                answer: 'Yes, we deliver across Sweden and all of Europe with DHL. There is no minimum order value for DHL delivery. Rates are calculated at checkout based on your location and order weight.',
+                question: 'Do you deliver across Sweden?',
+                answer: 'Yes, we deliver to all of Sweden using PostNord. Shipping rates are calculated at checkout based on your location and the weight of your order.',
             },
             {
                 question: 'Do you offer same-day delivery?',
-                answer: 'Yes! We offer same-day delivery to nearby areas including Bandhagen, Hagsätra, Högdalen, Farsta, Enskede, Huddinge, Solna, and Sundbyberg. Orders must be placed before 4 PM (16:00) for same-day delivery.',
+                answer: 'Yes! We offer same-day delivery to local areas in North Stockholm if you place your order before 2 PM (14:00). Delivery typically happens between 5 PM and 9 PM.',
             },
             {
-                question: 'Are your products Halal certified?',
-                answer: 'Yes, we specialize in Halal certified products. Our meat and many other products are Halal certified for your peace of mind.',
+                question: 'Are your products Halal?',
+                answer: 'Yes, we have a large selection of Halal products. We specialize in authentic international groceries that meet Halal requirements.',
             },
             {
                 question: 'What types of products do you sell?',
-                answer: 'We offer a wide range of Indian and Pakistani groceries including Basmati rice, spices and masalas, lentils and pulses, fresh produce, frozen foods, snacks, sweets, cooking oils, and household items.',
+                answer: 'We offer a wide range of international groceries including fresh vegetables, spices, beans, lentils, peas, rice, flour, oil, frozen foods, cosmetics, and more from Asia, Africa, Latin America, and the Middle East.',
             },
             {
                 question: 'What are your store opening hours?',
-                answer: 'We are open Monday to Friday from 10:00 to 20:00, and Saturday to Sunday from 11:00 to 19:00.',
+                answer: 'Our physical store is open Monday to Friday from 09:00 to 20:00, and Saturday to Sunday from 10:00 to 19:00.',
             },
             {
                 question: 'What payment methods do you accept?',
-                answer: 'We accept Credit Cards, Debit Cards, Swish, Klarna, Apple Pay, Google Pay, and Cash.',
+                answer: 'Online, we accept Credit/Debit Cards, Swish, Klarna, Apple Pay, and Google Pay. In our physical store, we also accept cash.',
             },
             {
                 question: 'Can I return or exchange products?',
-                answer: 'Yes, we have a 14-day return policy for unopened products. Please contact us at support@cashncarry.se or call +46877888555 for return arrangements.',
+                answer: 'Yes, we have a return policy for unopened and non-perishable products. Please contact us at support@cashncarry.se or call 08 778 88 55 for assistance with returns.',
             },
             {
                 question: 'Do you have a physical store I can visit?',
-                answer: 'Yes! Our store is located at Regndroppsgatan 3, 194 49 Upplands Väsby, Stockholm. You are welcome to visit us during our opening hours.',
+                answer: 'Yes! Our store is located at Regndroppsgatan 3, 194 49 Upplands Väsby. You are welcome to visit us during our opening hours.',
             },
             {
                 question: 'How can I contact you?',
-                answer: 'You can reach us by phone at +46877888555 or email at support@cashncarry.se. We are also active on Facebook, Instagram, and YouTube.',
+                answer: 'You can reach us by phone at 08 778 88 55 or email at support@cashncarry.se. We are also active on Facebook and Instagram @cashncarryse.',
             },
         ],
     });
 }
+
+// Keep legacy export for backward compatibility
+export { brothersFAQSchema as idealIndiskaFAQSchema };
+

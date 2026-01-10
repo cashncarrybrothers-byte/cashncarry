@@ -51,12 +51,16 @@ export function brandSchema(
 }
 
 /**
- * Pre-configured Ideal Indiska LIVS Brand Schema
+ * Pre-configured Brothers Cash & Carry Brand Schema
  */
-export function idealIndiskaBrandSchema(): Brand {
+export function brothersBrandSchema(): Brand {
   return brandSchema('Brothers Cash & Carry', {
     url: 'https://cashncarry.se',
-    logo: 'https://crm.cashncarry.se/wp-content/uploads/2025/04/final-new-logo-black.png',
-    description: 'Stockholm\'s premier destination for authentic international groceries from Asia, Africa, Latin America, and the Middle East',
+    logo: 'https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-favicon.png',
+    description: 'Premier destination for authentic international groceries from Asia, Africa, Latin America, and the Middle East, delivering across Sweden.',
   });
 }
+
+// Keep legacy export for backward compatibility
+export { brothersBrandSchema as idealIndiskaBrandSchema };
+

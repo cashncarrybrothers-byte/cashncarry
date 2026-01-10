@@ -8,7 +8,7 @@ import { GoogleMapCompact } from "@/components/shared/google-map";
 
 export const metadata: Metadata = {
   title: "Grocery Delivery Göteborg & Malmö | Brothers Cash & Carry",
-  description: "Authentic Indian and Pakistani groceries delivered to Göteborg, Malmö, and all over Skåne and West Sweden via DHL.",
+  description: "Authentic international groceries delivered to Göteborg, Malmö, and all over Skåne and West Sweden via PostNord.",
   alternates: {
     canonical: '/delivery-goteborg-malmo',
   },
@@ -35,7 +35,7 @@ export default function GoteborgMalmoDeliveryPage() {
               lineHeight: 1.52,
               letterSpacing: '0.03em'
             }}>
-              From Stockholm to South and West Sweden. We deliver authentic Indian and Pakistani groceries to Göteborg, Malmö, and surrounding areas via DHL.
+              From Stockholm to South and West Sweden. We deliver authentic international groceries to Göteborg, Malmö, and surrounding areas via PostNord.
             </p>
           </div>
         </div>
@@ -55,10 +55,10 @@ export default function GoteborgMalmoDeliveryPage() {
                 letterSpacing: '0.03em'
               }}>
                 <p className="text-foreground font-medium" style={{ fontSize: '18px' }}>
-                  Serving South Sweden with authentic Indian and Pakistani groceries.
+                  Serving South Sweden with authentic international groceries from Asia, Africa, Latin America and Middle East.
                 </p>
                 <p>
-                  We understand that families in Göteborg, Malmö, and all across Skåne and West Sweden crave the authentic tastes of home. We are dedicated to delivering high-quality groceries directly to you via our reliable shipping partner, DHL.
+                  We understand that families in Göteborg, Malmö, and all across Skåne and West Sweden crave the authentic tastes of home. We are dedicated to delivering high-quality groceries directly to you via our reliable shipping partner, PostNord.
                 </p>
               </section>
 
@@ -90,16 +90,16 @@ export default function GoteborgMalmoDeliveryPage() {
               <section className="space-y-6">
                 <h2 style={{ fontSize: '25px', fontWeight: 600 }} className="flex items-center gap-3">
                   <Truck className="h-6 w-6 text-primary" />
-                  Delivery Schedule
+                  Fast Shipping via PostNord
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="p-6 rounded-xl border bg-card/50">
-                    <h3 style={{ fontSize: '18px', fontWeight: 600 }} className="mb-2">Göteborg Schedule</h3>
-                    <p style={{ fontSize: '15.13px' }} className="text-muted-foreground">Deliveries on <strong className="text-foreground">Tuesday, Thursday, Saturday</strong>. Order 24h in advance.</p>
+                    <h3 style={{ fontSize: '18px', fontWeight: 600 }} className="mb-2">Göteborg & West Sweden</h3>
+                    <p style={{ fontSize: '15.13px' }} className="text-muted-foreground">Typically <strong className="text-foreground">1-3 business days</strong>. Tracked delivery straight to your door or parcel point.</p>
                   </div>
                   <div className="p-6 rounded-xl border bg-card/50">
-                    <h3 style={{ fontSize: '18px', fontWeight: 600 }} className="mb-2">Malmö Schedule</h3>
-                    <p style={{ fontSize: '15.13px' }} className="text-muted-foreground">Deliveries on <strong className="text-foreground">Wednesday and Saturday</strong>. Flexible time slots available.</p>
+                    <h3 style={{ fontSize: '18px', fontWeight: 600 }} className="mb-2">Malmö & Skåne</h3>
+                    <p style={{ fontSize: '15.13px' }} className="text-muted-foreground">Typically <strong className="text-foreground">1-3 business days</strong>. Reliable shipping for all your dry and non-perishable goods.</p>
                   </div>
                 </div>
               </section>
@@ -109,11 +109,11 @@ export default function GoteborgMalmoDeliveryPage() {
                 <h2 style={{ fontSize: '25px', fontWeight: 600 }}>Most Popular in South Sweden</h2>
                 <div className="grid sm:grid-cols-2 gap-4 text-muted-foreground">
                   {[
-                    "Fresh Indian & Pakistani vegetables and herbs",
-                    "Halal meat and chicken selection",
-                    "Premium rice varieties (Basmati, Sella)",
-                    "South Indian specialties (dosa mix, sambhar powder)",
-                    "Traditional Indian and Pakistani snacks and sweets"
+                    "Authentic spices and seasonings from premier global brands",
+                    "Premium rice varieties (Basmati, Sella, Jasmine)",
+                    "Lentils, pulses, and ethnic flour selection",
+                    "Traditional international snacks and sweets",
+                    "Health and beauty products from Asia and Africa"
                   ].map((product, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 rounded-lg border bg-muted/5">
                       <Package className="w-4 h-4 text-primary" />
@@ -141,7 +141,7 @@ export default function GoteborgMalmoDeliveryPage() {
                     <li className="flex gap-3">
                       <Truck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p style={{ fontSize: '13.53px', fontWeight: 500 }}>DHL Tracking</p>
+                        <p style={{ fontSize: '13.53px', fontWeight: 500 }}>PostNord Tracking</p>
                         <p style={{ fontSize: '12.8px' }} className="text-muted-foreground">Real-time updates on your parcel.</p>
                       </div>
                     </li>

@@ -45,7 +45,8 @@
       "Bash(copy 2026-01-05_21-01-23.sql url-migration)",
       "Bash(node parse-urls.js:*)",
       "Bash(node extract-all-data.js:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "WebFetch(domain:crm.cashncarry.se)"
     ]
   }
 }

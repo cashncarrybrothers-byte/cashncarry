@@ -3,7 +3,7 @@
  * Creates DeliveryService and Service schemas for delivery information pages
  */
 
-import type { Organization, Service } from './types';
+import type { Service } from './types';
 import { cleanSchema } from './base';
 
 /**
@@ -16,58 +16,30 @@ export function stockholmDeliveryServiceSchema(baseUrl: string = 'https://cashnc
     '@type': 'Service',
     '@id': `${baseUrl}/#stockholm-delivery-service`,
     name: 'Stockholm Grocery Delivery Service',
-    description: 'Free delivery on orders over 500 SEK to all of Stockholm. Same-day delivery available to nearby areas.',
+    description: 'Free delivery on orders over 500 SEK to all of Stockholm. same-day delivery available to North Stockholm areas.',
     provider: {
       '@type': 'Organization',
       '@id': `${baseUrl}/#organization`,
-      name: 'Ideal Indiska LIVS',
+      name: 'Brothers Cash & Carry',
     },
     serviceType: 'Grocery Delivery',
     areaServed: [
-      {
-        '@type': 'City',
-        name: 'Stockholm',
-      },
-      {
-        '@type': 'Place',
-        name: 'Södermalm',
-      },
-      {
-        '@type': 'Place',
-        name: 'Kungsholmen',
-      },
-      {
-        '@type': 'Place',
-        name: 'Norrmalm',
-      },
-      {
-        '@type': 'Place',
-        name: 'Vasastan',
-      },
-      {
-        '@type': 'Place',
-        name: 'Östermalm',
-      },
-      {
-        '@type': 'Place',
-        name: 'Gamla Stan',
-      },
-      {
-        '@type': 'Place',
-        name: 'Solna',
-      },
-      {
-        '@type': 'Place',
-        name: 'Sundbyberg',
-      },
-      {
-        '@type': 'Place',
-        name: 'Huddinge',
-      },
-      {
-        '@type': 'Place',
-        name: 'Nacka',
-      },
+      { '@type': 'City', name: 'Stockholm' },
+      { '@type': 'Place', name: 'Upplands Väsby' },
+      { '@type': 'Place', name: 'Märsta' },
+      { '@type': 'Place', name: 'Vallentuna' },
+      { '@type': 'Place', name: 'Sollentuna' },
+      { '@type': 'Place', name: 'Täby' },
+      { '@type': 'Place', name: 'Rotebro' },
+      { '@type': 'Place', name: 'Kista' },
+      { '@type': 'Place', name: 'Solna' },
+      { '@type': 'Place', name: 'Sundbyberg' },
+      { '@type': 'Place', name: 'Bromma' },
+      { '@type': 'Place', name: 'Södermalm' },
+      { '@type': 'Place', name: 'Kungsholmen' },
+      { '@type': 'Place', name: 'Norrmalm' },
+      { '@type': 'Place', name: 'Vasastan' },
+      { '@type': 'Place', name: 'Östermalm' },
     ],
     offers: [
       {
@@ -85,12 +57,11 @@ export function stockholmDeliveryServiceSchema(baseUrl: string = 'https://cashnc
       {
         '@type': 'Offer',
         name: 'Standard Stockholm Delivery',
-        description: 'Flat delivery fee for orders between 300-499 SEK',
-        price: '30',
+        description: 'Flat delivery fee for orders below 500 SEK',
+        price: '99',
         priceCurrency: 'SEK',
         eligibleTransactionVolume: {
           '@type': 'PriceSpecification',
-          minPrice: 300,
           maxPrice: 499.99,
           priceCurrency: 'SEK',
         },
@@ -98,25 +69,25 @@ export function stockholmDeliveryServiceSchema(baseUrl: string = 'https://cashnc
       {
         '@type': 'Offer',
         name: 'Same-Day Evening Delivery',
-        description: 'Same-day delivery to nearby areas (order before 4 PM)',
-        price: '30',
+        description: 'Same-day delivery to North Stockholm (order before 2 PM)',
+        price: '99',
         priceCurrency: 'SEK',
         areaServed: [
-          { '@type': 'Place', name: 'Bandhagen' },
-          { '@type': 'Place', name: 'Högdalen' },
-          { '@type': 'Place', name: 'Hagsätra' },
-          { '@type': 'Place', name: 'Rågsved' },
-          { '@type': 'Place', name: 'Stureby' },
-          { '@type': 'Place', name: 'Farsta' },
-          { '@type': 'Place', name: 'Älvsjö' },
+          { '@type': 'Place', name: 'Upplands Väsby' },
+          { '@type': 'Place', name: 'Märsta' },
+          { '@type': 'Place', name: 'Vallentuna' },
+          { '@type': 'Place', name: 'Sollentuna' },
+          { '@type': 'Place', name: 'Täby' },
+          { '@type': 'Place', name: 'Rotebro' },
+          { '@type': 'Place', name: 'Kista' },
         ],
       },
     ],
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/shop`,
-      servicePhone: '+46728494801',
-      availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu'],
+      servicePhone: '+4687788855',
+      availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu', 'Punjabi', 'Arabic'],
     },
   };
 
@@ -124,7 +95,7 @@ export function stockholmDeliveryServiceSchema(baseUrl: string = 'https://cashnc
 }
 
 /**
- * Generate Europe Delivery Service Schema
+ * Generate Europe Delivery Service Schema (PostNord)
  * For /europe-delivery page
  */
 export function europeDeliveryServiceSchema(baseUrl: string = 'https://cashncarry.se') {
@@ -133,11 +104,11 @@ export function europeDeliveryServiceSchema(baseUrl: string = 'https://cashncarr
     '@type': 'Service',
     '@id': `${baseUrl}/#europe-delivery-service`,
     name: 'Europe-Wide Grocery Delivery Service',
-    description: 'Authentic Indian & Pakistani groceries delivered across Europe via DHL. No minimum order, no customs hassle within EU.',
+    description: 'Authentic international groceries delivered across Europe via PostNord. Fast shipping and no customs hassle within EU.',
     provider: {
       '@type': 'Organization',
       '@id': `${baseUrl}/#organization`,
-      name: 'Ideal Indiska LIVS',
+      name: 'Brothers Cash & Carry',
     },
     serviceType: 'International Grocery Delivery',
     areaServed: {
@@ -146,26 +117,21 @@ export function europeDeliveryServiceSchema(baseUrl: string = 'https://cashncarr
     },
     offers: {
       '@type': 'Offer',
-      name: 'DHL Europe Delivery',
-      description: 'DHL shipping to all European countries. Rates calculated at checkout based on weight and destination.',
+      name: 'PostNord Europe Delivery',
+      description: 'PostNord shipping to selected European countries. Rates calculated at checkout based on weight and destination.',
       priceCurrency: 'SEK',
       priceSpecification: {
         '@type': 'UnitPriceSpecification',
         price: '0.00',
         priceCurrency: 'SEK',
-        description: 'DHL rates calculated at checkout based on weight and destination',
+        description: 'Rates calculated at checkout based on weight and destination',
       },
     },
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/shop`,
-      servicePhone: '+46728494801',
-      availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu'],
-    },
-    additionalType: 'https://schema.org/DeliveryEvent',
-    hoursAvailable: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      servicePhone: '+4687788855',
+      availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu', 'Punjabi', 'Arabic'],
     },
   };
 
@@ -182,13 +148,13 @@ export function goteborgMalmoDeliveryServiceSchema(baseUrl: string = 'https://ca
     '@type': 'Service',
     '@id': `${baseUrl}/#goteborg-malmo-delivery-service`,
     name: 'Göteborg & Malmö Grocery Delivery Service',
-    description: 'Scheduled delivery of Indian & Pakistani groceries to Göteborg and Malmö via DHL.',
+    description: 'Fast delivery of international groceries to Göteborg and Malmö via PostNord.',
     provider: {
       '@type': 'Organization',
       '@id': `${baseUrl}/#organization`,
-      name: 'Ideal Indiska LIVS',
+      name: 'Brothers Cash & Carry',
     },
-    serviceType: 'Scheduled Grocery Delivery',
+    serviceType: 'Grocery Delivery',
     areaServed: [
       {
         '@type': 'City',
@@ -213,21 +179,21 @@ export function goteborgMalmoDeliveryServiceSchema(baseUrl: string = 'https://ca
     ],
     offers: {
       '@type': 'Offer',
-      name: 'DHL Delivery to Göteborg & Malmö',
-      description: 'Scheduled delivery on specific days. Göteborg: Tuesday, Thursday, Saturday. Malmö: Wednesday, Saturday.',
+      name: 'PostNord Delivery to Göteborg & Malmö',
+      description: 'Reliable shipping via PostNord. Delivery typically in 1-3 business days.',
       priceCurrency: 'SEK',
       priceSpecification: {
         '@type': 'UnitPriceSpecification',
         price: '0.00',
         priceCurrency: 'SEK',
-        description: 'DHL delivery rates calculated at checkout',
+        description: 'Shipping rates calculated at checkout',
       },
     },
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/shop`,
-      servicePhone: '+46728494801',
-      availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu'],
+      servicePhone: '+4687788855',
+      availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu', 'Punjabi', 'Arabic'],
     },
   };
 
@@ -244,10 +210,10 @@ export function deliveryFAQSchema(baseUrl: string = 'https://cashncarry.se') {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What is the minimum order for delivery in Stockholm?',
+        name: 'Is there free delivery in Stockholm?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The minimum order for our local delivery service in Stockholm is 300 SEK. Orders between 300-499 SEK have a flat delivery fee of 30 SEK. Orders 500 SEK and above get FREE delivery.',
+          text: 'Yes! We offer FREE local delivery on all orders of 500 kr or more across all of Stockholm. For orders below 500 kr, a flat delivery fee of 99 kr applies.',
         },
       },
       {
@@ -255,15 +221,15 @@ export function deliveryFAQSchema(baseUrl: string = 'https://cashncarry.se') {
         name: 'Do you offer same-day delivery?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! We offer same-day evening delivery to nearby areas including Bandhagen, Högdalen, Hagsätra, Rågsved, Stureby, Farsta, and Älvsjö. Place your order before 4 PM (16:00) to receive delivery the same evening between 7 PM - 10 PM (19:00 - 22:00).',
+          text: 'Yes! We offer same-day evening delivery to local areas in North Stockholm (Upplands Väsby, Märsta, Vallentuna, Sollentuna, Täby, Rotebro, Kista). Place your order before 2 PM (14:00) to receive delivery the same evening between 5 PM - 9 PM.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Do you deliver to all of Europe?',
+        name: 'Do you deliver to the rest of Sweden?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, we deliver to all European countries via DHL. There is no minimum order amount for European deliveries. Shipping costs are calculated at checkout based on weight and destination. Since we ship from Sweden (an EU member), customers in EU countries will not face additional customs fees or import duties.',
+          text: 'Yes! We deliver to all of Sweden via PostNord. Shipping costs are calculated at checkout based on weight and destination.',
         },
       },
       {
@@ -271,7 +237,7 @@ export function deliveryFAQSchema(baseUrl: string = 'https://cashncarry.se') {
         name: 'How long does delivery take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'For Stockholm: 1-2 days for standard delivery, same-day for nearby areas. For rest of Sweden via DHL: 2-5 business days. For Europe: 2-4 business days for nearby countries (Denmark, Germany), 4-7 business days for further destinations.',
+          text: 'For Stockholm local delivery: Same-day or next-day. For the rest of Sweden via PostNord: Typically 1-3 business days depending on your location.',
         },
       },
       {
@@ -279,7 +245,7 @@ export function deliveryFAQSchema(baseUrl: string = 'https://cashncarry.se') {
         name: 'Can I track my delivery?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, all orders are trackable. You will receive a tracking number via email once your order is dispatched. DHL deliveries include full DHL tracking.',
+          text: 'Yes! All PostNord orders include a tracking number sent via email. For our local delivery service, we will contact you via SMS or phone with a delivery window.',
         },
       },
     ],

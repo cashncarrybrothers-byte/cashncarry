@@ -57,21 +57,42 @@ export async function getProducts(params: ProductQueryParams = {}): Promise<{
       if (isNaN(Number(categoryValues[0]))) {
         // It's slugs, need to convert to IDs
         const allCategories = await getProductCategories();
-        const categoryIds = categoryValues
+        let categoryIds = categoryValues
           .map(slug => {
             const cat = allCategories.find(c => c.slug === slug.trim());
             return cat?.id;
           })
           .filter((id): id is number => id !== undefined);
 
+        // Also include child categories
         if (categoryIds.length > 0) {
+          const childCategoryIds = allCategories
+            .filter(c => categoryIds.includes(c.parent))
+            .map(c => c.id);
+
+          if (childCategoryIds.length > 0) {
+            categoryIds = [...categoryIds, ...childCategoryIds];
+          }
+
           convertedCategoryIds = categoryIds.join(',');
           queryParams.category = convertedCategoryIds;
         }
       } else {
-        // Already IDs, use as-is
-        convertedCategoryIds = categoryParam;
-        queryParams.category = categoryParam;
+        // Already IDs, convert to numbers and include child categories
+        const allCategories = await getProductCategories();
+        let categoryIds = categoryParam.split(',').map((id: string) => parseInt(id.trim()));
+
+        // Also include child categories
+        const childCategoryIds = allCategories
+          .filter(c => categoryIds.includes(c.parent))
+          .map(c => c.id);
+
+        if (childCategoryIds.length > 0) {
+          categoryIds = [...categoryIds, ...childCategoryIds];
+        }
+
+        convertedCategoryIds = categoryIds.join(',');
+        queryParams.category = convertedCategoryIds;
       }
     }
 

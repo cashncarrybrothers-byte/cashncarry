@@ -8,7 +8,7 @@ import { GoogleMapCompact } from "@/components/shared/google-map";
 
 export const metadata: Metadata = {
     title: "Grocery Delivery Stockholm & Sweden | Brothers Cash & Carry",
-    description: "Get authentic Indian and Pakistani groceries delivered in Stockholm & all over Sweden. Free delivery in Stockholm over 500 SEK. Fast shipping via DHL.",
+    description: "Get authentic international groceries from Asia, Africa, Latin America & Middle East delivered in Stockholm & all over Sweden. Free delivery in Stockholm over 500 SEK. Fast shipping via PostNord.",
     alternates: {
         canonical: '/delivery-information',
     },
@@ -55,10 +55,10 @@ export default function DeliveryInformationPage() {
                                 letterSpacing: '0.03em'
                             }}>
                                 <p className="text-foreground font-medium" style={{ fontSize: '18px' }}>
-                                    Welcome to Brothers Cash & Carry! We make it easier than ever to get your favourite authentic Indian and Pakistani groceries.
+                                    Welcome to Brothers Cash & Carry! We make it easier than ever to get your favourite authentic international groceries from Asia, Africa, Latin America, and the Middle East.
                                 </p>
                                 <p>
-                                    We are proud to offer FREE delivery across all of Stockholm on qualifying orders, as well as fast and flexible shipping options to every corner of Sweden through our trusted partner, DHL. Whether you are in Upplands Väsby, Märsta, Vallentuna, Sollentuna, Täby, or anywhere in Stockholm including Södermalm, Kungsholmen, Norrmalm, Vasastan, Östermalm, and Gamla Stan, getting the taste of home is just a few clicks away.
+                                    We are proud to offer FREE delivery across all of Stockholm on qualifying orders (over 500 SEK), as well as fast and flexible shipping options to every corner of Sweden through our trusted partner, PostNord. Whether you are in Upplands Väsby, Märsta, Vallentuna, Sollentuna, Täby, or anywhere in Stockholm including Södermalm, Kungsholmen, Norrmalm, Vasastan, Östermalm, and Gamla Stan, getting the taste of home is just a few clicks away.
                                 </p>
                             </section>
 
@@ -79,8 +79,8 @@ export default function DeliveryInformationPage() {
                                             <p>Enjoy our personalized local delivery service with great flexibility and value.</p>
                                             <ul className="list-disc pl-5 space-y-2">
                                                 <li><strong>FREE Delivery:</strong> On all orders of 500 kr or more across all of Stockholm.</li>
-                                                <li><strong>Standard Delivery:</strong> For orders between 300 kr and 499 kr, a flat delivery fee of just 30 kr applies.</li>
-                                                <li><strong>Minimum Order:</strong> The minimum order for our local delivery service is 300 kr.</li>
+                                                <li><strong>Standard Delivery:</strong> For orders below 500 kr, a flat delivery fee of 99 kr applies.</li>
+                                                <li><strong>Minimum Order:</strong> We have no minimum order value, but delivery is free from 500 kr.</li>
                                             </ul>
 
                                             <div className="mt-4 pt-4 border-t">
@@ -93,16 +93,16 @@ export default function DeliveryInformationPage() {
                                                 <p>For our local community in and around Upplands Väsby, we offer a special Same-day evening delivery service.</p>
                                                 <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
                                                     <li><strong>Areas:</strong> Upplands Väsby, Märsta, Vallentuna, Sollentuna, Täby, Rotebro, Kista.</li>
-                                                    <li><strong>Schedule:</strong> Place your order before 4 PM (16:00) to receive your delivery the Same day evening between 7 PM - 10 PM.</li>
+                                                    <li><strong>Schedule:</strong> Place your order before 2 PM (14:00) to receive your delivery the Same day evening between 5 PM - 9 PM.</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="p-6 rounded-xl border bg-card/50">
-                                        <h3 style={{ fontSize: '20px', fontWeight: 600 }} className="mb-3">2. DHL Shipping within Stockholm</h3>
+                                        <h3 style={{ fontSize: '20px', fontWeight: 600 }} className="mb-3">2. PostNord Shipping within Stockholm</h3>
                                         <p className="text-muted-foreground" style={{ fontSize: '15.13px' }}>
-                                            If you prefer the flexibility of DHL or have a larger/heavier order, you can also choose DHL for delivery within Stockholm. Shipping costs are calculated dynamically based on weight and size.
+                                            If you prefer the flexibility of PostNord or have a larger/heavier order, you can also choose PostNord for delivery within Stockholm. Shipping costs are calculated dynamically based on weight and size.
                                         </p>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ export default function DeliveryInformationPage() {
                             <section className="space-y-6">
                                 <h2 style={{ fontSize: '25px', fontWeight: 600 }} className="flex items-center gap-3">
                                     <Truck className="h-6 w-6 text-primary" />
-                                    Shipping to the Rest of Sweden via DHL
+                                    Shipping to the Rest of Sweden via PostNord
                                 </h2>
                                 <p className="text-muted-foreground" style={{ fontSize: '16px' }}>
                                     We are thrilled to serve customers across all of Sweden with no minimum order requirements.
@@ -120,7 +120,7 @@ export default function DeliveryInformationPage() {
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     <div className="p-4 rounded-lg bg-muted/20 border">
                                         <p className="font-semibold" style={{ fontSize: '15.13px' }}>Reliable Partner</p>
-                                        <p className="text-sm text-muted-foreground">We use DHL to ensure your groceries arrive safely and promptly anywhere in Sweden.</p>
+                                        <p className="text-sm text-muted-foreground">We use PostNord to ensure your groceries arrive safely and promptly anywhere in Sweden.</p>
                                     </div>
                                     <div className="p-4 rounded-lg bg-muted/20 border">
                                         <p className="font-semibold" style={{ fontSize: '15.13px' }}>Calculated Rates</p>
@@ -173,7 +173,7 @@ export default function DeliveryInformationPage() {
                                         <li className="flex gap-3">
                                             <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                                             <div>
-                                                <p style={{ fontSize: '13.53px', fontWeight: 500 }}>4 PM Cut-off</p>
+                                                <p style={{ fontSize: '13.53px', fontWeight: 500 }}>2 PM Cut-off</p>
                                                 <p style={{ fontSize: '12.8px' }} className="text-muted-foreground">For same-day delivery</p>
                                             </div>
                                         </li>

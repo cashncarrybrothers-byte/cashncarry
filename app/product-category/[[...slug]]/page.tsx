@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: ProductCategoryPageProps): Pr
             url: 'https://crm.cashncarry.se/wp-content/uploads/2025/07/rice-and-flours-e1752149384409.jpg',
             width: 1200,
             height: 630,
-            alt: 'Brothers Cash & Carry - Indian & Pakistani Groceries in Stockholm',
+            alt: 'Brothers Cash & Carry - International Groceries in Sweden',
         };
 
         return {

@@ -92,18 +92,18 @@ export function organizationSchema(config: OrganizationInput): Organization {
 }
 
 /**
- * Pre-configured Ideal Indiska LIVS Organization Schema
+ * Pre-configured Brothers Cash & Carry Organization Schema
  * Grocery Store focused schema with delivery services
  */
-export function idealIndiskaOrganizationSchema(baseUrl: string = 'https://cashncarry.se'): Organization {
+export function brothersOrganizationSchema(baseUrl: string = 'https://cashncarry.se'): Organization {
   return organizationSchema({
     name: 'Brothers Cash & Carry',
-    alternateName: 'Väsby Matcenter',
-    description: 'International Grocery Store in Stockholm, now delivering across Europe with DHL. Free delivery from 500kr in Stockholm. Same-day delivery available.',
+    alternateName: 'Brothers Cash and Carry',
+    description: 'International Grocery Store in Upplands Väsby, Sweden. Fresh produce, spices, rice, and authentic food products from Asia, Africa, Latin America, and the Middle East. Fast delivery across Sweden.',
     url: baseUrl,
-    logo: 'https://crm.cashncarry.se/wp-content/uploads/2025/04/final-new-logo-black.png',
-    image: 'https://crm.cashncarry.se/wp-content/uploads/2025/07/ideal-indiska-livs-stockholm.jpg',
-    telephone: '+46877888555',
+    logo: 'https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-favicon.png',
+    image: 'https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-storefront.jpg',
+    telephone: '+4687788855',
     email: 'support@cashncarry.se',
     address: {
       street: 'Regndroppsgatan 3',
@@ -113,36 +113,34 @@ export function idealIndiskaOrganizationSchema(baseUrl: string = 'https://cashnc
       country: 'SE',
     },
     geo: {
-      latitude: 59.2700036,
-      longitude: 18.0486904,
+      latitude: 59.51839,
+      longitude: 17.91128,
     },
     openingHours: [
-      { day: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '20:00' },
-      { day: ['Saturday', 'Sunday'], opens: '11:00', closes: '19:00' },
+      { day: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '20:00' },
+      { day: ['Saturday', 'Sunday'], opens: '10:00', closes: '19:00' },
     ],
     priceRange: '$$',
     socialMedia: [
-      'https://www.facebook.com/Ideal.indiska.livs',
-      'https://www.instagram.com/ideal_indiska_livs/',
-      'https://www.youtube.com/@Idealindiska',
-      'https://g.co/kgs/5e3Ufch',
+      'https://www.facebook.com/cashncarryse',
+      'https://www.instagram.com/cashncarryse',
     ],
-    foundingDate: '2020',
+    foundingDate: '2014',
     types: ['Organization', 'GroceryStore', 'LocalBusiness'],
   });
 }
 
 /**
- * Full-featured Ideal Indiska LIVS Organization Schema
+ * Full-featured Brothers Cash & Carry Organization Schema
  * Includes delivery services, payment methods, and service areas
  */
-export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://cashncarry.se'): Organization {
-  const baseSchema = idealIndiskaOrganizationSchema(baseUrl);
+export function brothersOrganizationSchemaFull(baseUrl: string = 'https://cashncarry.se'): Organization {
+  const baseSchema = brothersOrganizationSchema(baseUrl);
 
   return {
     ...baseSchema,
 
-    slogan: 'Everything You Need. Just Around the Corner.',
+    slogan: 'Quality @ Affordability',
 
     // Payment methods
     paymentAccepted: [
@@ -161,49 +159,54 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
     // Products/Categories offered
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Indian & Pakistani Groceries',
-      description: 'Complete range of authentic Indian and Pakistani food products',
+      name: 'International Groceries',
+      description: 'Authentic food products from Asia, Africa, Latin America, and Middle East',
     },
 
     // Knowledge areas
     knowsAbout: [
-      'Indian Groceries',
-      'Pakistani Food Products',
+      'International Groceries',
       'Asian Spices',
+      'African Food Products',
+      'Middle Eastern Food',
+      'Latin American Groceries',
       'Halal Products',
       'Basmati Rice',
-      'Indian Sweets',
-      'Frozen Indian Food',
+      'Ethnic Food Store',
     ],
 
     // Delivery Services
     makesOffer: [
-      // Stockholm Delivery (300-499kr)
+      // Stockholm Delivery (Local)
       {
         '@type': 'Offer',
-        name: 'Stockholm Delivery',
-        description: 'Local delivery within Stockholm for orders under 500kr',
+        name: 'Stockholm North Delivery',
+        description: 'Local delivery within Stockholm North areas for orders under 500kr',
         priceSpecification: {
           '@type': 'DeliveryChargeSpecification',
-          price: '30.00',
+          price: '99.00',
           priceCurrency: 'SEK',
           eligibleTransactionVolume: {
             '@type': 'PriceSpecification',
-            minPrice: 300,
+            minPrice: 0,
             maxPrice: 499.99,
             priceCurrency: 'SEK',
           },
         },
-        areaServed: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'SE',
-          addressRegion: 'Stockholm County',
-        },
+        areaServed: [
+          { '@type': 'Place', name: 'Upplands Väsby' },
+          { '@type': 'Place', name: 'Märsta' },
+          { '@type': 'Place', name: 'Vallentuna' },
+          { '@type': 'Place', name: 'Sollentuna' },
+          { '@type': 'Place', name: 'Täby' },
+          { '@type': 'Place', name: 'Kista' },
+          { '@type': 'Place', name: 'Solna' },
+        ],
         shippingDetails: {
           '@type': 'OfferShippingDetails',
           shippingRate: {
             '@type': 'MonetaryAmount',
-            value: '30.00',
+            value: '99.00',
             currency: 'SEK',
           },
           deliveryTime: {
@@ -212,7 +215,7 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
               '@type': 'OpeningHoursSpecification',
               dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             },
-            cutoffTime: '20:00',
+            cutoffTime: '14:00',
             handlingTime: {
               '@type': 'QuantitativeValue',
               minValue: 0,
@@ -222,19 +225,19 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
             transitTime: {
               '@type': 'QuantitativeValue',
               minValue: 1,
-              maxValue: 2,
+              maxValue: 1,
               unitCode: 'DAY',
             },
           },
           doesNotShip: false,
-          shippingLabel: 'Stockholm Delivery (Under 500kr)',
+          shippingLabel: 'Local Delivery (North Stockholm)',
         },
       },
       // FREE Stockholm Delivery (500kr+)
       {
         '@type': 'Offer',
-        name: 'FREE Stockholm Delivery',
-        description: 'Free delivery for orders 500kr and above',
+        name: 'FREE Local Delivery',
+        description: 'Free delivery for orders 500kr and above in local areas',
         priceSpecification: {
           '@type': 'DeliveryChargeSpecification',
           price: '0.00',
@@ -245,11 +248,14 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
             priceCurrency: 'SEK',
           },
         },
-        areaServed: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'SE',
-          addressRegion: 'Stockholm County',
-        },
+        areaServed: [
+          { '@type': 'Place', name: 'Upplands Väsby' },
+          { '@type': 'Place', name: 'Märsta' },
+          { '@type': 'Place', name: 'Vallentuna' },
+          { '@type': 'Place', name: 'Sollentuna' },
+          { '@type': 'Place', name: 'Täby' },
+          { '@type': 'Place', name: 'Stockholm' },
+        ],
         shippingDetails: {
           '@type': 'OfferShippingDetails',
           shippingRate: {
@@ -263,7 +269,7 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
               '@type': 'OpeningHoursSpecification',
               dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             },
-            cutoffTime: '20:00',
+            cutoffTime: '14:00',
             handlingTime: {
               '@type': 'QuantitativeValue',
               minValue: 0,
@@ -278,63 +284,17 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
             },
           },
           doesNotShip: false,
-          shippingLabel: 'FREE Stockholm Delivery (500kr+)',
+          shippingLabel: 'FREE Local Delivery (500kr+)',
         },
       },
-      // Same-Day Delivery
+      // PostNord National Delivery
       {
         '@type': 'Offer',
-        name: 'Same-Day Local Delivery',
-        description: 'Same-day delivery to nearby areas',
-        areaServed: [
-          { '@type': 'Place', name: 'Bandhagen' },
-          { '@type': 'Place', name: 'Hagsätra' },
-          { '@type': 'Place', name: 'Högdalen' },
-          { '@type': 'Place', name: 'Farsta' },
-          { '@type': 'Place', name: 'Enskede' },
-          { '@type': 'Place', name: 'Huddinge' },
-          { '@type': 'Place', name: 'Solna' },
-          { '@type': 'Place', name: 'Sundbyberg' },
-        ],
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: {
-            '@type': 'MonetaryAmount',
-            value: '30.00',
-            currency: 'SEK',
-          },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            cutoffTime: '16:00',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY',
-            },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY',
-            },
-          },
-          doesNotShip: false,
-          shippingLabel: 'Same Day Delivery',
-        },
-      },
-      // DHL Europe Delivery
-      {
-        '@type': 'Offer',
-        name: 'DHL Europe Delivery',
-        description: 'Delivery to all of Europe with DHL. No minimum order value. Rates calculated at checkout.',
+        name: 'Sweden National Delivery',
+        description: 'Delivery to all of Sweden with PostNord.',
         areaServed: {
-          '@type': 'DefinedRegion',
-          addressCountry: [
-            'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
-            'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
-            'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'NO', 'CH',
-          ],
+          '@type': 'Country',
+          name: 'SE',
         },
         shippingDetails: {
           '@type': 'OfferShippingDetails',
@@ -342,7 +302,7 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
             '@type': 'MonetaryAmount',
             value: '0.00',
             currency: 'SEK',
-            description: 'DHL rates calculated at checkout',
+            description: 'Shipping calculated at checkout',
           },
           deliveryTime: {
             '@type': 'ShippingDeliveryTime',
@@ -350,7 +310,7 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
               '@type': 'OpeningHoursSpecification',
               dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
             },
-            cutoffTime: '20:00',
+            cutoffTime: '12:00',
             handlingTime: {
               '@type': 'QuantitativeValue',
               minValue: 1,
@@ -359,18 +319,18 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
             },
             transitTime: {
               '@type': 'QuantitativeValue',
-              minValue: 3,
-              maxValue: 7,
+              minValue: 2,
+              maxValue: 4,
               unitCode: 'DAY',
             },
           },
           carrier: {
             '@type': 'Organization',
-            name: 'DHL',
-            url: 'https://www.dhl.com',
+            name: 'PostNord',
+            url: 'https://www.postnord.se',
           },
           doesNotShip: false,
-          shippingLabel: 'DHL Europe Delivery (Rates calculated at checkout)',
+          shippingLabel: 'National Delivery (PostNord)',
         },
       },
     ],
@@ -379,32 +339,32 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
     areaServed: [
       {
         '@type': 'City',
+        name: 'Upplands Väsby',
+      },
+      {
+        '@type': 'City',
         name: 'Stockholm',
       },
       {
         '@type': 'Country',
         name: 'Sweden',
       },
-      {
-        '@type': 'Continent',
-        name: 'Europe',
-      },
     ],
 
     // Amenities
     amenityFeature: [
-      { '@type': 'LocationFeatureSpecification', name: 'Halal Certified', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Halal Products Available', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Fresh Produce', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Frozen Foods', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'International Brands', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'International Groceries', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Online Shopping', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Bulk Orders', value: true },
     ],
 
     // Aggregate rating (placeholder - update with real data)
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '150',
+      ratingValue: '4.9',
+      reviewCount: '120',
       bestRating: '5',
       worstRating: '1',
     },
@@ -421,13 +381,10 @@ export function idealIndiskaOrganizationSchemaFull(baseUrl: string = 'https://ca
 }
 
 // Keep legacy exports for backward compatibility
-export { anmolOrganizationSchema, anmolOrganizationSchemaFull };
+export {
+  brothersOrganizationSchema as idealIndiskaOrganizationSchema,
+  brothersOrganizationSchemaFull as idealIndiskaOrganizationSchemaFull,
+  brothersOrganizationSchema as anmolOrganizationSchema,
+  brothersOrganizationSchemaFull as anmolOrganizationSchemaFull
+};
 
-// Legacy function - kept for backward compatibility but updated to use Ideal Indiska
-function anmolOrganizationSchema(baseUrl: string = 'https://cashncarry.se'): Organization {
-  return idealIndiskaOrganizationSchema(baseUrl);
-}
-
-function anmolOrganizationSchemaFull(baseUrl: string = 'https://cashncarry.se'): Organization {
-  return idealIndiskaOrganizationSchemaFull(baseUrl);
-}

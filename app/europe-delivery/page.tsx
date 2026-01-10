@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { brandProfile } from '@/config/brand-profile';
-import { Truck, MapPin, Package, Clock, Euro, ShieldCheck, Globe, MessageCircle, Mail, ExternalLink, Info } from 'lucide-react';
+import { Truck, MapPin, Package, Clock, ShieldCheck, Globe, ExternalLink, Info } from 'lucide-react';
 import Link from 'next/link';
 import { SchemaScript } from '@/lib/schema/schema-script';
 import { europeDeliveryServiceSchema } from '@/lib/schema';
@@ -8,7 +8,7 @@ import { GoogleMapCompact } from "@/components/shared/google-map";
 
 export const metadata: Metadata = {
     title: 'Europe Delivery | Brothers Cash & Carry',
-    description: 'We deliver authentic Indian & Pakistani groceries across Europe via DHL. No minimum order, no customs hassle within EU.',
+    description: 'We deliver authentic international groceries across Europe via PostNord. No minimum order, no customs hassle within EU.',
     alternates: {
         canonical: '/europe-delivery',
     },
@@ -35,7 +35,7 @@ export default function EuropeDeliveryPage() {
                             lineHeight: 1.52,
                             letterSpacing: '0.03em'
                         }}>
-                            Authentic Indian & Pakistani Groceries, Delivered Across Europe. Fast and reliable shipping from Stockholm to your doorstep.
+                            Authentic International Groceries, Delivered Across Europe. Fast and reliable shipping from Sweden to your doorstep.
                         </p>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export default function EuropeDeliveryPage() {
                                     Bringing authentic international groceries to your doorstep, anywhere in Europe.
                                 </p>
                                 <p>
-                                    At Brothers Cash & Carry, we are proud to expand our reach beyond Sweden to serve our customers across the entire European continent. Whether you are in Germany, France, the Netherlands, or any other EU country, you can now enjoy our extensive selection of authentic groceries from Asia, Africa, Latin America, and the Middle East delivered directly to your home via DHL.
+                                    At Brothers Cash & Carry, we are proud to serve our customers across the entire European continent. Whether you are in Germany, France, the Netherlands, or any other EU country, you can now enjoy our extensive selection of authentic groceries from Asia, Africa, Latin America, and the Middle East delivered directly to your home via PostNord.
                                 </p>
                             </section>
 
@@ -104,11 +104,11 @@ export default function EuropeDeliveryPage() {
                                 </div>
                             </section>
 
-                            {/* DHL Service Options */}
+                            {/* Shipping Partner */}
                             <section className="space-y-6">
                                 <h2 style={{ fontSize: '25px', fontWeight: 600 }} className="flex items-center gap-3">
                                     <Truck className="h-6 w-6 text-primary" />
-                                    Shipping Methods
+                                    Shipping Partner: PostNord
                                 </h2>
                                 <div className="space-y-4">
                                     <div className="flex gap-4 p-6 rounded-xl border bg-muted/5 items-start">
@@ -116,8 +116,8 @@ export default function EuropeDeliveryPage() {
                                             <Package className="w-5 h-5 text-primary" />
                                         </div>
                                         <div>
-                                            <h3 style={{ fontSize: '18px', fontWeight: 600 }} className="mb-1">DHL Parcel Connect</h3>
-                                            <p style={{ fontSize: '15.13px' }} className="text-muted-foreground">The most common and cost-effective option for residential deliveries across Europe.</p>
+                                            <h3 style={{ fontSize: '18px', fontWeight: 600 }} className="mb-1">PostNord International</h3>
+                                            <p style={{ fontSize: '15.13px' }} className="text-muted-foreground">Reliable and cost-effective shipping for your grocery orders across Europe.</p>
                                         </div>
                                     </div>
                                     <div className="flex gap-4 p-6 rounded-xl border bg-muted/5 items-start">
@@ -136,15 +136,15 @@ export default function EuropeDeliveryPage() {
                         {/* Sidebar (1/3) */}
                         <div className="lg:col-span-1">
                             <div className="sticky top-24 space-y-6">
-                                {/* Shipping Estimator Info */}
+                                {/* Shipping Info */}
                                 <div className="border rounded-lg p-6 bg-card">
-                                    <h3 style={{ fontSize: '18.91px', fontWeight: 500 }} className="mb-4">Shipping Info</h3>
+                                    <h3 style={{ fontSize: '18.91px', fontWeight: 500 }} className="mb-4">Quick Info</h3>
                                     <ul className="space-y-4">
                                         <li className="flex gap-3">
-                                            <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                                            <Truck className="w-5 h-5 text-primary flex-shrink-0" />
                                             <div>
                                                 <p style={{ fontSize: '13.53px', fontWeight: 500 }}>Estimated Time</p>
-                                                <p style={{ fontSize: '12.8px' }} className="text-muted-foreground">2-4 days (Scandinavia)<br />4-7 days (Rest of Europe)</p>
+                                                <p style={{ fontSize: '12.8px' }} className="text-muted-foreground">2-5 days (Nordic region)<br />5-10 days (Rest of Europe)</p>
                                             </div>
                                         </li>
                                         <li className="flex gap-3">
