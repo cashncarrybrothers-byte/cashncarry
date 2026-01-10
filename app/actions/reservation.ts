@@ -74,7 +74,7 @@ export async function submitReservation(data: ReservationFormData) {
 
             // Try to send admin notification
             await transporter.sendMail({
-                from: `"Royal Sweets Reservations" <${fromEmail}>`,
+                from: `"Brothers Cash & Carry Reservations" <${fromEmail}>`,
                 to: recipients,
                 subject: `New Reservation: ${name} - ${date} @ ${time}`,
                 html: adminEmailHtml,
@@ -112,9 +112,9 @@ export async function submitReservation(data: ReservationFormData) {
 
             // Try to send customer confirmation
             await transporter.sendMail({
-                from: `"Royal Sweets & Restaurant" <${fromEmail}>`,
+                from: `"Brothers Cash & Carry" <${fromEmail}>`,
                 to: email,
-                subject: 'Reservation Request Received - Royal Sweets',
+                subject: 'Reservation Request Received - Brothers Cash & Carry',
                 html: customerEmailHtml,
             });
 

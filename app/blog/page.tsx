@@ -33,7 +33,7 @@ function getFeaturedImageUrl(post: any): string {
     return post._embedded['wp:featuredmedia'][0].source_url;
   }
   // Fallback to placeholder
-  return 'https://anmolsweets.se/wp-content/uploads/2025/09/lunch-buffet-web.jpg';
+  return 'https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-storefront.jpg';
 }
 
 // Helper function to get author name

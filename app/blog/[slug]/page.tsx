@@ -403,8 +403,8 @@ export default async function BlogPostPage({ params }: Props) {
                     <p>Regndroppsgatan 3</p>
                     <p>194 49 Upplands Väsby</p>
                     <p>Stockholm, Sweden</p>
-                    <a href="tel:+46728494801" className="text-primary hover:underline mt-2 block">
-                      +46 728 494 801
+                    <a href="tel:+46765670454" className="text-primary hover:underline mt-2 block">
+                      +46 76 567 04 54
                     </a>
                   </div>
                 </div>

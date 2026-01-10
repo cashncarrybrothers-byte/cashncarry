@@ -103,7 +103,7 @@ export function brothersOrganizationSchema(baseUrl: string = 'https://cashncarry
     url: baseUrl,
     logo: 'https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-favicon.png',
     image: 'https://crm.cashncarry.se/wp-content/uploads/2026/01/brothers-cash-and-carry-storefront.jpg',
-    telephone: '+4687788855',
+    telephone: '+46765670454',
     email: 'support@cashncarry.se',
     address: {
       street: 'Regndroppsgatan 3',

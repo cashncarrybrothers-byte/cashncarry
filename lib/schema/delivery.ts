@@ -86,7 +86,7 @@ export function stockholmDeliveryServiceSchema(baseUrl: string = 'https://cashnc
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/shop`,
-      servicePhone: '+4687788855',
+      servicePhone: '+46765670454',
       availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu', 'Punjabi', 'Arabic'],
     },
   };
@@ -130,7 +130,7 @@ export function europeDeliveryServiceSchema(baseUrl: string = 'https://cashncarr
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/shop`,
-      servicePhone: '+4687788855',
+      servicePhone: '+46765670454',
       availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu', 'Punjabi', 'Arabic'],
     },
   };
@@ -192,7 +192,7 @@ export function goteborgMalmoDeliveryServiceSchema(baseUrl: string = 'https://ca
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/shop`,
-      servicePhone: '+4687788855',
+      servicePhone: '+46765670454',
       availableLanguage: ['Swedish', 'English', 'Hindi', 'Urdu', 'Punjabi', 'Arabic'],
     },
   };

@@ -135,7 +135,7 @@ export default function FAQPage() {
                             lineHeight: 1.52,
                             letterSpacing: '0.03em'
                         }}>
-                            Everything you need to know about ordering authentic Indian and Pakistani groceries in Stockholm. Can't find your answer? We're here to help.
+                            Everything you need to know about ordering authentic international groceries from Asia, Africa, Latin America, and the Middle East. Can't find your answer? We're here to help.
                         </p>
                     </div>
                 </div>

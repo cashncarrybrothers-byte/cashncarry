@@ -7,7 +7,7 @@ import { GoogleMapCompact } from "@/components/shared/google-map";
 
 export const metadata: Metadata = {
   title: `Contact ${brandProfile.name} | Asian, African & Latin American Groceries Upplands Väsby`,
-  description: `Contact Brothers Cash & Carry in Upplands Väsby, Stockholm. Visit our store at Regndroppsgatan 3, call 08-778 88 55, WhatsApp +46877888555, or email support@cashncarry.se. Asian, African, Latin American & Middle Eastern groceries.`,
+  description: `Contact Brothers Cash & Carry in Upplands Väsby, Stockholm. Visit our store at Regndroppsgatan 3, call 076 567 04 54, WhatsApp +46765670454, or email support@cashncarry.se. Asian, African, Latin American & Middle Eastern groceries.`,
   alternates: {
     canonical: '/contact',
   },

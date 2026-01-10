@@ -17,9 +17,9 @@ export const brandConfig = {
   // Contact Information
   contact: {
     address: "Regndroppsgatan 3, 194 49 Upplands Väsby, Sweden",
-    phone: "+46 8 778 88 55",
-    phoneSecondary: "+46 8 778 88 55",
-    whatsapp: "+46877888555",
+    phone: "+46765670454",
+    phoneSecondary: "+46765670454",
+    whatsapp: "+46765670454",
     email: "support@cashncarry.se",
     reservationEmail: "orders@cashncarry.se",
     privacyEmail: "privacy@cashncarry.se",

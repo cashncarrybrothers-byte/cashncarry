@@ -11,8 +11,8 @@ export const brandProfile = {
 
     // Contact Information
     contact: {
-        phone: "+46 8 778 88 55",
-        phoneFormatted: "08 778 88 55",
+        phone: "+46765670454",
+        phoneFormatted: "076 567 04 54",
         whatsapp: "+46765670454",
         email: "support@cashncarry.se",
         supportEmail: "support@cashncarry.se",
