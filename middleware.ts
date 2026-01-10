@@ -74,12 +74,22 @@ export function middleware(request: NextRequest) {
     !pathname.startsWith('/about') &&
     !pathname.startsWith('/contact') &&
     !pathname.startsWith('/delivery') &&
+    !pathname.startsWith('/faq') &&
+    !pathname.startsWith('/privacy') &&
+    !pathname.startsWith('/terms') &&
+    !pathname.startsWith('/refund') &&
+    !pathname.startsWith('/brand') &&
+    !pathname.startsWith('/product-category') &&
+    !pathname.startsWith('/my-account') &&
+    !pathname.startsWith('/cart') &&
+    !pathname.startsWith('/checkout') &&
+    !pathname.startsWith('/wishlist') &&
     pathname.includes('_')) {
 
     // This looks like an old product URL
-    // Redirect to shop to avoid 404 (user can search for the product)
+    // Redirect to shop page (simple, reliable, no search dependency)
     url.pathname = '/shop';
-    url.search = `?search=${encodeURIComponent(pathname.slice(1).replace(/_/g, ' '))}`;
+    url.search = ''; // Clear any search params
     return NextResponse.redirect(url, 301);
   }
 
