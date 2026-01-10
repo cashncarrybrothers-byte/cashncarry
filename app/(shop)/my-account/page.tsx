@@ -554,7 +554,11 @@ function MyAccountContent() {
                                     images: item.image ? [item.image] : [],
                                   } as any;
 
-                                  addToCart(product, item.quantity, item.variation_id);
+                                  const variation = item.variation_id && item.variation_id > 0
+                                    ? { id: item.variation_id, price: item.price.toString() } as any
+                                    : undefined;
+
+                                  addToCart(product, item.quantity, variation);
                                   addedCount++;
                                 });
                                 toast.success(`${addedCount} items added to cart from order #${order.number || order.id}`);
