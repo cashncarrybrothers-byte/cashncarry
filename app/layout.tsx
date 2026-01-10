@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { TopInfoBar } from "@/components/layout/top-info-bar";
 import { SchemaScript } from "@/lib/schema/schema-script";
 import { websiteSchema } from "@/lib/schema";
+import { brothersOrganizationSchemaFull } from "@/lib/schema/organization";
 // Analytics removed to prevent cross-domain tracking issues
 import { VerticalSidebar } from "@/components/layout/vertical-sidebar";
 import { ContentHeader } from "@/components/layout/content-header";
@@ -197,6 +198,12 @@ export default async function RootLayout({
             description: siteConfig.site_description,
             searchUrl: `${siteConfig.site_domain}/shop`,
           })}
+        />
+
+        {/* Organization / LocalBusiness / GroceryStore Schema */}
+        <SchemaScript
+          id="organization-schema"
+          schema={brothersOrganizationSchemaFull(siteConfig.site_domain)}
         />
       </body>
     </html>

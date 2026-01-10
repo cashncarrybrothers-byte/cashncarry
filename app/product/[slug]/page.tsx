@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getProductBySlug, getRelatedProducts } from '@/lib/woocommerce';
 import { ProductTemplate } from '@/components/templates';
+import { ProductSchema } from '@/components/shop/product-schema';
 import type { Metadata } from 'next';
 
 interface ProductPageProps {
@@ -81,10 +82,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
     ];
 
     return (
-        <ProductTemplate
-            product={product}
-            breadcrumbs={breadcrumbs}
-            relatedProducts={relatedProducts}
-        />
+        <>
+            <ProductSchema product={product} breadcrumbs={breadcrumbs} />
+            <ProductTemplate
+                product={product}
+                breadcrumbs={breadcrumbs}
+                relatedProducts={relatedProducts}
+            />
+        </>
     );
 }
