@@ -46,7 +46,8 @@
       "Bash(node parse-urls.js:*)",
       "Bash(node extract-all-data.js:*)",
       "Bash(node:*)",
-      "WebFetch(domain:crm.cashncarry.se)"
+      "WebFetch(domain:crm.cashncarry.se)",
+      "Bash(find:*)"
     ]
   }
 }

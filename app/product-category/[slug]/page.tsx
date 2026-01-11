@@ -12,14 +12,14 @@ import { siteConfig } from '@/site.config';
 
 interface ProductCategoryPageProps {
     params: Promise<{
-        slug?: string[];
+        slug: string;
     }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateMetadata({ params }: ProductCategoryPageProps): Promise<Metadata> {
     const resolvedParams = await params;
-    const slug = resolvedParams.slug?.[resolvedParams.slug.length - 1] || '';
+    const slug = resolvedParams.slug;
 
     try {
         const category = await getProductCategoryBySlug(slug);
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: ProductCategoryPageProps): Pr
                         alt: category.name,
                     }]
                     : [defaultImage],
-                url: `${siteConfig.site_domain}/product-category/${resolvedParams.slug?.join('/')}`,
+                url: `${siteConfig.site_domain}/product-category/${slug}`,
             },
         };
     } catch {
@@ -66,8 +66,8 @@ export default async function ProductCategoryPage({ params, searchParams }: Prod
     const resolvedParams = await params;
     const resolvedSearchParams = await searchParams;
 
-    // Get the last segment as the category slug
-    const categorySlug = resolvedParams.slug?.[resolvedParams.slug.length - 1] || '';
+    // Get the category slug
+    const categorySlug = resolvedParams.slug;
 
     let category;
     try {
@@ -102,24 +102,11 @@ export default async function ProductCategoryPage({ params, searchParams }: Prod
         brand: resolvedSearchParams.brand as string, // Support brand filtering within category
     });
 
-    // Build breadcrumbs from slug array
+    // Build breadcrumbs
     const breadcrumbs: BreadcrumbItem[] = [
         { label: 'Shop', href: '/shop' },
+        { label: category.name }
     ];
-
-    // Add intermediate categories if nested
-    if (resolvedParams.slug && resolvedParams.slug.length > 1) {
-        resolvedParams.slug.slice(0, -1).forEach((slug, index) => {
-            const path = resolvedParams.slug!.slice(0, index + 1).join('/');
-            breadcrumbs.push({
-                label: slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
-                href: `/product-category/${path}`
-            });
-        });
-    }
-
-    // Add current category
-    breadcrumbs.push({ label: category.name });
 
     return (
         <>
@@ -131,7 +118,7 @@ export default async function ProductCategoryPage({ params, searchParams }: Prod
                 totalProducts={total}
                 currentPage={page}
                 totalPages={totalPages}
-                basePath={`/product-category/${resolvedParams.slug?.join('/')}`}
+                basePath={`/product-category/${categorySlug}`}
                 gridColumns={5}
                 filterBar={
                     <Suspense fallback={<Skeleton className="h-16 w-full" />}>
