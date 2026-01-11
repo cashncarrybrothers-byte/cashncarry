@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 
 export function SplitHero() {
     return (
-        <section className="w-full py-8 bg-background">
+        <section className="w-full py-[5px] md:py-[7.5px] bg-background">
             <div className="site-container">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-[5px]">
 
                     {/* Main Large Banner (8/12) */}
                     <motion.div
@@ -63,7 +63,7 @@ export function SplitHero() {
                     </motion.div>
 
                     {/* Right Side Promo Banners (4/12) */}
-                    <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+                    <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-[3px]">
 
                         {/* Promo 1 - Spices & Rice Theme */}
                         <motion.div

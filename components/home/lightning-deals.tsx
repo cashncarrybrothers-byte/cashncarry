@@ -45,7 +45,7 @@ export function LightningDeals({ products }: LightningDealsProps) {
     if (!products || products.length === 0) return null;
 
     return (
-        <section className="bg-red-50 dark:bg-red-900/10 py-12 overflow-hidden">
+        <section className="bg-red-50 dark:bg-red-900/10 py-[5px] md:py-[7.5px] overflow-hidden">
             <div className="site-container">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
                     <div className="flex items-center gap-4">
@@ -69,7 +69,7 @@ export function LightningDeals({ products }: LightningDealsProps) {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[5px] md:gap-6">
                     {products.slice(0, 5).map((product, idx) => (
                         <motion.div
                             key={product.id}

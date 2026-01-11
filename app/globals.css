@@ -244,7 +244,7 @@
 
   /* Layout Utilities */
   .site-container {
-    @apply w-full mx-auto px-4 md:px-5 lg:px-5;
+    @apply w-full mx-auto px-[10px] md:px-[20px];
   }
 
   .main-layout {

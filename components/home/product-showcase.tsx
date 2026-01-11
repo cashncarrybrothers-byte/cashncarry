@@ -16,7 +16,7 @@ export function ProductShowcase({ title, products, moreLink = "/shop" }: Product
     if (!products || products.length === 0) return null;
 
     return (
-        <section className="w-full py-6 md:py-8">
+        <section className="w-full py-[5px] md:py-[7.5px]">
             <div className="site-container">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
@@ -33,7 +33,7 @@ export function ProductShowcase({ title, products, moreLink = "/shop" }: Product
 
                 {/* Horizontal Scroll Container */}
                 <div className="relative">
-                    <div className="flex overflow-x-auto gap-4 md:gap-6 pb-6 -mx-4 px-4 sm:-mx-5 sm:px-5 md:mx-0 md:px-0 scrollbar-hide snap-x">
+                    <div className="flex overflow-x-auto gap-[5px] md:gap-6 pb-6 scrollbar-hide snap-x">
                         {products.map((product) => (
                             <div key={product.id} className="min-w-[200px] w-[200px] sm:min-w-[240px] sm:w-[240px] md:min-w-[280px] md:w-[280px] snap-start">
                                 <ProductCard product={product} />

@@ -11,6 +11,7 @@ import { brothersOrganizationSchemaFull } from "@/lib/schema/organization";
 // Analytics removed to prevent cross-domain tracking issues
 import { VerticalSidebar } from "@/components/layout/vertical-sidebar";
 import { ContentHeader } from "@/components/layout/content-header";
+import { MobileMenu } from "@/components/layout/mobile-menu";
 import { Footer } from "@/components/layout/footer";
 import { GeoMetaTags } from "@/components/seo/geo-meta-tags";
 import { HreflangTags } from "@/components/seo/hreflang-tags";
@@ -123,7 +124,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const categories = await getProductCategories({ parent: 0 });
+  const categories = await getProductCategories({ hide_empty: true, per_page: 100 });
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -170,7 +171,7 @@ export default async function RootLayout({
             <ContentHeader categories={categories} />
 
             {/* Page Content */}
-            <main className="flex-1 w-full site-container py-6">
+            <main className="flex-1 w-full">
               {children}
             </main>
 
@@ -179,6 +180,7 @@ export default async function RootLayout({
 
           <CartDrawer />
           <WishlistDrawer />
+          <MobileMenu />
           <Toaster />
 
         </ThemeProvider>

@@ -5,20 +5,21 @@ import Link from "next/link";
 import { Grid } from "lucide-react";
 
 const CATEGORIES = [
-    { name: "Vegetables", slug: "vegetables", emoji: "🥦", color: "bg-emerald-100", darkColor: "dark:bg-emerald-900/30", textColor: "text-emerald-700" },
-    { name: "Halal Meat", slug: "meat", emoji: "🥩", color: "bg-rose-100", darkColor: "dark:bg-rose-900/30", textColor: "text-rose-700" },
-    { name: "Basmati Rice", slug: "rice", emoji: "🍚", color: "bg-amber-100", darkColor: "dark:bg-amber-900/30", textColor: "text-amber-700" },
-    { name: "Atta & Flour", slug: "flour", emoji: "🍞", color: "bg-orange-100", darkColor: "dark:bg-orange-900/30", textColor: "text-orange-700" },
-    { name: "Authentic Spices", slug: "spices-sauces-and-seasonings", emoji: "🧂", color: "bg-yellow-100", darkColor: "dark:bg-yellow-900/30", textColor: "text-yellow-700" },
-    { name: "Frozen Foods", slug: "frozen", emoji: "🧊", color: "bg-blue-100", darkColor: "dark:bg-blue-900/30", textColor: "text-blue-700" },
+    { name: "Fruits & Veg", slug: "fruits-vegetables", emoji: "🥗", color: "bg-emerald-100", darkColor: "dark:bg-emerald-900/30", textColor: "text-emerald-700" },
+    { name: "Rice & Grains", slug: "rice", emoji: "🍚", color: "bg-orange-100", darkColor: "dark:bg-orange-900/30", textColor: "text-orange-700" },
+    { name: "Atta & Flour", slug: "flour", emoji: "🍞", color: "bg-stone-100", darkColor: "dark:bg-stone-900/30", textColor: "text-stone-700" },
+    { name: "Oils & Ghee", slug: "ghee-cream-oil", emoji: "🧴", color: "bg-amber-100", darkColor: "dark:bg-amber-900/30", textColor: "text-amber-700" },
+    { name: "Spices", slug: "spices-sauces-and-seasonings", emoji: "🧂", color: "bg-red-100", darkColor: "dark:bg-red-900/30", textColor: "text-red-700" },
+    { name: "Pickles", slug: "pickle-paste-chutney", emoji: "🏺", color: "bg-lime-100", darkColor: "dark:bg-lime-900/30", textColor: "text-lime-700" },
+    { name: "Pasta", slug: "bulgur-pasta-vermicelli", emoji: "🍝", color: "bg-yellow-100", darkColor: "dark:bg-yellow-900/30", textColor: "text-yellow-700" },
     { name: "Beverages", slug: "beverages", emoji: "🥤", color: "bg-cyan-100", darkColor: "dark:bg-cyan-900/30", textColor: "text-cyan-700" },
 ];
 
 export function CategoryCircleLinks() {
     return (
-        <section className="w-full py-10 bg-background">
+        <section className="w-full py-[5px] md:py-[7.5px] bg-background">
             <div className="site-container">
-                <div className="grid grid-cols-4 sm:grid-cols-8 gap-4 sm:gap-6">
+                <div className="grid grid-cols-3 md:grid-cols-9 gap-4 sm:gap-6">
                     {CATEGORIES.map((cat, idx) => (
                         <motion.div
                             key={cat.slug}

@@ -20,7 +20,21 @@ export function ContentHeader({ categories = [] }: ContentHeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, toggle } = useSidebar();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
   const router = useRouter();
+
+  const COUNTRY_SLUGS = ["asia", "middle-east", "africa", "latin-america", "balkan", "balka"];
+
+  // Categories to display in generic browse dropdown (Exclude countries & uncategorized)
+  const browseCategories = categories.filter(cat =>
+    !COUNTRY_SLUGS.includes(cat.slug.toLowerCase()) &&
+    cat.slug.toLowerCase() !== 'uncategorized'
+  );
+
+  // Categories for the "Shop by country" dropdown
+  const countryCategories = categories.filter(cat =>
+    COUNTRY_SLUGS.includes(cat.slug.toLowerCase())
+  );
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +110,10 @@ export function ContentHeader({ categories = [] }: ContentHeaderProps) {
           {/* Categories Dropdown Trigger */}
           <div className="relative shrink-0">
             <button
-              onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+              onClick={() => {
+                setIsCategoryOpen(!isCategoryOpen);
+                setIsCountryOpen(false);
+              }}
               className="flex items-center gap-2 group transition-all text-foreground font-bold text-sm hover:text-primary"
             >
               <Menu className="h-5 w-5" />
@@ -108,7 +125,7 @@ export function ContentHeader({ categories = [] }: ContentHeaderProps) {
             {isCategoryOpen && (
               <div className="absolute top-full left-0 mt-2 w-72 bg-card border border-border rounded-xl shadow-xl z-50 py-3 animate-in fade-in slide-in-from-top-2">
                 <div className="max-h-[70vh] overflow-y-auto px-2 space-y-1 scrollbar-thin">
-                  {categories.map((category) => (
+                  {browseCategories.map((category) => (
                     <Link
                       key={category.id}
                       href={`/product-category/${category.slug}`}
@@ -121,6 +138,46 @@ export function ContentHeader({ categories = [] }: ContentHeaderProps) {
                   {categories.length === 0 && (
                     <div className="px-4 py-4 text-center text-sm text-muted-foreground">
                       No categories found.
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Shop by Country Dropdown */}
+          <div className="relative shrink-0">
+            <button
+              onClick={() => {
+                setIsCountryOpen(!isCountryOpen);
+                setIsCategoryOpen(false);
+              }}
+              className="flex items-center gap-2 group transition-all text-foreground font-bold text-sm hover:text-primary"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🌍</span>
+                <span>Shop by Country</span>
+              </div>
+              <ChevronDown className={cn("h-4 w-4 transition-transform", isCountryOpen && "rotate-180")} />
+            </button>
+
+            {isCountryOpen && (
+              <div className="absolute top-full left-0 mt-2 w-64 bg-card border border-border rounded-xl shadow-xl z-50 py-3 animate-in fade-in slide-in-from-top-2">
+                <div className="max-h-[70vh] overflow-y-auto px-2 space-y-1 scrollbar-thin">
+                  {countryCategories.length > 0 ? (
+                    countryCategories.map((category) => (
+                      <Link
+                        key={category.id}
+                        href={`/product-category/${category.slug}`}
+                        className="flex items-center px-4 py-2.5 rounded-lg hover:bg-primary/5 hover:text-primary transition-colors text-sm font-medium border border-transparent hover:border-primary/10"
+                        onClick={() => setIsCountryOpen(false)}
+                      >
+                        {category.name.replace(/&amp;/g, '&')}
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="px-4 py-4 text-center text-sm text-muted-foreground">
+                      No country categories found.
                     </div>
                   )}
                 </div>
