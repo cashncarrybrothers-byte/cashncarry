@@ -237,7 +237,7 @@ export function ProductTemplate({
                 {product.categories && product.categories.length > 0 && (
                   <>
                     {product.categories.map((category) => (
-                      <Link key={category.id} href={`/shop/category/${category.slug}`}>
+                      <Link key={category.id} href={`/product-category/${category.slug}`}>
                         <Badge variant="secondary" className="bg-secondary/10 text-secondary hover:bg-secondary/20 cursor-pointer">
                           {decodeHtmlEntities(category.name)}
                         </Badge>

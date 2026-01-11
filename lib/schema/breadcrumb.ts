@@ -40,7 +40,7 @@ export function breadcrumbSchema(
  * Build breadcrumb items from a path
  * Useful for automatically generating breadcrumbs from URLs
  *
- * @param path - URL path (e.g., '/shop/category/sweets')
+ * @param path - URL path (e.g., '/product-category/sweets')
  * @param baseUrl - Base URL of the site
  * @param labels - Optional custom labels for path segments
  * @returns Array of breadcrumb items
@@ -101,7 +101,7 @@ export function productBreadcrumbs(
   if (product.category) {
     breadcrumbs.push({
       name: product.category.name,
-      url: `${baseUrl}/shop/category/${product.category.slug}`,
+      url: `${baseUrl}/product-category/${product.category.slug}`,
     });
   }
 
@@ -137,7 +137,7 @@ export function categoryBreadcrumbs(
   if (category.parent) {
     breadcrumbs.push({
       name: category.parent.name,
-      url: `${baseUrl}/shop/category/${category.parent.slug}`,
+      url: `${baseUrl}/product-category/${category.parent.slug}`,
     });
   }
 
