@@ -17,26 +17,25 @@ export function ProductShowcase({ title, products, moreLink = "/shop" }: Product
 
     return (
         <section className="w-full py-6 md:py-8">
-            <div className="w-full px-4 sm:px-6 md:px-8">
+            <div className="site-container">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
+                    <h2 className="text-xl sm:text-2xl font-heading font-black text-foreground">
                         {title}
                     </h2>
-                    <Button variant="outline" size="sm" className="rounded-full text-xs h-8" asChild>
-                        <Link href={moreLink}>
-                            <span className="hidden sm:inline">More</span>
-                            <span className="sm:hidden">View</span>
-                            <ArrowRight className="ml-1 h-3 w-3" />
+                    <Button variant="ghost" size="sm" className="rounded-full text-xs h-8 font-bold text-primary" asChild>
+                        <Link href={moreLink} className="flex items-center gap-1">
+                            <span>View All</span>
+                            <ArrowRight className="h-3 w-3" />
                         </Link>
                     </Button>
                 </div>
 
                 {/* Horizontal Scroll Container */}
-                <div className="relative mx-[5px]">
-                    <div className="flex overflow-x-auto gap-3 sm:gap-4 pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-8 md:px-8 scrollbar-hide snap-x">
+                <div className="relative">
+                    <div className="flex overflow-x-auto gap-4 md:gap-6 pb-6 -mx-4 px-4 sm:-mx-5 sm:px-5 md:mx-0 md:px-0 scrollbar-hide snap-x">
                         {products.map((product) => (
-                            <div key={product.id} className="min-w-[160px] w-[160px] sm:min-w-[180px] sm:w-[180px] md:min-w-[220px] md:w-[220px] snap-start">
+                            <div key={product.id} className="min-w-[200px] w-[200px] sm:min-w-[240px] sm:w-[240px] md:min-w-[280px] md:w-[280px] snap-start">
                                 <ProductCard product={product} />
                             </div>
                         ))}

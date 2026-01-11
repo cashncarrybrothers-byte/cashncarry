@@ -1,6 +1,6 @@
-import { Hero } from "@/components/home/hero";
-import { CategoryGrid } from "@/components/home/category-grid";
-import { PromotionGrid } from "@/components/home/promotion-grid";
+import { SplitHero } from "@/components/home/split-hero";
+import { CategoryCircleLinks } from "@/components/home/category-circle-links";
+import { LightningDeals } from "@/components/home/lightning-deals";
 import { BannerStrip } from "@/components/home/banner-strip";
 import { ProductShowcase } from "@/components/home/product-showcase";
 import { getProducts, getProductCategories } from "@/lib/woocommerce";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   // Fetch data in parallel
   const [categoriesRes, trendingRes, newArrivalsRes, dealsRes, mostSearchedRes, vegRes, snacksRes] = await Promise.all([
-    getProductCategories({ per_page: 6, orderby: 'count', order: 'desc', parent: 0 }),
+    getProductCategories({ per_page: 12, orderby: 'count', order: 'desc', parent: 0 }),
     getProducts({ per_page: 8, orderby: 'popularity' }),
     getProducts({ per_page: 8, orderby: 'date' }),
     getProducts({ per_page: 8, on_sale: true }),
@@ -27,7 +27,6 @@ export default async function HomePage() {
     getProducts({ per_page: 8, category: 'snacks' }),
   ]);
 
-  const categories = categoriesRes || [];
   const trendingProducts = trendingRes.data || [];
   const newProducts = newArrivalsRes.data || [];
   const dealProducts = dealsRes.data || [];
@@ -37,18 +36,14 @@ export default async function HomePage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-background pb-20 overflow-x-hidden max-w-full">
-      {/* 1. Hero Section */}
-      <Hero
-        title="International Groceries in Sweden"
-        subtitle="From Asia, Africa, Latin America & Middle East - authentic products, fresh produce, spices, rice, and more. Quality @ Affordability, delivered to your door."
-        badge="Free Delivery Over 500 SEK"
-      />
+      {/* 1. Split Hero Section */}
+      <SplitHero />
 
-      {/* 2. Promotion/Deals Grid */}
-      <PromotionGrid />
+      {/* 2. Category Quick-Links */}
+      <CategoryCircleLinks />
 
-      {/* 3. Top Categories */}
-      <CategoryGrid categories={categories} />
+      {/* 3. Lightning Deals (Full Width Background) */}
+      <LightningDeals products={dealProducts} />
 
       {/* 4. Special Offers */}
       <ProductShowcase

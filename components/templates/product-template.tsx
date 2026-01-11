@@ -101,7 +101,7 @@ export function ProductTemplate({
                         key={relatedProduct.id}
                         className="group relative bg-background border border-border hover:border-primary/30 rounded-lg p-3 transition-all duration-300 hover:shadow-md"
                       >
-                        <a href={`/product/${relatedProduct.slug}`} className="flex gap-3">
+                        <Link href={`/product/${relatedProduct.slug}`} className="flex gap-3">
                           {/* Product Image */}
                           <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-md bg-muted">
                             {relatedProduct.images && relatedProduct.images[0] ? (
@@ -141,7 +141,7 @@ export function ProductTemplate({
                               )}
                             </div>
                           </div>
-                        </a>
+                        </Link>
                         {/* Add to Cart Plus Button */}
                         <Button
                           size="icon"
@@ -163,7 +163,7 @@ export function ProductTemplate({
                         key={relatedProduct.id}
                         className="group relative bg-background border border-border hover:border-primary/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md"
                       >
-                        <a href={`/product/${relatedProduct.slug}`} className="block">
+                        <Link href={`/product/${relatedProduct.slug}`} className="block">
                           {/* Product Image */}
                           <div className="relative aspect-square overflow-hidden bg-muted">
                             {relatedProduct.images && relatedProduct.images[0] ? (
@@ -203,7 +203,7 @@ export function ProductTemplate({
                               )}
                             </div>
                           </div>
-                        </a>
+                        </Link>
                         {/* Add to Cart Plus Button */}
                         <Button
                           size="icon"
@@ -510,9 +510,11 @@ export function ProductTemplate({
                   <div className="flex flex-wrap items-center gap-2">
                     <span style={{ fontSize: '14.31px', fontWeight: 500, lineHeight: 1.57, letterSpacing: '0.03em' }} className="text-foreground">Tags:</span>
                     {product.tags.map((tag) => (
-                      <Badge key={tag.id} variant="outline" style={{ fontSize: '12.8px', fontWeight: 300, lineHeight: 1.57, letterSpacing: '0.03em' }} className="border-border">
-                        {decodeHtmlEntities(tag.name)}
-                      </Badge>
+                      <Link key={tag.id} href={`/product-tag/${tag.slug}`}>
+                        <Badge variant="outline" style={{ fontSize: '12.8px', fontWeight: 300, lineHeight: 1.57, letterSpacing: '0.03em' }} className="border-border cursor-pointer hover:bg-primary/5 transition-colors">
+                          {decodeHtmlEntities(tag.name)}
+                        </Badge>
+                      </Link>
                     ))}
                   </div>
                 </div>
