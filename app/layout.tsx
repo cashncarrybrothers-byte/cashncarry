@@ -165,19 +165,16 @@ export default async function RootLayout({
           <TopInfoBar />
 
           {/* Main Layout Container */}
-          <div className="flex min-h-screen lg:min-h-[calc(100vh-40px)] overflow-x-hidden">
-            {/* Vertical Sidebar - Fixed on left, hidden on mobile */}
-            <VerticalSidebar categories={categories} />
+          <div className="main-layout">
+            {/* Content Header - Search, Login, Cart */}
+            <ContentHeader categories={categories} />
 
-            {/* Main Content Area - Responsive margin */}
-            <div className="flex-1 lg:ml-64 flex flex-col overflow-x-hidden max-w-full">
-              {/* Content Header - Search, Login, Cart */}
-              <ContentHeader />
+            {/* Page Content */}
+            <main className="flex-1 w-full site-container py-6">
+              {children}
+            </main>
 
-              {/* Page Content */}
-              <main className="flex-1 w-full overflow-x-hidden">{children}</main>
-              <Footer />
-            </div>
+            <Footer />
           </div>
 
           <CartDrawer />

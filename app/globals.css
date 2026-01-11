@@ -241,6 +241,15 @@
   .text-gradient-primary {
     @apply text-primary;
   }
+
+  /* Layout Utilities */
+  .site-container {
+    @apply w-full mx-auto px-4 md:px-6 lg:px-8 max-w-[1600px];
+  }
+
+  .main-layout {
+    @apply flex flex-col min-h-screen w-full;
+  }
 }
 
 @layer utilities {

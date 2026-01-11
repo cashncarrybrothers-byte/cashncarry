@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
+import { Search, User, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -8,10 +8,18 @@ import { useRouter } from "next/navigation";
 import { useSidebar } from "./mobile-sidebar-toggle";
 import { CartIcon } from "@/components/cart/cart-icon";
 import { UserNav } from "@/components/layout/user-nav";
+import { cn } from "@/lib/utils";
 
-export function ContentHeader() {
+import { ProductCategoryFull } from "@/types/woocommerce";
+
+interface ContentHeaderProps {
+  categories?: ProductCategoryFull[];
+}
+
+export function ContentHeader({ categories = [] }: ContentHeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, toggle } = useSidebar();
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -22,81 +30,148 @@ export function ContentHeader() {
   };
 
   return (
-    <header className="sticky top-0 lg:top-[10px] z-30 w-full bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
-      {/* Desktop Header */}
-      <div className="hidden lg:flex items-center justify-between px-6 h-14 gap-4 bg-white/70 backdrop-blur-md">
+    <header className="sticky top-0 z-30 w-full bg-background border-b border-border shadow-sm">
+      <div className="w-full px-4 md:px-8">
+        {/* Row 1: Logo, Search, Icons */}
+        <div className="flex items-center justify-between h-16 gap-4 lg:gap-8">
+          {/* Logo - Left */}
+          <Link href="/" className="flex items-center shrink-0">
+            <div className="relative w-40 h-14">
+              <Image
+                src="https://crm.cashncarry.se/wp-content/uploads/2026/01/borthers-logo.png"
+                alt="Brothers Cash & Carry"
+                fill
+                className="object-contain"
+                priority
+                unoptimized
+              />
+            </div>
+          </Link>
 
-        {/* Search Bar - Center - Dominant */}
-        <div className="flex-1 max-w-2xl mx-auto w-full">
-          <form onSubmit={handleSearch} className="relative group">
-            <input
-              type="text"
-              placeholder="Search for fresh produce, groceries, and more..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-6 pr-14 py-2 text-sm border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-white/80 hover:bg-white transition-all font-medium placeholder:text-muted-foreground/70"
-            />
-            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-primary rounded-md text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm">
-              <Search className="h-5 w-5" />
-            </button>
-          </form>
-        </div>
-
-        {/* Login/Signup & Cart - Right */}
-        <div className="flex items-center gap-6 ml-4 shrink-0">
-
-          {/* Language / Location (Optional implementation) */}
-          <div className="hidden xl:flex flex-col items-end text-sm text-muted-foreground">
-            <span className="flex items-center gap-1 font-medium text-foreground"><span className="w-2 h-2 rounded-full bg-primary/80"></span> Deliver to</span>
-            <span className="text-xs">Select Location</span>
+          {/* Search Bar - Middle - Expanded */}
+          <div className="hidden lg:flex flex-1 max-w-4xl desktop-search-container">
+            <form onSubmit={handleSearch} className="relative group w-full">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                <Search className="h-5 w-5 text-muted-foreground/70 group-focus-within:text-primary transition-colors" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search for groceries, fresh produce and more..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-6 py-2.5 text-sm border-2 border-border/40 rounded-full focus:outline-none focus:border-primary focus:ring-0 bg-white hover:bg-white transition-all font-medium placeholder:text-muted-foreground/50 shadow-sm"
+              />
+            </form>
           </div>
 
-          <div className="h-8 w-px bg-border mx-2" />
-
-          {/* User Nav */}
-          <UserNav />
-
-          {/* Cart */}
-          <CartIcon />
+          {/* Right Icons: Support, Login, Cart */}
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <button className="hidden sm:flex items-center justify-center p-2 rounded-full hover:bg-muted transition-colors border border-border">
+              <span className="sr-only">Support</span>
+              <svg className="h-5 w-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </button>
+            <div className="hidden sm:block">
+              <UserNav />
+            </div>
+            <CartIcon />
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={toggle}
+              className="lg:hidden p-2 hover:bg-muted rounded-md transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? (
+                <X className="h-6 w-6 text-foreground" />
+              ) : (
+                <Menu className="h-6 w-6 text-foreground" />
+              )}
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Navigation Menu - Below Search Bar (Desktop Only) */}
-      <div className="hidden lg:block border-t border-border/50">
-        <div className="container mx-auto px-6">
-          <nav className="flex items-center justify-center gap-8 py-3">
+        {/* Row 2: Categories & Navigation */}
+        <div className="hidden lg:flex items-center gap-8 py-2 border-t border-border/10">
+          {/* Categories Dropdown Trigger */}
+          <div className="relative shrink-0">
+            <button
+              onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+              className="flex items-center gap-2 group transition-all text-foreground font-bold text-sm hover:text-primary"
+            >
+              <Menu className="h-5 w-5" />
+              <span>Browse Categories</span>
+              <ChevronDown className={cn("h-4 w-4 transition-transform", isCategoryOpen && "rotate-180")} />
+            </button>
+
+            {/* Dropdown Menu */}
+            {isCategoryOpen && (
+              <div className="absolute top-full left-0 mt-2 w-72 bg-card border border-border rounded-xl shadow-xl z-50 py-3 animate-in fade-in slide-in-from-top-2">
+                <div className="max-h-[70vh] overflow-y-auto px-2 space-y-1 scrollbar-thin">
+                  {categories.map((category) => (
+                    <Link
+                      key={category.id}
+                      href={`/product-category/${category.slug}`}
+                      className="flex items-center px-4 py-2.5 rounded-lg hover:bg-primary/5 hover:text-primary transition-colors text-sm font-medium border border-transparent hover:border-primary/10"
+                      onClick={() => setIsCategoryOpen(false)}
+                    >
+                      {category.name.replace(/&amp;/g, '&')}
+                    </Link>
+                  ))}
+                  {categories.length === 0 && (
+                    <div className="px-4 py-4 text-center text-sm text-muted-foreground">
+                      No categories found.
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Navigation Links */}
+          <nav className="flex items-center gap-6">
             <Link
               href="/shop"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
+            >
+              Shop Online
+            </Link>
+            <Link
+              href="/deals"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
+            >
+              Deals
+            </Link>
+            <Link
+              href="/shop"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
             >
               Shop
             </Link>
             <Link
               href="/blog"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
             >
               Blog
             </Link>
             <Link
               href="/about"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
             >
               About Us
             </Link>
             <Link
               href="/contact"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
             >
               Contact
             </Link>
 
             {/* Delivery Dropdown */}
             <div className="relative group">
-              <button className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+              <button className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors flex items-center gap-1">
                 Delivery Info
-                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
               </button>
               <div className="absolute left-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="py-2">
@@ -121,54 +196,28 @@ export function ContentHeader() {
                 </div>
               </div>
             </div>
+
+            <Link
+              href="/contact"
+              className="text-[13px] font-bold text-foreground/80 hover:text-primary transition-colors"
+            >
+              Store Locator
+            </Link>
           </nav>
         </div>
-      </div>
 
-      {/* Mobile Header */}
-      <div className="lg:hidden flex flex-col bg-background">
-        {/* Top Row: Menu, Logo, Cart */}
-        <div className="flex items-center justify-between px-4 h-16 border-b border-border">
-          {/* Menu Button */}
-          <button
-            onClick={toggle}
-            className="p-2 -ml-2 hover:bg-muted rounded-md transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <X className="h-6 w-6 text-foreground" />
-            ) : (
-              <Menu className="h-6 w-6 text-foreground" />
-            )}
-          </button>
-
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="relative w-28 h-14 sm:w-32 sm:h-16">
-              <Image
-                src="https://cashncarry.se/image/cache/catalog/Brothers-cash&carry-1080x621.png"
-                alt="Brothers Cash & Carry"
-                fill
-                className="object-contain"
-                priority
-              />
+        {/* Mobile Search Row - visible on small screens only */}
+        <div className="lg:hidden pb-4 pt-1">
+          <form onSubmit={handleSearch} className="relative group">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2">
+              <Search className="h-4 w-4 text-muted-foreground/70" />
             </div>
-          </Link>
-
-          {/* Cart */}
-          <CartIcon />
-        </div>
-
-        {/* Search Bar - Bottom Row */}
-        <div className="px-4 py-3 bg-muted/20">
-          <form onSubmit={handleSearch} className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-sm border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary bg-background shadow-sm"
+              className="w-full pl-10 pr-6 py-2.5 text-sm border border-border/60 rounded-full focus:outline-none focus:border-primary bg-muted/30"
             />
           </form>
         </div>

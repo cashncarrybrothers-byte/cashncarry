@@ -869,7 +869,11 @@ export function getDiscountPercentage(product: Product): number {
 /**
  * Format price with currency
  */
-export function formatPrice(price: string | number, currency: string = 'SEK'): string {
+export function formatPrice(price: string | number | null | undefined, currency: string = 'SEK'): string {
+  if (price === null || price === undefined) {
+    return `0 ${currency}`;
+  }
+
   const numericPrice = typeof price === 'string' ? parseFloat(price) : price;
 
   if (isNaN(numericPrice) || numericPrice === 0) {

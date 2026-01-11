@@ -16,13 +16,14 @@ export async function Footer() {
           <div className="md:col-span-12 lg:col-span-3 space-y-1 text-xs text-muted-foreground leading-tight">
             <Link href="/" className="inline-block">
               {/* Brand Logo */}
-              <div className="relative h-16 w-28">
+              <div className="relative h-16 w-48">
                 <Image
-                  src="https://cashncarry.se/image/cache/catalog/Brothers-cash&carry-1080x621.png"
+                  src="https://crm.cashncarry.se/wp-content/uploads/2026/01/borthers-logo.png"
                   alt={brandProfile.name}
                   fill
                   className="object-contain"
-                  sizes="112px"
+                  sizes="192px"
+                  unoptimized
                 />
               </div>
             </Link>

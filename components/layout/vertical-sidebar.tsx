@@ -118,12 +118,13 @@ export function VerticalSidebar({ categories = [] }: VerticalSidebarProps) {
           <Link href="/" className="block w-full py-1 hover:opacity-90 transition-opacity">
             <div className="relative w-full aspect-[1.8]">
               <Image
-                src="https://cashncarry.se/image/cache/catalog/Brothers-cash&carry-1080x621.png"
+                src="https://crm.cashncarry.se/wp-content/uploads/2026/01/borthers-logo.png"
                 alt="Brothers Cash & Carry"
                 fill
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, 256px"
                 priority
+                unoptimized
               />
             </div>
           </Link>
