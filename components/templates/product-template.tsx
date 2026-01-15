@@ -11,7 +11,7 @@ import { Plus } from 'lucide-react';
 import { ProductGrid } from '@/components/shop/product-grid';
 import { ProductImageGallery } from '@/components/shop/product-image-gallery';
 import { ProductVariationSelector } from '@/components/shop/product-variation-selector';
-import { ProductTabs } from '@/components/shop/product-tabs';
+import { ProductReviews } from '@/components/shop/product-reviews';
 import { ProductSchema } from '@/components/shop/product-schema';
 import { StockIndicator } from '@/components/shop/stock-indicator';
 import { QuantitySelector } from '@/components/shop/quantity-selector';
@@ -19,6 +19,7 @@ import { ProductRecommendations } from '@/components/ai/product-recommendations'
 import { StripeExpressCheckout } from '@/components/checkout/stripe-express-checkout';
 import { WishlistButton } from '@/components/wishlist/wishlist-button';
 import { WhatsAppOrderButton } from '@/components/whatsapp/whatsapp-order-button';
+import { PaymentIcons } from '@/components/ui/payment-icons';
 import { formatPrice, getDiscountPercentage } from '@/lib/woocommerce';
 import { decodeHtmlEntities } from '@/lib/utils';
 import { trackViewContent } from '@/lib/analytics';
@@ -86,12 +87,12 @@ export function ProductTemplate({
           )}
 
           {/* Product Content - 3 Column Layout (Always in One Row) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
-            {/* Column 1: Related Products (LEFT) - Last on mobile, first on desktop */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+            {/* Column 1: You May Also Like (LEFT) */}
             {relatedProducts && relatedProducts.length > 0 && (
-              <div className="lg:col-span-3 order-3 lg:order-1">
-                <div className="lg:sticky lg:top-24 space-y-3">
-                  <h3 style={{ fontSize: '20px', fontWeight: 500, lineHeight: 1.52, letterSpacing: '0.025em' }} className="text-foreground border-b border-border/50 pb-2">
+              <div className="lg:col-span-2 order-3 lg:order-1">
+                <div className="lg:sticky lg:top-24 space-y-4">
+                  <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground font-bold mb-4">
                     You May Also Like
                   </h3>
                   {/* Desktop: Vertical list */}
@@ -223,17 +224,22 @@ export function ProductTemplate({
             )}
 
             {/* Column 2: Product Images (CENTER) - First on mobile */}
-            <div className={relatedProducts && relatedProducts.length > 0 ? "lg:col-span-5 order-1 lg:order-2" : "lg:col-span-6 order-1"}>
-              <ProductImageGallery
-                images={product.images || []}
-                productName={product.name}
-              />
+            <div className={relatedProducts && relatedProducts.length > 0 ? "lg:col-span-6 order-1 lg:order-2" : "lg:col-span-8 order-1"}>
+              <div className="relative bg-white dark:bg-card rounded-2xl overflow-hidden shadow-xl border border-border/50">
+                <ProductImageGallery
+                  images={product.images || []}
+                  productName={product.name}
+                />
+              </div>
             </div>
 
             {/* Column 3: Product Info (RIGHT) - Second on mobile */}
-            <div className={relatedProducts && relatedProducts.length > 0 ? "lg:col-span-4 space-y-3 order-2 lg:order-3" : "lg:col-span-6 space-y-3 order-2"}>
-              {/* Categories & Badges */}
-              <div className="flex flex-wrap items-center gap-2">
+            <div className={relatedProducts && relatedProducts.length > 0 ? "lg:col-span-4 space-y-6 order-2 lg:order-3" : "lg:col-span-4 space-y-6 order-2"}>
+              <div>
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="text-primary material-symbols-outlined text-sm">verified</span>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Premium Quality</span>
+                </div>
                 {product.categories && product.categories.length > 0 && (
                   <>
                     {product.categories.map((category) => (
@@ -293,7 +299,7 @@ export function ProductTemplate({
                   </div>
                 )}
 
-                <h1 className="font-heading text-foreground text-2xl md:text-[27px] font-bold leading-tight">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-foreground leading-tight mb-4">
                   {decodeHtmlEntities(product.name)}
                 </h1>
                 {product.sku && (
@@ -330,49 +336,16 @@ export function ProductTemplate({
                 )}
               </div>
 
-              {/* Price */}
-              <div className="flex items-baseline gap-3 border-y border-border py-3">
-                {(() => {
-                  // Use selected variation price if available, otherwise use product price
-                  const displayPrice = selectedVariation?.price || product.price;
-                  const displayRegularPrice = selectedVariation?.regular_price || product.regular_price;
-                  const displaySalePrice = selectedVariation?.sale_price || product.sale_price;
-
-                  // Only consider on sale if there's actually a sale price value
-                  const isOnSale = (selectedVariation
-                    ? selectedVariation.on_sale && displaySalePrice && displaySalePrice !== ''
-                    : product.on_sale && displaySalePrice && displaySalePrice !== '');
-
-                  // Convert to string first to handle both number and string types
-                  const priceStr = String(displayPrice || '0');
-                  const priceValue = parseFloat(priceStr);
-                  const showPricePrompt = hasVariations && !selectedVariation && priceValue === 0;
-
-                  if (showPricePrompt) {
-                    return (
-                      <div className="flex flex-col gap-2">
-                        <span style={{ fontSize: '18.91px', fontWeight: 500, lineHeight: 1.52, letterSpacing: '0.03em' }} className="text-muted-foreground">
-                          Please select options to see price
-                        </span>
-                      </div>
-                    );
-                  }
-
-                  return isOnSale ? (
-                    <>
-                      <span className="font-heading text-primary text-2xl md:text-[27px] font-extrabold leading-tight">
-                        {formatPrice(displaySalePrice, 'SEK')}
-                      </span>
-                      <span className="text-muted-foreground line-through text-lg md:text-2xl font-semibold">
-                        {formatPrice(displayRegularPrice, 'SEK')}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="font-heading text-primary text-2xl md:text-[27px] font-extrabold leading-tight">
-                      {formatPrice(priceStr, 'SEK')}
-                    </span>
-                  );
-                })()}
+              <div className="mb-8">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-extrabold text-foreground">
+                    {formatPrice(hasVariations && selectedVariation ? selectedVariation.price : product.price, 'SEK')}
+                  </span>
+                  <span className="text-muted-foreground font-medium">/ unit</span>
+                </div>
+                <p className="text-primary text-sm font-bold mt-1">
+                  {product.stock_status === 'instock' ? 'In Stock - Ready for Delivery' : 'Out of Stock'}
+                </p>
               </div>
 
               {/* Stock Status */}
@@ -381,11 +354,8 @@ export function ProductTemplate({
                 variant="detailed"
               />
 
-              {/* Short Description */}
               {product.short_description && (
-                <div
-                  style={{ fontSize: '16px', fontWeight: 400, lineHeight: 1.52, letterSpacing: '0.03em' }}
-                  className="max-w-none text-foreground"
+                <p className="text-muted-foreground leading-relaxed mb-8"
                   dangerouslySetInnerHTML={{ __html: product.short_description }}
                 />
               )}
@@ -520,14 +490,97 @@ export function ProductTemplate({
                 </div>
               )}
 
+              {/* Payment Methods */}
+              <div className="border-t border-border pt-4 mt-4">
+                <PaymentIcons size="sm" />
+              </div>
+
               {/* Additional Product Info */}
               {additionalContent}
             </div>
           </div>
 
-          {/* Product Tabs */}
-          <div className="mt-8 md:mt-10">
-            <ProductTabs product={product} reviews={reviews} />
+          {/* Product Detailed Information - Sequential Layout */}
+          <div className="mt-12 space-y-16">
+            {/* 1. Additional Information (Specifications) */}
+            {hasProductAdditionalInfo(product) && (
+              <section className="py-12 border-t border-border">
+                <h2 className="text-2xl font-bold mb-8">Detailed Specifications</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                  {product.sku && (
+                    <div className="flex justify-between py-3 border-b border-border/50">
+                      <span className="text-muted-foreground font-medium">SKU</span>
+                      <span className="font-bold">{product.sku}</span>
+                    </div>
+                  )}
+                  {product.weight && (
+                    <div className="flex justify-between py-3 border-b border-border/50">
+                      <span className="text-muted-foreground font-medium">Weight</span>
+                      <span className="font-bold">{product.weight} kg</span>
+                    </div>
+                  )}
+                  {product.dimensions && (product.dimensions.length || product.dimensions.width || product.dimensions.height) && (
+                    <div className="flex justify-between py-3 border-b border-border/50">
+                      <span className="text-muted-foreground font-medium">Dimensions</span>
+                      <span className="font-bold">{product.dimensions.length} × {product.dimensions.width} × {product.dimensions.height} cm</span>
+                    </div>
+                  )}
+                  {product.categories && product.categories.length > 0 && (
+                    <div className="flex justify-between py-3 border-b border-border/50">
+                      <span className="text-muted-foreground font-medium">Category</span>
+                      <span className="font-bold text-right">{product.categories.map(c => decodeHtmlEntities(c.name)).join(', ')}</span>
+                    </div>
+                  )}
+                  {product.brands && product.brands.length > 0 && (
+                    <div className="flex justify-between py-3 border-b border-border/50">
+                      <span className="text-muted-foreground font-medium">Brand</span>
+                      <span className="font-bold">{product.brands.map(b => decodeHtmlEntities(b.name)).join(', ')}</span>
+                    </div>
+                  )}
+                  {product.attributes && product.attributes.map((attr) => (
+                    <div key={attr.id || attr.name} className="flex justify-between py-3 border-b border-border/50">
+                      <span className="text-muted-foreground font-medium">{attr.name}</span>
+                      <span className="font-bold text-right">{attr.options ? attr.options.join(', ') : 'N/A'}</span>
+                    </div>
+                  ))}
+                  <div className="flex justify-between py-3 border-b border-border/50">
+                    <span className="text-muted-foreground font-medium">Stock Status</span>
+                    <span className="font-bold">{product.stock_status === 'instock' ? 'In Stock' : 'Out of Stock'}</span>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* 2. Description */}
+            {product.description && (
+              <section className="py-12 border-t border-border">
+                <h2 className="text-2xl font-bold mb-8">Description</h2>
+                <div
+                  className="prose max-w-none dark:prose-invert"
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                />
+              </section>
+            )}
+
+            {/* 3. Reviews */}
+            {(reviews.length > 0 || product.reviews_allowed) && (
+              <section className="py-12 border-t border-border">
+                <div className="flex flex-col md:flex-row gap-12">
+                  <div className="w-full">
+                    <h2 className="text-2xl font-bold mb-8">Customer Reviews</h2>
+                    {/* Note: ProductReviews component is already imported in ProductTabs, 
+                        but we need to make sure it's available here. 
+                        I'll add the import at the top of the file. */}
+                    <ProductReviews
+                      productId={product.id}
+                      reviews={reviews}
+                      averageRating={product.average_rating}
+                      ratingCount={product.rating_count}
+                    />
+                  </div>
+                </div>
+              </section>
+            )}
           </div>
         </div>
       </div>
@@ -539,5 +592,19 @@ export function ProductTemplate({
         </div>
       </div>
     </>
+  );
+}
+
+// Helper functions for sequential layout
+function hasProductAdditionalInfo(product: any): boolean {
+  return !!(
+    product.sku ||
+    product.weight ||
+    product.dimensions?.length ||
+    product.dimensions?.width ||
+    product.dimensions?.height ||
+    (product.categories && product.categories.length > 0) ||
+    (product.brands && product.brands.length > 0) ||
+    (product.attributes && product.attributes.length > 0)
   );
 }

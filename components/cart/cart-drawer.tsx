@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/woocommerce';
 import { Minus, Plus, X, AlertCircle } from 'lucide-react';
 import { CartThresholdMessages } from './cart-threshold-messages';
 import { WhatsAppOrderButton } from '@/components/whatsapp/whatsapp-order-button';
+import { PaymentIconsCompact } from '@/components/ui/payment-icons';
 import { useEffect } from 'react';
 
 export function CartDrawer() {
@@ -168,6 +169,12 @@ export function CartDrawer() {
                 <Button asChild size="default" onClick={closeCart} className="text-sm">
                   <Link href="/checkout">Checkout</Link>
                 </Button>
+              </div>
+
+              {/* Payment Methods */}
+              <div className="pt-3 border-t">
+                <p className="text-[10px] text-center text-neutral-500 mb-2">We accept</p>
+                <PaymentIconsCompact />
               </div>
             </SheetFooter>
           </>

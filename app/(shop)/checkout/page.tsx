@@ -30,6 +30,7 @@ import { PaymentRequestButton } from '@/components/checkout/payment-request-butt
 import { StripeExpressCheckout } from '@/components/checkout/stripe-express-checkout';
 import { trackInitiateCheckout } from '@/lib/analytics';
 import { WhatsAppOrderButton } from '@/components/whatsapp/whatsapp-order-button';
+import { PaymentIcons } from '@/components/ui/payment-icons';
 
 type CheckoutStep = 'shipping' | 'shipping-method' | 'billing' | 'payment' | 'review';
 
@@ -477,6 +478,11 @@ export default function CheckoutPage() {
           <h1 className="mb-4 font-heading text-4xl font-bold text-primary-950 dark:text-primary-50">
             Checkout
           </h1>
+
+          {/* Payment Methods Banner */}
+          <div className="mb-6 p-4 bg-primary-50 dark:bg-primary-950/20 rounded-xl">
+            <PaymentIcons size="sm" showLabel={true} />
+          </div>
 
           {/* Progress Steps */}
           <div className="flex items-center justify-between">
