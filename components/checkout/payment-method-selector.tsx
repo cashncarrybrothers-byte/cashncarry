@@ -60,13 +60,42 @@ export function PaymentMethodSelector({
 
             const data = await response.json();
 
-            const formattedMethods = data.map((gateway: any) => ({
-                id: gateway.id,
-                title: gateway.title,
-                description: gateway.description || `Pay using ${gateway.title}`,
-                enabled: gateway.enabled,
-                icon: getPaymentIcon(gateway.id),
-            }));
+            const formattedMethods = data
+                .filter((gateway: any) => gateway.enabled) // Double check enabled status
+                .map((gateway: any) => {
+                    // Fallback title logic
+                    let title = gateway.title;
+                    if (!title || title === 'null') {
+                        switch (gateway.id) {
+                            case 'stripe':
+                            case 'stripe_cc':
+                                title = 'Credit / Debit Card (Stripe)';
+                                break;
+                            case 'ppcp-gateway':
+                                title = 'PayPal';
+                                break;
+                            case 'cod':
+                                title = 'Cash on Delivery';
+                                break;
+                            case 'bacs':
+                                title = 'Direct Bank Transfer';
+                                break;
+                            case 'swish':
+                                title = 'Swish';
+                                break;
+                            default:
+                                title = 'Payment Method';
+                        }
+                    }
+
+                    return {
+                        id: gateway.id,
+                        title: title,
+                        description: gateway.description || `Pay using ${title}`,
+                        enabled: gateway.enabled,
+                        icon: getPaymentIcon(gateway.id),
+                    };
+                });
 
             setMethods(formattedMethods);
 

@@ -62,7 +62,11 @@ export function CartDrawer() {
         ) : (
           <>
             {/* WhatsApp Order Button - Top of Cart */}
-            <div className="px-4 pt-4">
+            {/* Payment Methods & WhatsApp Order Button - Top of Cart */}
+            <div className="px-4 pt-4 space-y-3">
+              <div className="flex justify-center">
+                <PaymentIconsCompact />
+              </div>
               <WhatsAppOrderButton
                 context="cart"
                 cartItems={items}
@@ -171,11 +175,7 @@ export function CartDrawer() {
                 </Button>
               </div>
 
-              {/* Payment Methods */}
-              <div className="pt-3 border-t">
-                <p className="text-[10px] text-center text-neutral-500 mb-2">We accept</p>
-                <PaymentIconsCompact />
-              </div>
+
             </SheetFooter>
           </>
         )}

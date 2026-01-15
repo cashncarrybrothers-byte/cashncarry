@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { brandProfile } from '@/config/brand-profile';
 import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Clock, Youtube, ExternalLink, Linkedin } from 'lucide-react';
 import { getOnSaleProducts } from '@/lib/woocommerce/products-direct';
+import { PaymentIconsCompact } from '@/components/ui/payment-icons';
 
 export async function Footer() {
   const saleProducts = await getOnSaleProducts(3);
@@ -212,10 +213,15 @@ export async function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border/10 pt-6 mt-10 flex flex-col sm:flex-row items-center sm:justify-between gap-2 text-[10px] text-muted-foreground/60 uppercase tracking-widest font-medium">
+        <div className="border-t border-border/10 pt-6 mt-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Brothers Cash & Carry. All Rights Reserved.</p>
-          <p className="flex items-center gap-1">
-            Crafted with ☕ & a cup of chai by <a href="https://fourlines.agency" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Fourlines Agency</a>
+
+          <div className="opacity-80 grayscale hover:grayscale-0 transition-all duration-300">
+            <PaymentIconsCompact />
+          </div>
+
+          <p>
+            Designed & Managed by <a href="https://fourlines.agency" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Fourlines Agency</a>
           </p>
         </div>
       </div>
