@@ -61,15 +61,33 @@ export function PaymentMethodSelector({
             const data = await response.json();
 
             const formattedMethods = data
-                .filter((gateway: any) => gateway.enabled) // Double check enabled status
+                .filter((gateway: any) => {
+                    // Filter out disabled gateways
+                    if (!gateway.enabled) return false;
+
+                    // Filter out gateways that need setup (like unconfigured WooPayments)
+                    if (gateway.needs_setup) return false;
+
+                    // Filter out WooPayments Apple/Google Pay if not properly configured
+                    // These cause issues when title is null
+                    if (gateway.id === 'woocommerce_payments_apple_pay' ||
+                        gateway.id === 'woocommerce_payments_google_pay') {
+                        if (!gateway.title) return false;
+                    }
+
+                    return true;
+                })
                 .map((gateway: any) => {
-                    // Fallback title logic
+                    // Fallback title logic for known gateways
                     let title = gateway.title;
                     if (!title || title === 'null') {
                         switch (gateway.id) {
                             case 'stripe':
                             case 'stripe_cc':
                                 title = 'Credit / Debit Card (Stripe)';
+                                break;
+                            case 'stripe_klarna':
+                                title = 'Klarna';
                                 break;
                             case 'ppcp-gateway':
                                 title = 'PayPal';
@@ -84,7 +102,8 @@ export function PaymentMethodSelector({
                                 title = 'Swish';
                                 break;
                             default:
-                                title = 'Payment Method';
+                                // Skip unknown gateways without titles
+                                return null;
                         }
                     }
 
@@ -95,7 +114,8 @@ export function PaymentMethodSelector({
                         enabled: gateway.enabled,
                         icon: getPaymentIcon(gateway.id),
                     };
-                });
+                })
+                .filter((method: any) => method !== null); // Remove null entries
 
             setMethods(formattedMethods);
 
