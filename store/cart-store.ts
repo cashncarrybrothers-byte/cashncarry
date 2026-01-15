@@ -92,10 +92,10 @@ export const useCartStore = create<CartState>()(
       selectedShippingMethod: null,
       restrictedProducts: [],
       isCalculatingShipping: false,
-      freeShippingThreshold: 500,
+      freeShippingThreshold: 0,  // DISABLED - no threshold
       amountToFreeShipping: 0,
-      minimumOrder: 300,
-      minimumOrderMet: false,
+      minimumOrder: 0,  // DISABLED - no minimum order
+      minimumOrderMet: true,  // Always met
 
       addItem: (product, quantity = 1, variation) => {
         const key = generateCartKey(product.id, variation?.id);
