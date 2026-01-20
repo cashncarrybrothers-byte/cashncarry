@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { TopInfoBar } from "@/components/layout/top-info-bar";
+import { MaintenanceTicker } from "@/components/layout/maintenance-ticker";
 import { SchemaScript } from "@/lib/schema/schema-script";
 import { websiteSchema } from "@/lib/schema";
 import { brothersOrganizationSchemaFull } from "@/lib/schema/organization";
@@ -162,6 +163,9 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Maintenance Ticker - Shows when ordering is disabled */}
+          <MaintenanceTicker />
+
           {/* Top Green Info Bar - Desktop only */}
           <TopInfoBar />
 
