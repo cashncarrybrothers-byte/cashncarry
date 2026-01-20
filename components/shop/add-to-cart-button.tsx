@@ -29,6 +29,9 @@ export function AddToCartButton({
   const [isAdded, setIsAdded] = useState(false);
   const { addItem, openCart } = useCartStore();
 
+  // Check if ordering is disabled (maintenance mode)
+  const isOrderingDisabled = process.env.NEXT_PUBLIC_ORDERING_DISABLED === 'true';
+
   const handleAddToCart = () => {
     // Add item to cart with variation if provided
     addItem(product, quantity, variation || undefined);
@@ -51,6 +54,23 @@ export function AddToCartButton({
   // For variable products, require variation selection
   const hasVariations = product.type === 'variable' && product.variations && product.variations.length > 0;
   const needsVariationSelection = hasVariations && !variation;
+
+  // If ordering is disabled, show maintenance message
+  if (isOrderingDisabled) {
+    return (
+      <Button
+        disabled
+        variant={variant}
+        size={size}
+        className={className}
+        style={style}
+        title="We're working on improvements. Orders will start soon!"
+      >
+        <ShoppingCart className="mr-2 h-4 w-4" />
+        Coming Soon
+      </Button>
+    );
+  }
 
   return (
     <Button

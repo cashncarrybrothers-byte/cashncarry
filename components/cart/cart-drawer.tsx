@@ -15,6 +15,9 @@ import { useEffect } from 'react';
 export function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotalPrice, getTotalItems, notification, clearNotification } = useCartStore();
 
+  // Check if ordering is disabled (maintenance mode)
+  const isOrderingDisabled = process.env.NEXT_PUBLIC_ORDERING_DISABLED === 'true';
+
   // Auto-clear notification after 5 seconds
   useEffect(() => {
     if (notification) {
@@ -64,6 +67,23 @@ export function CartDrawer() {
             {/* WhatsApp Order Button - Top of Cart */}
             {/* Payment Methods & WhatsApp Order Button - Top of Cart */}
             <div className="px-4 pt-4 space-y-3">
+              {/* Maintenance Mode Banner */}
+              {isOrderingDisabled && (
+                <div className="rounded-lg border border-amber-500/50 bg-amber-500/10 p-4">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="h-5 w-5 flex-shrink-0 text-amber-600 mt-0.5" />
+                    <div className="flex-1">
+                      <h4 className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-1">
+                        Ordering Temporarily Disabled
+                      </h4>
+                      <p className="text-xs text-amber-800 dark:text-amber-200">
+                        We're working on improvements to serve you better. Orders will start soon. Thank you for your patience!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="flex justify-center">
                 <PaymentIconsCompact />
               </div>
@@ -170,9 +190,20 @@ export function CartDrawer() {
                 <Button asChild variant="outline" size="default" onClick={closeCart} className="text-sm">
                   <Link href="/shop">Continue Shopping</Link>
                 </Button>
-                <Button asChild size="default" onClick={closeCart} className="text-sm">
-                  <Link href="/checkout">Checkout</Link>
-                </Button>
+                {isOrderingDisabled ? (
+                  <Button
+                    disabled
+                    size="default"
+                    className="text-sm"
+                    title="We're working on improvements. Orders will start soon!"
+                  >
+                    Coming Soon
+                  </Button>
+                ) : (
+                  <Button asChild size="default" onClick={closeCart} className="text-sm">
+                    <Link href="/checkout">Checkout</Link>
+                  </Button>
+                )}
               </div>
 
 

@@ -99,6 +99,32 @@ export default function CheckoutPage() {
   const cartTotal = getTotalPrice();
   const meetsMinimum = minimumOrderAmount === 0 || cartTotal >= minimumOrderAmount;
 
+  // Check if ordering is disabled (maintenance mode)
+  const isOrderingDisabled = process.env.NEXT_PUBLIC_ORDERING_DISABLED === 'true';
+
+  // Show maintenance message if ordering is disabled
+  if (isOrderingDisabled) {
+    return (
+      <Section>
+        <Container>
+          <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
+            <AlertCircle className="mb-4 h-16 w-16 text-primary-600" />
+            <h1 className="mb-2 font-heading text-3xl font-bold text-primary-950 dark:text-primary-50">
+              We're Working on Improvements
+            </h1>
+            <p className="mb-6 max-w-md text-neutral-600 dark:text-neutral-400">
+              Our ordering system is currently under maintenance to serve you better.
+              Orders will start soon. Thank you for your patience!
+            </p>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/shop">Continue Shopping</Link>
+            </Button>
+          </div>
+        </Container>
+      </Section>
+    );
+  }
+
   if (items.length === 0) {
     return (
       <Section>

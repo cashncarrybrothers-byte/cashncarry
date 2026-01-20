@@ -84,6 +84,9 @@ export function WhatsAppOrderButton({
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  // Check if ordering is disabled (maintenance mode)
+  const isOrderingDisabled = process.env.NEXT_PUBLIC_ORDERING_DISABLED === 'true';
+
   // Check if WhatsApp is enabled for product
   if (context === 'product' && product && !isWhatsAppEnabledForProduct(product)) {
     return null; // Don't render button if disabled for product
@@ -147,41 +150,41 @@ export function WhatsAppOrderButton({
       const orderData =
         context === 'product'
           ? {
-              product: {
-                id: product!.id,
-                name: product!.name,
-                slug: product!.slug,
-                price: variation?.price || product!.price,
-                quantity,
-                variation,
-              },
-              customer: data.customer,
-              shipping: data.shipping,
-              billing: data.billing,
-              notes: data.notes,
-            }
+            product: {
+              id: product!.id,
+              name: product!.name,
+              slug: product!.slug,
+              price: variation?.price || product!.price,
+              quantity,
+              variation,
+            },
+            customer: data.customer,
+            shipping: data.shipping,
+            billing: data.billing,
+            notes: data.notes,
+          }
           : {
-              cart: {
-                items: cartItems.map((item) => ({
-                  productId: item.product.id,
-                  variationId: item.variation?.id,
-                  quantity: item.quantity,
-                  name: item.product.name,
-                  price: item.price.toString(),
-                  variation: item.variation?.attributes
-                    ?.map((attr) => attr.option)
-                    .join(', '),
-                })),
-                total: cartTotal || '0',
-                subtotal: cartSubtotal,
-                shipping: cartShipping,
-                tax: cartTax,
-              },
-              customer: data.customer,
-              shipping: data.shipping,
-              billing: data.billing,
-              notes: data.notes,
-            };
+            cart: {
+              items: cartItems.map((item) => ({
+                productId: item.product.id,
+                variationId: item.variation?.id,
+                quantity: item.quantity,
+                name: item.product.name,
+                price: item.price.toString(),
+                variation: item.variation?.attributes
+                  ?.map((attr) => attr.option)
+                  .join(', '),
+              })),
+              total: cartTotal || '0',
+              subtotal: cartSubtotal,
+              shipping: cartShipping,
+              tax: cartTax,
+            },
+            customer: data.customer,
+            shipping: data.shipping,
+            billing: data.billing,
+            notes: data.notes,
+          };
 
       // Create order via server action
       const result = await createWhatsAppOrderAction(orderData);
@@ -241,12 +244,18 @@ export function WhatsAppOrderButton({
         size={size}
         className={className}
         onClick={handleClick}
-        disabled={isLoading}
+        disabled={isLoading || isOrderingDisabled}
+        title={isOrderingDisabled ? "We're working on improvements. Orders will start soon!" : undefined}
       >
         {isLoading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             {loadingLabel}
+          </>
+        ) : isOrderingDisabled ? (
+          <>
+            <MessageCircle className="mr-2 h-4 w-4" />
+            Coming Soon
           </>
         ) : (
           <>
@@ -256,7 +265,7 @@ export function WhatsAppOrderButton({
         )}
       </Button>
 
-      {requireCustomerInfo && (
+      {requireCustomerInfo && !isOrderingDisabled && (
         <WhatsAppCustomerModal
           open={isModalOpen}
           onOpenChange={setIsModalOpen}
