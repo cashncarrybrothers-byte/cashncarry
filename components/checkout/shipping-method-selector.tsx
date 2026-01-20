@@ -157,35 +157,7 @@ export function ShippingMethodSelector({
         </p>
       </div>
 
-      {/* Free Shipping Progress Bar */}
-      {subtotal < freeShippingThreshold && (
-        <Card className="border-green-200 bg-green-50 p-4 dark:border-green-900 dark:bg-green-950/20">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
-              <span className="flex items-center gap-2 font-medium text-green-800 dark:text-green-300">
-                <Gift className="h-4 w-4" />
-                Free shipping at {formatPrice(freeShippingThreshold, 'SEK')}
-              </span>
-              <span className="font-semibold text-green-700 dark:text-green-400">
-                {formatPrice(amountToFreeShipping, 'SEK')} to go!
-              </span>
-            </div>
-            <Progress value={freeShippingProgress} className="h-2" />
-          </div>
-        </Card>
-      )}
-
-      {/* Shipping achieved message */}
-      {subtotal >= freeShippingThreshold && (
-        <Card className="border-green-200 bg-green-50 p-4 dark:border-green-900 dark:bg-green-950/20">
-          <div className="flex items-center gap-2 text-green-800 dark:text-green-300">
-            <Gift className="h-5 w-5" />
-            <p className="font-semibold">
-              Congratulations! You qualify for free shipping!
-            </p>
-          </div>
-        </Card>
-      )}
+      {/* Free shipping feature removed - no longer offered */}
 
       {/* Shipping Methods */}
       <RadioGroup
