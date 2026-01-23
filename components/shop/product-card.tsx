@@ -55,7 +55,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <article className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
 
           {/* Image Container */}
-          <div className="relative aspect-square overflow-hidden bg-muted/20">
+          <div className="relative aspect-square overflow-hidden bg-white border-b border-border/40">
             {product.images && product.images.length > 0 && !imageError ? (
               <Image
                 src={product.images[0].src}

@@ -17,9 +17,9 @@ const CATEGORIES = [
 
 export function CategoryCircleLinks() {
     return (
-        <section className="w-full py-[5px] md:py-[7.5px] bg-background">
+        <section className="w-full py-[15px] bg-background">
             <div className="site-container">
-                <div className="grid grid-cols-3 md:grid-cols-9 gap-4 sm:gap-6">
+                <div className="grid grid-cols-3 md:grid-cols-9 gap-6 md:gap-8">
                     {CATEGORIES.map((cat, idx) => (
                         <motion.div
                             key={cat.slug}
@@ -30,9 +30,9 @@ export function CategoryCircleLinks() {
                         >
                             <Link
                                 href={`/product-category/${cat.slug}`}
-                                className="flex flex-col items-center gap-3 group cursor-pointer"
+                                className="flex flex-col items-center gap-4 group cursor-pointer"
                             >
-                                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-[1.5rem] ${cat.color} ${cat.darkColor} flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md border border-white/50`}>
+                                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-3xl ${cat.color} ${cat.darkColor} flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md border border-white/50`}>
                                     <span className="text-3xl sm:text-4xl filter drop-shadow-sm group-hover:drop-shadow-md transition-all">{cat.emoji}</span>
                                 </div>
                                 <span className="text-xs sm:text-sm font-bold text-center text-foreground group-hover:text-primary transition-colors truncate w-full">
@@ -51,9 +51,9 @@ export function CategoryCircleLinks() {
                     >
                         <Link
                             href="/shop"
-                            className="flex flex-col items-center gap-3 group cursor-pointer"
+                            className="flex flex-col items-center gap-4 group cursor-pointer"
                         >
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[1.5rem] bg-gray-100 dark:bg-gray-800 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md border border-white/50">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md border border-white/50">
                                 <Grid className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
                             </div>
                             <span className="text-xs sm:text-sm font-bold text-center text-foreground group-hover:text-primary transition-colors">

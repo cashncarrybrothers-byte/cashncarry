@@ -16,26 +16,26 @@ export function ProductShowcase({ title, products, moreLink = "/shop" }: Product
     if (!products || products.length === 0) return null;
 
     return (
-        <section className="w-full py-[5px] md:py-[7.5px]">
+        <section className="w-full py-[15px]">
             <div className="site-container">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl sm:text-2xl font-heading font-black text-foreground">
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold text-foreground tracking-tight">
                         {title}
                     </h2>
-                    <Button variant="ghost" size="sm" className="rounded-full text-xs h-8 font-bold text-primary" asChild>
-                        <Link href={moreLink} className="flex items-center gap-1">
+                    <Button variant="ghost" size="sm" className="rounded-full text-sm font-medium h-9 text-primary hover:text-primary hover:bg-primary/5" asChild>
+                        <Link href={moreLink} className="flex items-center gap-1.5">
                             <span>View All</span>
-                            <ArrowRight className="h-3 w-3" />
+                            <ArrowRight className="h-4 w-4" />
                         </Link>
                     </Button>
                 </div>
 
                 {/* Horizontal Scroll Container */}
                 <div className="relative">
-                    <div className="flex overflow-x-auto gap-[5px] md:gap-6 pb-6 scrollbar-hide snap-x">
+                    <div className="flex overflow-x-auto gap-4 sm:gap-6 pb-4 scrollbar-hide snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
                         {products.map((product) => (
-                            <div key={product.id} className="min-w-[200px] w-[200px] sm:min-w-[240px] sm:w-[240px] md:min-w-[280px] md:w-[280px] snap-start">
+                            <div key={product.id} className="min-w-[200px] w-[200px] sm:min-w-[240px] sm:w-[240px] md:min-w-[260px] md:w-[260px] snap-start">
                                 <ProductCard product={product} />
                             </div>
                         ))}

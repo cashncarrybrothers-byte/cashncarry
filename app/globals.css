@@ -93,13 +93,15 @@
   body {
     @apply bg-background text-foreground relative;
     font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
+    overflow-x: clip;
+    /* Prefer clip over hidden for sticky compatibility */
     max-width: 100vw;
   }
 
   html {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
+    scroll-behavior: smooth;
   }
 
   /* ==========================================
@@ -244,11 +246,11 @@
 
   /* Layout Utilities */
   .site-container {
-    @apply w-full mx-auto px-[10px] md:px-[20px];
+    @apply w-full mx-auto px-[15px];
   }
 
   .main-layout {
-    @apply flex flex-col min-h-screen w-full;
+    @apply flex flex-col min-h-screen w-full overflow-visible;
   }
 }
 

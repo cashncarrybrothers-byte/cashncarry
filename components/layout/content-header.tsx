@@ -12,14 +12,17 @@ import { cn } from "@/lib/utils";
 
 import { ProductCategoryFull } from "@/types/woocommerce";
 
+import { MegaMenu } from "./mega-menu";
+
 interface ContentHeaderProps {
   categories?: ProductCategoryFull[];
 }
 
+// ... (existing imports)
+
 export function ContentHeader({ categories = [] }: ContentHeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const { isOpen, toggle } = useSidebar();
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const router = useRouter();
 
@@ -44,7 +47,7 @@ export function ContentHeader({ categories = [] }: ContentHeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-background border-b border-border shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-background border-b border-border shadow-sm">
       <div className="w-full px-4 md:px-8">
         {/* Row 1: Logo, Search, Icons */}
         <div className="flex items-center justify-between h-16 gap-4 lg:gap-8">
@@ -107,50 +110,15 @@ export function ContentHeader({ categories = [] }: ContentHeaderProps) {
 
         {/* Row 2: Categories & Navigation */}
         <div className="hidden lg:flex items-center gap-8 py-2 border-t border-border/10">
-          {/* Categories Dropdown Trigger */}
-          <div className="relative shrink-0">
-            <button
-              onClick={() => {
-                setIsCategoryOpen(!isCategoryOpen);
-                setIsCountryOpen(false);
-              }}
-              className="flex items-center gap-2 group transition-all text-foreground font-bold text-sm hover:text-primary"
-            >
-              <Menu className="h-5 w-5" />
-              <span>Browse Categories</span>
-              <ChevronDown className={cn("h-4 w-4 transition-transform", isCategoryOpen && "rotate-180")} />
-            </button>
 
-            {/* Dropdown Menu */}
-            {isCategoryOpen && (
-              <div className="absolute top-full left-0 mt-2 w-72 bg-card border border-border rounded-xl shadow-xl z-50 py-3 animate-in fade-in slide-in-from-top-2">
-                <div className="max-h-[70vh] overflow-y-auto px-2 space-y-1 scrollbar-thin">
-                  {browseCategories.map((category) => (
-                    <Link
-                      key={category.id}
-                      href={`/product-category/${category.slug}`}
-                      className="flex items-center px-4 py-2.5 rounded-lg hover:bg-primary/5 hover:text-primary transition-colors text-sm font-medium border border-transparent hover:border-primary/10"
-                      onClick={() => setIsCategoryOpen(false)}
-                    >
-                      {category.name.replace(/&amp;/g, '&')}
-                    </Link>
-                  ))}
-                  {categories.length === 0 && (
-                    <div className="px-4 py-4 text-center text-sm text-muted-foreground">
-                      No categories found.
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
+          {/* New Mega Menu */}
+          <MegaMenu categories={browseCategories} />
 
           {/* Shop by Country Dropdown */}
           <div className="relative shrink-0">
             <button
               onClick={() => {
                 setIsCountryOpen(!isCountryOpen);
-                setIsCategoryOpen(false);
               }}
               className="flex items-center gap-2 group transition-all text-foreground font-bold text-sm hover:text-primary"
             >

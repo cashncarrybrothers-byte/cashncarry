@@ -45,15 +45,15 @@ export function LightningDeals({ products }: LightningDealsProps) {
     if (!products || products.length === 0) return null;
 
     return (
-        <section className="bg-red-50 dark:bg-red-900/10 py-[5px] md:py-[7.5px] overflow-hidden">
+        <section className="bg-red-50 dark:bg-red-900/10 py-[15px] overflow-hidden">
             <div className="site-container">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
-                    <div className="flex items-center gap-4">
-                        <h2 className="text-2xl md:text-3xl font-heading font-black text-foreground">Lightning Deals</h2>
-                        <div className="flex items-center gap-2 text-secondary font-bold text-sm bg-white dark:bg-card px-4 py-2 rounded-full shadow-sm border border-red-100 dark:border-red-900/30">
+                    <div className="flex flex-wrap items-center gap-4">
+                        <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">Lightning Deals</h2>
+                        <div className="flex items-center gap-2 text-secondary font-bold text-sm bg-white dark:bg-card px-4 py-1.5 rounded-full shadow-sm border border-red-100 dark:border-red-900/30">
                             <Timer className="h-4 w-4 animate-pulse text-secondary" />
                             <span>Ends in:</span>
-                            <span className="font-mono tabular-nums">
+                            <span className="font-mono tabular-nums font-medium text-base">
                                 {String(timeLeft.hours).padStart(2, '0')}:
                                 {String(timeLeft.minutes).padStart(2, '0')}:
                                 {String(timeLeft.seconds).padStart(2, '0')}
@@ -69,7 +69,7 @@ export function LightningDeals({ products }: LightningDealsProps) {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[5px] md:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
                     {products.slice(0, 5).map((product, idx) => (
                         <motion.div
                             key={product.id}
