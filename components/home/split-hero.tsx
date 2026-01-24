@@ -1,73 +1,153 @@
 'use client';
 
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+// Hero slider images
+const heroSlides = [
+    {
+        id: 1,
+        image: "https://crm.cashncarry.se/wp-content/uploads/2026/01/AASHIRVAD-BANNER.jpg",
+        alt: "Aashirvad Products",
+        link: "/shop?brand=aashirvad",
+    },
+    {
+        id: 2,
+        image: "https://crm.cashncarry.se/wp-content/uploads/2026/01/vitalgroup1-2.png",
+        alt: "Vital Group Products",
+        link: "/shop",
+    },
+    {
+        id: 3,
+        image: "https://crm.cashncarry.se/wp-content/uploads/2026/01/ambala-banner.jpg",
+        alt: "Ambala Products",
+        link: "/shop?brand=ambala",
+    },
+];
 
 export function SplitHero() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+    // Auto-advance slides
+    useEffect(() => {
+        if (!isAutoPlaying) return;
+
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000); // Change slide every 5 seconds
+
+        return () => clearInterval(timer);
+    }, [isAutoPlaying]);
+
+    const goToSlide = useCallback((index: number) => {
+        setCurrentSlide(index);
+        setIsAutoPlaying(false);
+        // Resume auto-play after 10 seconds of inactivity
+        setTimeout(() => setIsAutoPlaying(true), 10000);
+    }, []);
+
+    const goToPrevious = useCallback(() => {
+        setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+        setIsAutoPlaying(false);
+        setTimeout(() => setIsAutoPlaying(true), 10000);
+    }, []);
+
+    const goToNext = useCallback(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        setIsAutoPlaying(false);
+        setTimeout(() => setIsAutoPlaying(true), 10000);
+    }, []);
+
     return (
         <section className="w-full py-[15px] bg-background">
             <div className="site-container">
                 <div className="flex flex-col gap-[15px]">
 
-                    {/* Main Large Banner (Full Width) */}
+                    {/* Main Hero Slider (Full Width) */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="w-full relative rounded-[2rem] overflow-hidden group shadow-xl h-[350px] sm:h-[450px]"
+                        className="w-full relative rounded-[2rem] overflow-hidden shadow-xl h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
                     >
-                        {/* Background Image */}
-                        <Image
-                            src="https://crm.cashncarry.se/wp-content/uploads/2026/01/web-cover-1.jpg"
-                            alt="Cash & Carry Cover"
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            priority
-                            quality={100}
-                        />
-
-
-
-                        <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12 text-white/90 z-10">
-                            <motion.span
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full w-fit mb-4 uppercase tracking-widest border border-white/30"
-                            >
-                                Weekly Specials
-                            </motion.span>
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
-                                className="font-heading text-3xl sm:text-5xl font-black mb-4 leading-tight text-white"
-                            >
-                                Your Favorite <br />
-                                <span className="text-[#ffff04]">International Market</span>
-                            </motion.h1>
-                            <motion.p
+                        {/* Slides */}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentSlide}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ delay: 0.5 }}
-                                className="text-sm sm:text-base text-gray-100 mb-6 max-w-md font-medium leading-relaxed"
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="absolute inset-0"
                             >
-                                Authentic flavors from Asia, Africa, and the Middle East delivered straight to your doorstep in Sweden.
-                            </motion.p>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6 }}
-                            >
-                                <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 font-bold py-6 px-8 rounded-full w-fit transition-all shadow-xl group">
-                                    <Link href="/shop" className="flex items-center gap-2 text-base">
-                                        Shop Now <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                                    </Link>
-                                </Button>
+                                <Link href={heroSlides[currentSlide].link} className="block w-full h-full">
+                                    <Image
+                                        src={heroSlides[currentSlide].image}
+                                        alt={heroSlides[currentSlide].alt}
+                                        fill
+                                        className="object-cover"
+                                        priority={currentSlide === 0}
+                                        quality={90}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                                    />
+                                </Link>
                             </motion.div>
+                        </AnimatePresence>
+
+                        {/* Navigation Arrows */}
+                        <button
+                            onClick={goToPrevious}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
+                            aria-label="Previous slide"
+                            style={{ opacity: 1 }}
+                        >
+                            <ChevronLeft className="h-6 w-6" />
+                        </button>
+                        <button
+                            onClick={goToNext}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
+                            aria-label="Next slide"
+                            style={{ opacity: 1 }}
+                        >
+                            <ChevronRight className="h-6 w-6" />
+                        </button>
+
+                        {/* Dot Indicators */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+                            {heroSlides.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => goToSlide(index)}
+                                    className={cn(
+                                        "w-2.5 h-2.5 rounded-full transition-all duration-300",
+                                        currentSlide === index
+                                            ? "bg-white w-8"
+                                            : "bg-white/50 hover:bg-white/80"
+                                    )}
+                                    aria-label={`Go to slide ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+
+                        {/* Progress Bar */}
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20 z-20">
+                            <motion.div
+                                className="h-full bg-white"
+                                initial={{ width: "0%" }}
+                                animate={{ width: "100%" }}
+                                transition={{
+                                    duration: 5,
+                                    ease: "linear",
+                                    repeat: Infinity,
+                                }}
+                                key={currentSlide}
+                            />
                         </div>
                     </motion.div>
 
