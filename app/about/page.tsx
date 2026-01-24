@@ -487,7 +487,7 @@ export default function AboutPage() {
                                             <div className="text-xs text-muted-foreground">Send a message</div>
                                         </div>
                                     </a>
-                                    <a
+                                    <Link
                                         href="/delivery-information"
                                         className="flex items-center gap-3 p-4 bg-card rounded-xl border hover:border-primary/50 transition-colors"
                                     >
@@ -496,7 +496,7 @@ export default function AboutPage() {
                                             <div className="font-semibold text-sm">Delivery</div>
                                             <div className="text-xs text-muted-foreground">View info</div>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
