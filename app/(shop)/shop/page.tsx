@@ -83,7 +83,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
       currentPage={page}
       totalPages={totalPages}
       basePath="/shop"
-      gridColumns={5}
+      gridColumns={8}
       filterBar={
         <Suspense fallback={<Skeleton className="h-16 w-full" />}>
           <ShopTopBar

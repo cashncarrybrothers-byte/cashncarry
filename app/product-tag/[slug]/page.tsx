@@ -97,7 +97,7 @@ export default async function ProductTagPage({ params, searchParams }: ProductTa
             currentPage={page}
             totalPages={totalPages}
             basePath={`/product-tag/${tagSlug}`}
-            gridColumns={5}
+            gridColumns={8}
             filterBar={
                 <Suspense fallback={<Skeleton className="h-16 w-full" />}>
                     <ShopTopBar

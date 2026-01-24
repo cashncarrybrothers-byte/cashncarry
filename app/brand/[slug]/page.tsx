@@ -180,7 +180,7 @@ export default async function BrandArchivePage({ params, searchParams }: BrandAr
                 currentPage={page}
                 totalPages={totalPages}
                 basePath={`/brand/${brand.slug}`}
-                gridColumns={5}
+                gridColumns={8}
                 filterBar={
                     <Suspense fallback={<Skeleton className="h-16 w-full" />}>
                         <ShopTopBar

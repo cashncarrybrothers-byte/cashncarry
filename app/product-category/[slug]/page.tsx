@@ -119,7 +119,7 @@ export default async function ProductCategoryPage({ params, searchParams }: Prod
                 currentPage={page}
                 totalPages={totalPages}
                 basePath={`/product-category/${categorySlug}`}
-                gridColumns={5}
+                gridColumns={8}
                 filterBar={
                     <Suspense fallback={<Skeleton className="h-16 w-full" />}>
                         <ShopTopBar
