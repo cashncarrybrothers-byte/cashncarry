@@ -16,15 +16,15 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  // Fetch data in parallel
+  // Fetch data in parallel - 8 products per section for 8-column grid
   const [categoriesRes, trendingRes, newArrivalsRes, dealsRes, mostSearchedRes, vegRes, snacksRes] = await Promise.all([
     getProductCategories({ per_page: 12, orderby: 'count', order: 'desc', parent: 0 }),
-    getProducts({ per_page: 8, orderby: 'popularity' }),
-    getProducts({ per_page: 8, orderby: 'date' }),
-    getProducts({ per_page: 8, on_sale: true }),
-    getProducts({ per_page: 8, orderby: 'rating' }), // Proxy for "Most Searched"
-    getProducts({ per_page: 8, category: 'vegetables' }),
-    getProducts({ per_page: 8, category: 'snacks' }),
+    getProducts({ per_page: 8, orderby: 'popularity', order: 'desc' }),
+    getProducts({ per_page: 8, orderby: 'date', order: 'desc' }), // Newest products first
+    getProducts({ per_page: 8, on_sale: true, orderby: 'date', order: 'desc' }),
+    getProducts({ per_page: 8, orderby: 'rating', order: 'desc' }), // Proxy for "Most Searched"
+    getProducts({ per_page: 8, category: 'vegetables', orderby: 'date', order: 'desc' }),
+    getProducts({ per_page: 8, category: 'snacks', orderby: 'date', order: 'desc' }),
   ]);
 
   const trendingProducts = trendingRes.data || [];
