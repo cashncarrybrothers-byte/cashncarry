@@ -21,7 +21,10 @@ interface ArchiveTemplateProps {
   sidebar?: ReactNode;
   filterBar?: ReactNode;
   gridColumns?: 2 | 3 | 4 | 5;
+  heroImage?: string;
 }
+
+const DEFAULT_HERO_IMAGE = 'https://crm.cashncarry.se/wp-content/uploads/2026/01/web-cover-1.jpg';
 
 export function ArchiveTemplate({
   title,
@@ -35,79 +38,69 @@ export function ArchiveTemplate({
   sidebar,
   filterBar,
   gridColumns = 3,
+  heroImage = DEFAULT_HERO_IMAGE,
 }: ArchiveTemplateProps) {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden max-w-full">
-      <div className="w-full px-5 py-8 md:py-12 max-w-full">
-        {/* Archive Header - Responsive Layout */}
-        <div className="mb-8 md:mb-12">
-          {/* Mobile: Two Column Layout */}
-          <div className="grid grid-cols-2 md:hidden gap-4 mb-6">
-            {/* Column 1: Breadcrumbs + Title */}
-            <div className="flex flex-col gap-3">
-              {breadcrumbs && breadcrumbs.length > 0 && (
-                <Breadcrumbs items={breadcrumbs} />
-              )}
-              <h1 className="font-heading text-2xl font-semibold text-primary">
-                {title}
-              </h1>
-            </div>
+      {/* Hero Section with Background Image */}
+      <section className="relative w-full overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
 
-            {/* Column 2: Description */}
-            <div className="flex items-start">
-              {description && (
-                <div className="text-muted-foreground">
-                  {typeof description === 'string' ? (
-                    <p className="text-sm">{description}</p>
-                  ) : (
-                    description
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
 
-          {/* Desktop: Three Column Layout (Left Aligned, More Space for Description) */}
-          <div className="hidden md:grid md:grid-cols-8 gap-6 mb-6">
-            {/* Column 1: Breadcrumbs (2/8) */}
-            <div className="col-span-2 flex items-start overflow-hidden">
-              {breadcrumbs && breadcrumbs.length > 0 && (
-                <div className="w-full">
-                  <Breadcrumbs items={breadcrumbs} />
-                </div>
-              )}
-            </div>
+        {/* Content */}
+        <div className="relative z-10 w-full px-5 py-10 md:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto">
+            {/* Breadcrumbs */}
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <div className="mb-4">
+                <Breadcrumbs items={breadcrumbs} variant="light" />
+              </div>
+            )}
 
-            {/* Column 2: Title (2/8) */}
-            <div className="col-span-2 flex items-center">
-              <h1 className="font-heading text-3xl lg:text-4xl font-semibold text-primary">
-                {title}
-              </h1>
-            </div>
+            {/* Title */}
+            <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4 max-w-2xl">
+              {title}
+            </h1>
 
-            {/* Column 3: Description (4/8) - Maximum Space */}
-            <div className="col-span-4 flex items-center">
-              {description && (
-                <div className="text-muted-foreground">
-                  {typeof description === 'string' ? (
-                    <p className="text-base">{description}</p>
-                  ) : (
-                    description
-                  )}
-                </div>
-              )}
+            {/* Description */}
+            {description && (
+              <div className="max-w-xl">
+                {typeof description === 'string' ? (
+                  <p className="text-base md:text-lg text-white/90 leading-relaxed">{description}</p>
+                ) : (
+                  <div className="text-white/90">{description}</div>
+                )}
+              </div>
+            )}
+
+            {/* Product Count Badge */}
+            <div className="mt-6">
+              <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium">
+                {totalProducts} Products Available
+              </span>
             </div>
           </div>
+        </div>
+      </section>
 
+      <div className="w-full px-5 py-6 md:py-8 max-w-full">
+        {/* Filter Bar Section */}
+        <div className="mb-6 md:mb-8">
           {/* Custom Filter Bar (Top) */}
           {filterBar ? (
-            <div className="mb-8">
+            <div>
               {filterBar}
             </div>
           ) : (
-            <div className="flex items-center justify-between border-t border-b border-primary/10 py-3">
+            <div className="flex items-center justify-between border-b border-primary/10 pb-4">
               <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-primary">{products.length}</span> of{' '}
+                Showing <span className="font-medium text-primary">{products.length}</span> of{' '}
                 <span className="font-medium text-primary">{totalProducts}</span> products
               </p>
 
@@ -195,7 +188,7 @@ export function ArchiveTemplate({
                 {process.env.NODE_ENV === 'development' && (
                   <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg max-w-2xl">
                     <p className="text-sm text-blue-900 dark:text-blue-100 font-medium mb-2">
-                      🔧 Development Note
+                      Development Note
                     </p>
                     <p className="text-xs text-blue-700 dark:text-blue-300">
                       Products may not load in local development due to Vercel Security Checkpoint.
