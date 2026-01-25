@@ -164,7 +164,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Hero Content */}
-                <div className="relative z-10 site-container py-20 md:py-28 lg:py-32">
+                <div className="relative z-10 container mx-auto px-4 py-20 md:py-28 lg:py-32">
                     <div className="max-w-3xl">
                         <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium mb-6">
                             Established 2014
@@ -195,7 +195,7 @@ export default function AboutPage() {
 
             {/* Stats Section */}
             <section className="relative z-20 -mt-12">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="bg-card rounded-2xl shadow-xl border p-6 md:p-8">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                             {stats.map((stat, index) => (
@@ -218,7 +218,7 @@ export default function AboutPage() {
 
             {/* Our Story Section */}
             <section className="py-16 md:py-24">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         {/* Image Column */}
                         <div className="relative">
@@ -270,7 +270,7 @@ export default function AboutPage() {
 
             {/* Timeline Section */}
             <section className="py-16 md:py-24 bg-muted/30">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="text-center max-w-2xl mx-auto mb-12">
                         <span className="text-primary font-semibold text-sm uppercase tracking-wider mb-3 block">
                             Our Journey
@@ -299,7 +299,7 @@ export default function AboutPage() {
 
             {/* Products Section */}
             <section className="py-16 md:py-24">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="text-center max-w-2xl mx-auto mb-12">
                         <span className="text-primary font-semibold text-sm uppercase tracking-wider mb-3 block">
                             What We Offer
@@ -340,7 +340,7 @@ export default function AboutPage() {
 
             {/* Values Section */}
             <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="text-center max-w-2xl mx-auto mb-12">
                         <span className="font-semibold text-sm uppercase tracking-wider mb-3 block opacity-80">
                             Why Choose Us
@@ -372,7 +372,7 @@ export default function AboutPage() {
 
             {/* Testimonials Section */}
             <section className="py-16 md:py-24">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="text-center max-w-2xl mx-auto mb-12">
                         <span className="text-primary font-semibold text-sm uppercase tracking-wider mb-3 block">
                             Testimonials
@@ -411,7 +411,7 @@ export default function AboutPage() {
 
             {/* Contact & Location Section */}
             <section className="py-16 md:py-24 bg-muted/30">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="grid lg:grid-cols-2 gap-12">
                         {/* Contact Info */}
                         <div>
@@ -513,7 +513,7 @@ export default function AboutPage() {
 
             {/* CTA Section */}
             <section className="py-16 md:py-20">
-                <div className="site-container">
+                <div className="container mx-auto px-4">
                     <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-12 text-center text-primary-foreground">
                         <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
                             Ready to Explore?
