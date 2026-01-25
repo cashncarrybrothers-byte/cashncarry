@@ -224,7 +224,7 @@ export default function AboutPage() {
                         <div className="relative">
                             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                                 <Image
-                                    src="https://crm.cashncarry.se/wp-content/uploads/2025/05/whatsapp-image-2025-05-06-at-23.02.51-90cce80c.jpeg"
+                                    src="https://crm.cashncarry.se/wp-content/uploads/2026/01/Brothers-Cashncarry.png"
                                     alt="Brothers Cash & Carry Store Interior"
                                     fill
                                     className="object-cover"
