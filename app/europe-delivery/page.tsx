@@ -167,12 +167,12 @@ export default function EuropeDeliveryPage() {
                                     </div>
                                 </div>
 
-                                {/* WhatsApp Help */}
+                                {/* Email Help */}
                                 <div className="border rounded-lg p-6 bg-muted/30 text-center">
                                     <h3 style={{ fontSize: '18.91px', fontWeight: 500 }} className="mb-2">European Support</h3>
                                     <p style={{ fontSize: '13.53px' }} className="text-muted-foreground mb-4">Have questions about shipping to your specific country?</p>
-                                    <a href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`} className="inline-block w-full py-2 bg-primary text-primary-foreground rounded-lg font-medium text-sm">
-                                        WhatsApp Inquiries
+                                    <a href={`mailto:${brandProfile.contact.email}`} className="inline-block w-full py-2 bg-primary text-primary-foreground rounded-lg font-medium text-sm">
+                                        Email Inquiries
                                     </a>
                                 </div>
 

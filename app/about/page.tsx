@@ -458,16 +458,6 @@ export default function AboutPage() {
                                 {/* Contact Methods */}
                                 <div className="grid grid-cols-2 gap-4">
                                     <a
-                                        href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`}
-                                        className="flex items-center gap-3 p-4 bg-card rounded-xl border hover:border-primary/50 transition-colors"
-                                    >
-                                        <MessageCircle className="w-5 h-5 text-green-600" />
-                                        <div>
-                                            <div className="font-semibold text-sm">WhatsApp</div>
-                                            <div className="text-xs text-muted-foreground">Chat with us</div>
-                                        </div>
-                                    </a>
-                                    <a
                                         href={`tel:${brandProfile.contact.phone}`}
                                         className="flex items-center gap-3 p-4 bg-card rounded-xl border hover:border-primary/50 transition-colors"
                                     >
@@ -495,6 +485,16 @@ export default function AboutPage() {
                                         <div>
                                             <div className="font-semibold text-sm">Delivery</div>
                                             <div className="text-xs text-muted-foreground">View info</div>
+                                        </div>
+                                    </Link>
+                                    <Link
+                                        href="/contact"
+                                        className="flex items-center gap-3 p-4 bg-card rounded-xl border hover:border-primary/50 transition-colors"
+                                    >
+                                        <MessageCircle className="w-5 h-5 text-green-600" />
+                                        <div>
+                                            <div className="font-semibold text-sm">Contact</div>
+                                            <div className="text-xs text-muted-foreground">Get in touch</div>
                                         </div>
                                     </Link>
                                 </div>

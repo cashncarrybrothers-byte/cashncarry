@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { brandProfile } from '@/config/brand-profile';
-import { RotateCcw, Package, Clock, CheckCircle2, XCircle, Mail, MessageCircle, MapPin } from 'lucide-react';
+import { RotateCcw, Package, Clock, CheckCircle2, XCircle, Mail, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -146,13 +146,13 @@ export default function RefundReturnPage() {
                                 <div className="border rounded-lg p-6 bg-card">
                                     <h3 style={{ fontSize: '18.91px', fontWeight: 500 }} className="mb-4">Need Help?</h3>
                                     <div className="space-y-3">
-                                        <a href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`} className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted transition-colors">
-                                            <MessageCircle className="h-4 w-4 text-primary" />
-                                            <span style={{ fontSize: '13.53px' }}>WhatsApp Support</span>
-                                        </a>
                                         <a href={`mailto:${brandProfile.contact.email}`} className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted transition-colors">
                                             <Mail className="h-4 w-4 text-primary" />
                                             <span style={{ fontSize: '13.53px' }}>Email Returns Team</span>
+                                        </a>
+                                        <a href={`tel:${brandProfile.contact.phone}`} className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted transition-colors">
+                                            <Phone className="h-4 w-4 text-primary" />
+                                            <span style={{ fontSize: '13.53px' }}>{brandProfile.contact.phoneFormatted}</span>
                                         </a>
                                     </div>
                                 </div>

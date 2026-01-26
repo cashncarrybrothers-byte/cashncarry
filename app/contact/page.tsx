@@ -26,17 +26,11 @@ export const metadata: Metadata = {
     keywords: 'Contact Brothers Cash Carry, Upplands Väsby grocery store, Asian grocery contact, African food store Stockholm, Latin American grocery, grocery store opening hours Upplands Väsby',
 };
 
-// Contact methods data
+// Check if ordering is disabled (development/maintenance mode)
+const isOrderingDisabled = process.env.NEXT_PUBLIC_ORDERING_DISABLED === 'true';
+
+// Contact methods data - WhatsApp removed during development to prevent orders
 const contactMethods = [
-    {
-        title: "WhatsApp",
-        description: "Fastest response for order status or product availability",
-        icon: MessageCircle,
-        color: "bg-green-500/10 text-green-600",
-        link: `https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`,
-        linkText: brandProfile.contact.whatsapp,
-        external: true,
-    },
     {
         title: "Call Us",
         description: "Give us a call during store hours for immediate help",
@@ -101,13 +95,13 @@ export default function ContactPage() {
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <Button asChild size="lg" className="rounded-full">
-                                <a href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">
-                                    <MessageCircle className="mr-2 h-5 w-5" /> WhatsApp Us
+                                <a href={`tel:${brandProfile.contact.phone}`}>
+                                    <Phone className="mr-2 h-5 w-5" /> Call Now
                                 </a>
                             </Button>
                             <Button asChild variant="outline" size="lg" className="rounded-full bg-white/10 border-white/30 text-white hover:bg-white/20">
-                                <a href={`tel:${brandProfile.contact.phone}`}>
-                                    <Phone className="mr-2 h-5 w-5" /> Call Now
+                                <a href={`mailto:${brandProfile.contact.email}`}>
+                                    <Mail className="mr-2 h-5 w-5" /> Email Us
                                 </a>
                             </Button>
                         </div>

@@ -161,9 +161,9 @@ export default function GoteborgMalmoDeliveryPage() {
                 {/* Support */}
                 <div className="border rounded-lg p-6 bg-muted/30 text-center">
                   <h3 style={{ fontSize: '18.91px', fontWeight: 500 }} className="mb-2">Questions?</h3>
-                  <p style={{ fontSize: '13.53px' }} className="text-muted-foreground mb-4">Chat with us on WhatsApp for regional delivery inquiries.</p>
-                  <a href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`} className="inline-block w-full py-2 bg-primary text-primary-foreground rounded-lg font-medium text-sm">
-                    Chat Now
+                  <p style={{ fontSize: '13.53px' }} className="text-muted-foreground mb-4">Email us for regional delivery inquiries.</p>
+                  <a href={`mailto:${brandProfile.contact.email}`} className="inline-block w-full py-2 bg-primary text-primary-foreground rounded-lg font-medium text-sm">
+                    Email Us
                   </a>
                 </div>
 

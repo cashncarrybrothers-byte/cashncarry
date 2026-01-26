@@ -3,8 +3,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { CalendarDays, ShoppingBag } from 'lucide-react';
+import { CalendarDays, ShoppingBag, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Check if ordering is disabled (development/maintenance mode)
+const isOrderingDisabled = process.env.NEXT_PUBLIC_ORDERING_DISABLED === 'true';
 
 export function MobileFloatingCTA() {
     const [isVisible, setIsVisible] = useState(false);
@@ -43,10 +46,17 @@ export function MobileFloatingCTA() {
                         className="flex-1 bg-secondary-500/95 text-primary-950 shadow-lg backdrop-blur-sm hover:bg-secondary-400 font-bold"
                         size="lg"
                     >
-                        <Link href="/shop">
-                            <ShoppingBag className="mr-2 h-4 w-4" />
-                            Order Now
-                        </Link>
+                        {isOrderingDisabled ? (
+                            <Link href="/contact">
+                                <MapPin className="mr-2 h-4 w-4" />
+                                Visit Store
+                            </Link>
+                        ) : (
+                            <Link href="/shop">
+                                <ShoppingBag className="mr-2 h-4 w-4" />
+                                Order Now
+                            </Link>
+                        )}
                     </Button>
                 </motion.div>
             )}

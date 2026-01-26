@@ -35,7 +35,7 @@ const faqs = [
             },
             {
                 q: "Can I order groceries through WhatsApp?",
-                a: "Yes! You can place orders via WhatsApp directly from product pages, cart, or checkout. You can also chat with our support team for any help with your order."
+                a: "WhatsApp ordering is coming soon! Currently, you can browse our products online and visit our store in Upplands Väsby. Online ordering will be available shortly."
             },
             {
                 q: "Do you offer discounts?",
@@ -210,28 +210,6 @@ export default function FAQPage() {
                                         Can't find the answer you're looking for? Our customer support team is ready to help.
                                     </p>
                                     <div className="space-y-4">
-                                        <a
-                                            href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-start gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors group"
-                                        >
-                                            <MessageCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                                            <div>
-                                                <p style={{
-                                                    fontSize: '13.53px',
-                                                    fontWeight: 500,
-                                                    lineHeight: 1.57,
-                                                    letterSpacing: '0.03em'
-                                                }}>WhatsApp</p>
-                                                <p className="text-muted-foreground" style={{
-                                                    fontSize: '12.8px',
-                                                    fontWeight: 300,
-                                                    lineHeight: 1.57,
-                                                    letterSpacing: '0.03em'
-                                                }}>Chat with us instantly</p>
-                                            </div>
-                                        </a>
                                         <a
                                             href="mailto:support@cashncarry.se"
                                             className="flex items-start gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors group"

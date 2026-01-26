@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { brandProfile } from '@/config/brand-profile';
-import { FileText, ShoppingCart, CreditCard, Truck, Scale, Shield, Mail, MessageCircle, MapPin } from 'lucide-react';
+import { FileText, ShoppingCart, CreditCard, Truck, Scale, Shield, Mail, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -173,9 +173,9 @@ export default function TermsConditionsPage() {
                       <Mail className="h-4 w-4 text-primary" />
                       <span style={{ fontSize: '13.53px' }}>{brandProfile.contact.email}</span>
                     </a>
-                    <a href={`https://wa.me/${brandProfile.contact.whatsapp.replace(/\D/g, '')}`} className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted transition-colors">
-                      <MessageCircle className="h-4 w-4 text-primary" />
-                      <span style={{ fontSize: '13.53px' }}>WhatsApp Support</span>
+                    <a href={`tel:${brandProfile.contact.phone}`} className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted transition-colors">
+                      <Phone className="h-4 w-4 text-primary" />
+                      <span style={{ fontSize: '13.53px' }}>{brandProfile.contact.phoneFormatted}</span>
                     </a>
                   </div>
                 </div>
