@@ -1,35 +1,44 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export function BannerStrip() {
     return (
-        <section className="w-full pb-[15px]">
-            <div className="site-container">
-                <Link href="/deals" className="block group relative overflow-hidden rounded-3xl h-[160px] sm:h-[180px] md:h-[200px] shadow-lg hover:shadow-xl transition-shadow">
-                    {/* Background Image/Gradient Placeholder - Primary Theme */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-rose-600 flex flex-col justify-center px-6 sm:px-10 md:px-16">
+        <section className="w-full py-6 md:py-8">
+            <div className="w-full px-4 md:px-[50px]">
+                <Link
+                    href="/deals"
+                    className="block group relative overflow-hidden rounded-2xl h-[140px] sm:h-[160px] md:h-[180px]"
+                    style={{ boxShadow: 'var(--shadow-lg)' }}
+                >
+                    {/* Background Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-red-500 to-primary flex flex-col justify-center px-6 sm:px-10 md:px-16">
                         {/* Pattern overlay */}
-                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+                        <div
+                            className="absolute inset-0 opacity-5"
+                            style={{
+                                backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                                backgroundSize: '32px 32px'
+                            }}
+                        />
 
                         <div className="relative z-10 flex items-center justify-between">
                             <div>
-                                <div className="flex items-center gap-2 mb-2 sm:mb-3 text-yellow-300">
-                                    <span className="w-2 h-2 rounded-full bg-yellow-300 animate-pulse"></span>
-                                    <span className="text-xs font-bold tracking-widest uppercase">Premium Quality</span>
+                                <div className="flex items-center gap-2 mb-2 text-white/80">
+                                    <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                    <span className="text-[10px] font-bold tracking-widest uppercase">Premium Quality</span>
                                 </div>
-                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-2 leading-tight">
+                                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 leading-tight">
                                     Basmati Rice & Authentic Spices
                                 </h2>
-                                <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-xl font-medium">
+                                <p className="text-white/80 text-sm md:text-base max-w-xl">
                                     Explore our selection of premium Indian & Pakistani ingredients
                                 </p>
                             </div>
 
-                            <div className="hidden md:flex items-center justify-center w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 group-hover:scale-110 transition-transform">
-                                <ArrowRight className="text-white w-6 h-6" />
+                            <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 group-hover:scale-110 group-hover:bg-white/25 transition-all">
+                                <ArrowRight className="text-white w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                             </div>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ export default async function HomePage() {
   const snacksProducts = snacksRes.data || [];
 
   return (
-    <main className="flex min-h-screen flex-col bg-background pb-20 overflow-x-hidden max-w-full">
+    <main className="flex min-h-screen flex-col bg-background pb-16 overflow-x-hidden">
       {/* 1. Split Hero Section */}
       <SplitHero />
 
@@ -45,49 +45,49 @@ export default async function HomePage() {
       {/* 3. Lightning Deals (Full Width Background) */}
       <LightningDeals products={dealProducts} />
 
-      {/* 4. Special Offers */}
-      <ProductShowcase
-        title="Special Offers"
-        products={dealProducts}
-        moreLink="/deals"
-      />
-
-      {/* 5. Banner Strip */}
+      {/* 4. Banner Strip */}
       <BannerStrip />
 
-      {/* 6. Customer Favorites */}
+      {/* 5. Customer Favorites */}
       <ProductShowcase
         title="Customer Favorites"
         products={trendingProducts}
         moreLink="/shop?sort=bestsellers"
       />
 
-      {/* 7. Most Searched Products */}
+      {/* 6. Most Searched Products */}
       <ProductShowcase
         title="Most Searched Products"
         products={mostSearchedProducts}
         moreLink="/shop?orderby=rating"
       />
 
-      {/* 8. Fresh Veg and Fruits */}
+      {/* 7. Fresh Veg and Fruits */}
       <ProductShowcase
         title="Fresh Fruits & Vegetables"
         products={vegProducts}
         moreLink="/product-category/vegetables"
       />
 
-      {/* 9. Snacks */}
+      {/* 8. Snacks */}
       <ProductShowcase
         title="Snacks & Munchies"
         products={snacksProducts}
         moreLink="/product-category/snacks"
       />
 
-      {/* 10. New Arrivals */}
+      {/* 9. New Arrivals */}
       <ProductShowcase
         title="New Arrivals"
         products={newProducts}
         moreLink="/shop?sort=new"
+      />
+
+      {/* 10. Special Offers - At bottom since Lightning Deals is at top */}
+      <ProductShowcase
+        title="Special Offers"
+        products={dealProducts}
+        moreLink="/deals"
       />
     </main>
   );

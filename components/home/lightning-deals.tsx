@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Timer, ChevronRight } from 'lucide-react';
+import { Timer, ChevronRight, ChevronLeft, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { ProductCard } from '@/components/shop/product-card';
 import type { Product } from '@/types/woocommerce';
@@ -12,6 +12,7 @@ interface LightningDealsProps {
 }
 
 export function LightningDeals({ products }: LightningDealsProps) {
+    const scrollRef = useRef<HTMLDivElement>(null);
     const [timeLeft, setTimeLeft] = useState({
         hours: 16,
         minutes: 5,
@@ -42,60 +43,83 @@ export function LightningDeals({ products }: LightningDealsProps) {
         return () => clearInterval(timer);
     }, []);
 
+    const scroll = (direction: 'left' | 'right') => {
+        if (scrollRef.current) {
+            const scrollAmount = scrollRef.current.offsetWidth * 0.8;
+            scrollRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     if (!products || products.length === 0) return null;
 
     return (
-        <section className="bg-red-50 dark:bg-red-900/10 py-[15px] overflow-hidden">
-            <div className="site-container">
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
-                    <div className="flex flex-wrap items-center gap-4">
-                        <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">Lightning Deals</h2>
-                        <div className="flex items-center gap-2 text-secondary font-bold text-sm bg-white dark:bg-card px-4 py-1.5 rounded-full shadow-sm border border-red-100 dark:border-red-900/30">
-                            <Timer className="h-4 w-4 animate-pulse text-secondary" />
-                            <span>Ends in:</span>
-                            <span className="font-mono tabular-nums font-medium text-base">
+        <section className="bg-primary/5 py-8 md:py-12 overflow-hidden">
+            <div className="w-full px-4 md:px-[50px]">
+                {/* Section Header */}
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-5 gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
+                        <div className="flex items-center gap-2">
+                            <Zap className="h-5 w-5 md:h-6 md:w-6 text-primary fill-primary" />
+                            <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground">
+                                Lightning Deals
+                            </h2>
+                        </div>
+                        <div className="flex items-center gap-2 text-primary font-semibold text-xs md:text-sm bg-card px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-primary/20"
+                            style={{ boxShadow: 'var(--shadow-sm)' }}
+                        >
+                            <Timer className="h-3.5 w-3.5 md:h-4 md:w-4 animate-pulse" />
+                            <span className="hidden sm:inline">Ends in:</span>
+                            <span className="font-mono tabular-nums font-bold text-sm md:text-base">
                                 {String(timeLeft.hours).padStart(2, '0')}:
                                 {String(timeLeft.minutes).padStart(2, '0')}:
                                 {String(timeLeft.seconds).padStart(2, '0')}
                             </span>
                         </div>
                     </div>
-                    <Link
-                        href="/deals"
-                        className="text-primary hover:text-primary/80 font-bold text-sm flex items-center gap-1 group transition-all"
-                    >
-                        See All Deals
-                        <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    <div className="flex items-center gap-2 md:gap-3">
+                        {/* Navigation Arrows - Hidden on mobile */}
+                        <button
+                            onClick={() => scroll('left')}
+                            className="hidden md:flex w-9 h-9 rounded-full bg-card border border-border items-center justify-center hover:bg-muted transition-colors"
+                            aria-label="Scroll left"
+                        >
+                            <ChevronLeft className="h-5 w-5 text-foreground" />
+                        </button>
+                        <button
+                            onClick={() => scroll('right')}
+                            className="hidden md:flex w-9 h-9 rounded-full bg-card border border-border items-center justify-center hover:bg-muted transition-colors"
+                            aria-label="Scroll right"
+                        >
+                            <ChevronRight className="h-5 w-5 text-foreground" />
+                        </button>
+                        <Link
+                            href="/deals"
+                            className="text-primary hover:underline font-semibold text-xs md:text-sm flex items-center gap-1 transition-all"
+                        >
+                            <span className="hidden sm:inline">See All</span> Deals
+                            <ChevronRight className="h-4 w-4" />
+                        </Link>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-4 md:gap-5">
+                {/* Single Row Horizontal Scroll - 2 products on mobile */}
+                <div
+                    ref={scrollRef}
+                    className="flex gap-3 md:gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-2"
+                >
                     {products.slice(0, 8).map((product, idx) => (
                         <motion.div
                             key={product.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
+                            transition={{ delay: idx * 0.05 }}
+                            className="min-w-[calc(50%-6px)] w-[calc(50%-6px)] sm:min-w-[200px] sm:w-[200px] md:min-w-[220px] md:w-[220px] lg:min-w-[240px] lg:w-[240px] flex-shrink-0"
                         >
-                            <ProductCard
-                                product={product}
-                                className="border-red-100 dark:border-red-900/20 hover:border-secondary/50"
-                            />
-                            {/* Progress bar simulation like in reference */}
-                            <div className="mt-3 space-y-1.5 px-1">
-                                <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-1.5 overflow-hidden">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: `${Math.floor(Math.random() * 40) + 10}%` }}
-                                        viewport={{ once: true }}
-                                        className="bg-secondary h-full rounded-full"
-                                    />
-                                </div>
-                                <p className="text-[10px] text-red-500 font-bold uppercase tracking-wider">
-                                    Limited Time Only
-                                </p>
-                            </div>
+                            <ProductCard product={product} />
                         </motion.div>
                     ))}
                 </div>

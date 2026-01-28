@@ -65,16 +65,17 @@ export function SplitHero() {
     }, []);
 
     return (
-        <section className="w-full py-[15px] bg-background">
-            <div className="site-container">
-                <div className="flex flex-col gap-[15px]">
+        <section className="w-full py-6 md:py-8 bg-background">
+            <div className="w-full px-4 md:px-[50px]">
+                <div className="flex flex-col gap-6">
 
                     {/* Main Hero Slider (Full Width) */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="w-full relative rounded-[2rem] overflow-hidden shadow-xl h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
+                        className="w-full relative rounded-2xl overflow-hidden h-[280px] sm:h-[380px] md:h-[420px] lg:h-[500px]"
+                        style={{ boxShadow: 'var(--shadow-lg)' }}
                     >
                         {/* Slides */}
                         <AnimatePresence mode="wait">
@@ -152,14 +153,15 @@ export function SplitHero() {
                     </motion.div>
 
                     {/* Bottom Promo Banners (50% Split) */}
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[15px]">
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6">
 
                         {/* Promo 1 - Spices & Rice Theme */}
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="relative rounded-[2rem] overflow-hidden shadow-md group h-[180px] sm:h-[212px]"
+                            className="relative rounded-xl overflow-hidden group h-[200px] sm:h-[240px] cursor-pointer"
+                            style={{ boxShadow: 'var(--shadow-md)' }}
                         >
                             {/* Background Image */}
                             <Image
@@ -172,12 +174,14 @@ export function SplitHero() {
 
 
 
-                            <div className="absolute inset-0 p-8 flex flex-col justify-center z-10">
-                                <span className="text-green-400 font-bold text-[10px] uppercase tracking-wider mb-2">Deal of the day</span>
-                                <h3 className="font-heading text-2xl font-black mb-1 text-[#00ff00]">Extra 20% OFF</h3>
-                                <p className="text-sm font-bold mb-4 text-white">On All Spices & Rice Essentials</p>
-                                <Link href="/deals" className="text-xs font-black uppercase tracking-tighter text-white flex items-center gap-1 group/link hover:text-green-400 transition-colors">
-                                    Check Deals <ArrowRight className="h-3 w-3 group-hover/link:translate-x-1 transition-transform" />
+                            <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center z-10">
+                                <span className="text-white/80 font-bold text-[10px] uppercase tracking-wider mb-2">Welcome to Brothers Cash & Carry</span>
+                                <h1 className="text-xl md:text-2xl font-black mb-1 text-white leading-tight">
+                                    International Groceries in Stockholm
+                                </h1>
+                                <p className="text-sm font-medium mb-4 text-white/90">Asian, African, Latin American & Middle Eastern Products</p>
+                                <Link href="/shop" className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1 group/link hover:text-white/80 transition-colors">
+                                    Shop Now <ArrowRight className="h-3 w-3 group-hover/link:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
                         </motion.div>
@@ -187,7 +191,8 @@ export function SplitHero() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="relative rounded-[2rem] overflow-hidden shadow-md group h-[180px] sm:h-[212px]"
+                            className="relative rounded-xl overflow-hidden group h-[200px] sm:h-[240px] cursor-pointer"
+                            style={{ boxShadow: 'var(--shadow-md)' }}
                         >
                             {/* Background Image */}
                             <Image
@@ -215,3 +220,4 @@ export function SplitHero() {
         </section>
     );
 }
+

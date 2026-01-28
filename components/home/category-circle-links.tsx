@@ -5,58 +5,78 @@ import Link from "next/link";
 import { Grid } from "lucide-react";
 
 const CATEGORIES = [
-    { name: "Fruits & Veg", slug: "fruits-vegetables", emoji: "🥗", color: "bg-emerald-100", darkColor: "dark:bg-emerald-900/30", textColor: "text-emerald-700" },
-    { name: "Rice & Grains", slug: "rice", emoji: "🍚", color: "bg-orange-100", darkColor: "dark:bg-orange-900/30", textColor: "text-orange-700" },
-    { name: "Atta & Flour", slug: "flour", emoji: "🍞", color: "bg-stone-100", darkColor: "dark:bg-stone-900/30", textColor: "text-stone-700" },
-    { name: "Oils & Ghee", slug: "ghee-cream-oil", emoji: "🧴", color: "bg-amber-100", darkColor: "dark:bg-amber-900/30", textColor: "text-amber-700" },
-    { name: "Spices", slug: "spices-sauces-and-seasonings", emoji: "🧂", color: "bg-red-100", darkColor: "dark:bg-red-900/30", textColor: "text-red-700" },
-    { name: "Pickles", slug: "pickle-paste-chutney", emoji: "🏺", color: "bg-lime-100", darkColor: "dark:bg-lime-900/30", textColor: "text-lime-700" },
-    { name: "Pasta", slug: "bulgur-pasta-vermicelli", emoji: "🍝", color: "bg-yellow-100", darkColor: "dark:bg-yellow-900/30", textColor: "text-yellow-700" },
-    { name: "Beverages", slug: "beverages", emoji: "🥤", color: "bg-cyan-100", darkColor: "dark:bg-cyan-900/30", textColor: "text-cyan-700" },
+    { name: "Fruits & Veg", slug: "fruits-vegetables", emoji: "🥗" },
+    { name: "Rice & Grains", slug: "rice", emoji: "🍚" },
+    { name: "Atta & Flour", slug: "flour", emoji: "🍞" },
+    { name: "Oils & Ghee", slug: "ghee-cream-oil", emoji: "🧴" },
+    { name: "Spices", slug: "spices-sauces-and-seasonings", emoji: "🧂" },
+    { name: "Pickles", slug: "pickle-paste-chutney", emoji: "🏺" },
+    { name: "Pasta", slug: "bulgur-pasta-vermicelli", emoji: "🍝" },
+    { name: "Beverages", slug: "beverages", emoji: "🥤" },
 ];
 
 export function CategoryCircleLinks() {
     return (
-        <section className="w-full py-[15px] bg-background">
-            <div className="site-container">
-                <div className="grid grid-cols-3 md:grid-cols-9 gap-6 md:gap-8">
+        <section className="w-full py-8 md:py-12 bg-background">
+            <div className="w-full px-4 md:px-[50px]">
+                {/* Section Header */}
+                <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground">Shop by Category</h2>
+                    <Link
+                        href="/shop"
+                        className="text-sm font-semibold text-primary hover:underline"
+                    >
+                        View All
+                    </Link>
+                </div>
+
+                {/* Category Grid */}
+                <div className="flex gap-6 md:gap-10 overflow-x-auto pb-4 px-2 no-scrollbar scroll-smooth">
                     {CATEGORIES.map((cat, idx) => (
                         <motion.div
                             key={cat.slug}
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.05 }}
                         >
                             <Link
                                 href={`/product-category/${cat.slug}`}
-                                className="flex flex-col items-center gap-4 group cursor-pointer"
+                                className="flex flex-col items-center gap-3 min-w-[90px] group"
                             >
-                                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-3xl ${cat.color} ${cat.darkColor} flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md border border-white/50`}>
-                                    <span className="text-3xl sm:text-4xl filter drop-shadow-sm group-hover:drop-shadow-md transition-all">{cat.emoji}</span>
+                                <div
+                                    className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-card flex items-center justify-center border-2 border-card transition-all duration-300 group-hover:border-primary/20 group-hover:scale-110"
+                                    style={{ boxShadow: 'var(--shadow-soft)' }}
+                                >
+                                    <span className="text-3xl md:text-4xl transition-transform duration-300 group-hover:scale-110">
+                                        {cat.emoji}
+                                    </span>
                                 </div>
-                                <span className="text-xs sm:text-sm font-bold text-center text-foreground group-hover:text-primary transition-colors truncate w-full">
+                                <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors text-center whitespace-nowrap">
                                     {cat.name}
                                 </span>
                             </Link>
                         </motion.div>
                     ))}
 
-                    {/* View All */}
+                    {/* View All Circle */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
                         <Link
                             href="/shop"
-                            className="flex flex-col items-center gap-4 group cursor-pointer"
+                            className="flex flex-col items-center gap-3 min-w-[90px] group"
                         >
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md border border-white/50">
-                                <Grid className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+                            <div
+                                className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-muted flex items-center justify-center border-2 border-muted transition-all duration-300 group-hover:bg-primary group-hover:border-primary group-hover:scale-110"
+                                style={{ boxShadow: 'var(--shadow-soft)' }}
+                            >
+                                <Grid className="h-7 w-7 md:h-8 md:w-8 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
                             </div>
-                            <span className="text-xs sm:text-sm font-bold text-center text-foreground group-hover:text-primary transition-colors">
+                            <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors text-center whitespace-nowrap">
                                 View All
                             </span>
                         </Link>

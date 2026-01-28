@@ -52,7 +52,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
       className={cn("group relative h-full", className)}
     >
       <Link href={`/product/${product.slug}`} className="block h-full">
-        <article className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+        <article
+          className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-card transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-primary/10"
+          style={{ boxShadow: 'var(--shadow-soft)' }}
+          onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-hover)'}
+          onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-soft)'}
+        >
 
           {/* Image Container */}
           <div className="relative aspect-square overflow-hidden bg-white border-b border-border/40">

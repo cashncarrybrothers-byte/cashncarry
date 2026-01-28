@@ -20,8 +20,9 @@ const config = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["var(--font-sans)", ...fontFamily.sans], // Inter
-				heading: ["var(--font-heading)", ...fontFamily.sans], // Montserrat
+				sans: ["var(--font-sans)", ...fontFamily.sans], // Work Sans
+				heading: ["var(--font-heading)", ...fontFamily.sans], // Work Sans
+				display: ["var(--font-sans)", ...fontFamily.sans], // Work Sans
 			},
 			colors: {
 				border: "hsl(var(--border))",
@@ -32,6 +33,8 @@ const config = {
 				primary: {
 					DEFAULT: "hsl(var(--primary))",
 					foreground: "hsl(var(--primary-foreground))",
+					dark: "hsl(var(--primary-dark))",
+					light: "hsl(var(--primary-light))",
 				},
 				secondary: {
 					DEFAULT: "hsl(var(--secondary))",
@@ -40,6 +43,10 @@ const config = {
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
+				},
+				success: {
+					DEFAULT: "hsl(var(--success))",
+					foreground: "hsl(var(--success-foreground))",
 				},
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
@@ -58,10 +65,17 @@ const config = {
 					foreground: "hsl(var(--card-foreground))",
 				},
 			},
+			boxShadow: {
+				'soft': 'var(--shadow-soft)',
+				'hover': 'var(--shadow-hover)',
+			},
 			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)",
+				lg: "var(--radius-lg)",
+				md: "var(--radius)",
+				sm: "var(--radius-sm)",
+				xl: "var(--radius-xl)",
+				"2xl": "var(--radius-2xl)",
+				full: "var(--radius-full)",
 			},
 			keyframes: {
 				"accordion-down": {

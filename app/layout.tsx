@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { Inter as FontSans, Montserrat as FontHeading } from "next/font/google";
+import { Work_Sans as FontSans, Work_Sans as FontHeading } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -30,13 +30,14 @@ import type { Metadata } from "next";
 
 const fontSans = FontSans({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-sans",
   display: "swap",
   preload: true,
 });
 
 const fontHeading = FontHeading({
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
@@ -166,7 +167,7 @@ export default async function RootLayout({
           {/* Maintenance Ticker - Shows when ordering is disabled */}
           <MaintenanceTicker />
 
-          {/* Top Green Info Bar - Desktop only */}
+          {/* Top Info Bar - Desktop only */}
           <TopInfoBar />
 
           {/* Main Layout Container */}

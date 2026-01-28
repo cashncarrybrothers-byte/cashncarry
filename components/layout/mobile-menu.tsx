@@ -73,14 +73,11 @@ export function MobileMenu() {
         <Sheet open={isOpen} onOpenChange={(val) => !val && close()}>
             <SheetContent
                 side="right"
-                className="w-[320px] sm:w-[380px] p-0 bg-gradient-to-br from-background via-background to-primary/5 border-l-2 border-primary/20"
+                className="w-[320px] sm:w-[380px] p-0 bg-background border-l border-border/40"
             >
                 {/* Header with Logo and Close Button */}
                 <div className="relative overflow-hidden">
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
-
-                    <SheetHeader className="relative px-6 pt-4 pb-3 border-b border-primary/10">
+                    <SheetHeader className="relative px-6 pt-4 pb-3 border-b border-border/40">
                         <div className="flex items-center justify-start">
                             {/* Logo */}
                             <div className="relative h-20 w-32">
@@ -124,7 +121,7 @@ export function MobileMenu() {
                                 </div>
 
                                 {/* Label */}
-                                <span className="text-base font-medium tracking-wide">
+                                <span className="text-base font-medium">
                                     {item.label}
                                 </span>
                             </Link>
@@ -141,7 +138,7 @@ export function MobileMenu() {
                                 <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 group-hover:from-primary/20 group-hover:to-primary/10 transition-all">
                                     <Globe className="h-5 w-5 text-primary" />
                                 </div>
-                                <span className="text-base font-medium tracking-wide">Shop by Country</span>
+                                <span className="text-base font-medium">Shop by Country</span>
                             </div>
                             <ChevronDown className={cn("h-4 w-4 transition-transform duration-300", isCountriesOpen && "rotate-180")} />
                         </button>
@@ -164,7 +161,7 @@ export function MobileMenu() {
                     </div>
                 </nav>
 
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background to-transparent border-t border-primary/10">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-background border-t border-border/40">
                     {/* Phone Button */}
                     <a
                         href={`tel:${brandConfig.contact.phone}`}

@@ -47,7 +47,9 @@
       "Bash(node extract-all-data.js:*)",
       "Bash(node:*)",
       "WebFetch(domain:crm.cashncarry.se)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(timeout /t 10 /nobreak)",
+      "Bash(more:*)"
     ]
   }
 }

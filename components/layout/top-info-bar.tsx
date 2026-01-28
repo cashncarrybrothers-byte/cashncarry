@@ -26,7 +26,7 @@ export function TopInfoBar() {
   const phoneClean = contact.phone.replace(/\s+/g, '');
 
   return (
-    <div className="hidden lg:block w-full bg-primary text-primary-foreground py-2 px-6">
+    <div className="hidden lg:block w-full bg-primary text-primary-foreground py-2 px-4 md:px-[50px]">
       <div className="flex items-center justify-between text-xs md:text-sm font-medium">
         {/* Left side - Contact info */}
         <div className="flex items-center gap-6">
@@ -42,7 +42,7 @@ export function TopInfoBar() {
             </a>
           </div>
 
-          <div className="flex items-center gap-2 text-primary-foreground/90">
+          <div className="flex items-center gap-2 text-white">
             <Mail className="h-4 w-4" />
             <a href={`mailto:${contact.email}`} className="hover:underline hover:text-white">
               {contact.email}
@@ -54,7 +54,7 @@ export function TopInfoBar() {
         <div className="flex items-center gap-6">
           {/* Physical Store Status */}
           {storeStatus && (
-            <div className="flex items-center gap-2 text-primary-foreground/90">
+            <div className="flex items-center gap-2 text-white">
               <Clock className="h-4 w-4" />
               <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold ${storeStatus.isOpen
@@ -64,7 +64,7 @@ export function TopInfoBar() {
                   <span className={`w-1.5 h-1.5 rounded-full ${storeStatus.isOpen ? 'bg-white' : 'bg-red-400'}`} />
                   {storeStatus.statusText}
                 </span>
-                <span className="hidden xl:inline text-primary-foreground/80">•</span>
+                <span className="hidden xl:inline text-white">•</span>
                 <span className="hidden xl:inline">{storeStatus.todayHours}</span>
               </div>
             </div>
