@@ -54,7 +54,7 @@ export function ArchiveTemplate({
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
 
         {/* Content */}
-        <div className="relative z-10 w-full px-5 py-10 md:py-16 lg:py-20">
+        <div className="relative z-10 container-archive py-10 md:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto">
             {/* Breadcrumbs */}
             {breadcrumbs && breadcrumbs.length > 0 && (
@@ -89,7 +89,7 @@ export function ArchiveTemplate({
         </div>
       </section>
 
-      <div className="w-full px-5 py-6 md:py-8 max-w-full">
+      <div className="container-archive py-6 md:py-8">
         {/* Filter Bar Section */}
         <div className="mb-6 md:mb-8">
           {/* Custom Filter Bar (Top) */}

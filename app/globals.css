@@ -297,6 +297,11 @@
     @apply w-full max-w-7xl mx-auto px-4 md:px-6;
   }
 
+  /* Matching homepage spacing for archive pages */
+  .container-archive {
+    @apply w-full px-4 md:px-[50px];
+  }
+
   .main-layout {
     @apply flex flex-col min-h-screen w-full overflow-visible;
   }
@@ -338,6 +343,7 @@
     0% {
       transform: scale(1);
     }
+
     100% {
       transform: scale(1.1);
     }
@@ -348,6 +354,7 @@
       opacity: 0;
       transform: translateY(-20px);
     }
+
     100% {
       opacity: 1;
       transform: translateY(0);
@@ -359,6 +366,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     100% {
       opacity: 1;
       transform: translateY(0);
@@ -369,6 +377,7 @@
     0% {
       opacity: 0;
     }
+
     100% {
       opacity: 1;
     }
@@ -379,6 +388,7 @@
       opacity: 0;
       transform: translateX(20px);
     }
+
     100% {
       opacity: 1;
       transform: translateX(0);
@@ -386,10 +396,12 @@
   }
 
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-20px);
     }
@@ -400,6 +412,7 @@
       transform: translateY(0);
       opacity: 1;
     }
+
     100% {
       transform: translateY(12px);
       opacity: 0;
@@ -410,16 +423,19 @@
     0% {
       background-position: -200% 0;
     }
+
     100% {
       background-position: 200% 0;
     }
   }
 
   @keyframes pulse-soft {
+
     0%,
     100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.7;
     }
@@ -790,7 +806,7 @@
     scroll-snap-type: x mandatory;
   }
 
-  .scroll-container > * {
+  .scroll-container>* {
     scroll-snap-align: start;
   }
 

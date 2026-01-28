@@ -27,7 +27,7 @@ interface ProductRecommendationsProps {
 export function ProductRecommendations({
     currentProduct,
     userPreferences = [],
-    maxRecommendations = 4,
+    maxRecommendations = 6,
     className,
 }: ProductRecommendationsProps) {
     const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
@@ -112,13 +112,13 @@ export function ProductRecommendations({
             </div>
 
             {isLoading ? (
-                <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                     {Array.from({ length: maxRecommendations }).map((_, i) => (
                         <Card key={i} className="h-64 animate-pulse bg-neutral-100 dark:bg-neutral-800" />
                     ))}
                 </div>
             ) : (
-                <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                     {recommendations.map(({ product, reason, confidence }) => (
                         <Card key={product.id} className="group relative overflow-hidden transition-all hover:shadow-lg">
                             <Link href={`/${product.slug}`}>

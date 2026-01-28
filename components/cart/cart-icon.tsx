@@ -2,7 +2,7 @@
 
 import { useCartStore } from '@/store/cart-store';
 import { Button } from '@/components/ui/button';
-import { Package, PackageOpen } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export function CartIcon() {
@@ -24,8 +24,6 @@ export function CartIcon() {
     return unsubscribe;
   }, []);
 
-  const Icon = itemCount > 0 ? PackageOpen : Package;
-
   return (
     <Button
       variant="ghost"
@@ -34,7 +32,7 @@ export function CartIcon() {
       onClick={openCart}
       aria-label="Open shopping cart"
     >
-      <Icon className="h-6 w-6 transition-all duration-300" />
+      <ShoppingCart className="h-6 w-6 transition-all duration-300 text-foreground" />
       {mounted && itemCount > 0 && (
         <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground animate-in zoom-in duration-300">
           {itemCount > 9 ? '9+' : itemCount}

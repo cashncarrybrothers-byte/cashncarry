@@ -16,6 +16,7 @@ export const brandProfile = {
         whatsapp: "+46765670454",
         email: "support@cashncarry.se",
         supportEmail: "support@cashncarry.se",
+        googleMapsUrl: "https://maps.google.com/?q=Regndroppsgatan+3,+194+49+Upplands+Väsby",
     },
 
     // Physical Store Address

@@ -37,12 +37,12 @@ export async function Footer() {
       {/* Main Footer - Signature Red Background */}
       <div className="bg-primary py-12 md:py-16">
         <div className="w-full px-4 md:px-[50px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-12">
 
             {/* Column 1: Brand Info */}
             <div className="space-y-4">
               <Link href="/" className="inline-block">
-                <div className="relative h-14 w-44">
+                <div className="relative h-10 w-32 md:h-14 md:w-44">
                   <Image
                     src="https://crm.cashncarry.se/wp-content/uploads/2026/01/borthers-logo.png"
                     alt={brandProfile.name}
