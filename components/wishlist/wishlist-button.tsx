@@ -86,10 +86,12 @@ export function WishlistToggle({
   product,
   variation,
   className,
+  size = 'default',
 }: {
   product: Product;
   variation?: ProductVariation;
   className?: string;
+  size?: 'default' | 'lg';
 }) {
   const { isInWishlist, toggleItem } = useWishlistStore();
   const [isInList, setIsInList] = useState(false);
@@ -117,7 +119,8 @@ export function WishlistToggle({
     <button
       onClick={handleClick}
       className={cn(
-        'rounded-full p-2 transition-all duration-300 hover:scale-110',
+        'rounded-full transition-all duration-300 hover:scale-110',
+        size === 'lg' ? 'p-3' : 'p-2',
         isInList
           ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20'
           : 'bg-white/80 text-gray-400 hover:bg-white hover:text-red-500',
@@ -127,7 +130,8 @@ export function WishlistToggle({
     >
       <Heart
         className={cn(
-          'h-4 w-4 transition-all',
+          'transition-all',
+          size === 'lg' ? 'h-6 w-6' : 'h-4 w-4',
           mounted && isInList && 'fill-current'
         )}
       />

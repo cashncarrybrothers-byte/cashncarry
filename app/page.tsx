@@ -1,4 +1,5 @@
 import { SplitHero } from "@/components/home/split-hero";
+import { TrustBadges } from "@/components/shared/trust-badges";
 import { CategoryCircleLinks } from "@/components/home/category-circle-links";
 import { LightningDeals } from "@/components/home/lightning-deals";
 import { BannerStrip } from "@/components/home/banner-strip";
@@ -39,7 +40,10 @@ export default async function HomePage() {
       {/* 1. Split Hero Section */}
       <SplitHero />
 
-      {/* 2. Category Quick-Links */}
+      {/* 2. Trust Badges */}
+      <TrustBadges className="py-6 md:py-8" />
+
+      {/* 3. Category Quick-Links */}
       <CategoryCircleLinks />
 
       {/* 3. Lightning Deals (Full Width Background) */}

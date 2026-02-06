@@ -5,72 +5,51 @@
 /* =============================================
    BROTHERS CASH & CARRY - GLOBAL DESIGN SYSTEM
    Professional, Clean, Elegant Grocery Store
+
+   CSS Variables synced from: config/theme.tokens.ts
+   That file is the SINGLE SOURCE OF TRUTH.
+   If you change a value here, update the token file too.
    ============================================= */
 
 @layer base {
   :root {
-    /* ===========================================
-       COLOR SYSTEM
-       Light theme with signature red accents
-       =========================================== */
+    /* --- COLORS (Light Mode) --- synced from lightPalette */
 
-    /* Background: Warm light gray - creates depth */
-    --background: 210 20% 97%;
-    /* #f6f8f9 - Soft grayish white */
+    --background: 210 20% 97%;     /* #f6f8f9 */
+    --foreground: 220 25% 10%;     /* #14181f */
 
-    /* Foreground: Deep charcoal for readability */
-    --foreground: 220 25% 10%;
-    /* #14181f */
-
-    /* Cards: Pure white for contrast */
     --card: 0 0% 100%;
     --card-foreground: 220 25% 10%;
 
-    /* Popover: White */
     --popover: 0 0% 100%;
     --popover-foreground: 220 25% 10%;
 
-    /* Primary: Signature Brand Red */
-    --primary: 358 85% 56%;
-    /* #ed3338 */
+    --primary: 358 85% 56%;        /* #ed3338 - Brand Red */
     --primary-foreground: 0 0% 100%;
-
-    /* Primary variants for depth */
     --primary-dark: 358 85% 45%;
-    /* Darker red for footer/header */
     --primary-light: 358 85% 95%;
-    /* Light red tint for backgrounds */
 
-    /* Secondary: Deep red for accents */
-    --secondary: 358 70% 48%;
-    /* #c22a2e */
+    --secondary: 358 70% 48%;      /* #c22a2e */
     --secondary-foreground: 0 0% 100%;
 
-    /* Muted: Neutral gray tones */
-    --muted: 220 14% 96%;
-    /* #f4f5f7 */
-    --muted-foreground: 220 10% 46%;
-    /* #6b7280 */
+    --muted: 220 14% 96%;          /* #f4f5f7 */
+    --muted-foreground: 220 10% 46%; /* #6b7280 */
 
-    /* Accent: Light gray */
     --accent: 220 14% 96%;
     --accent-foreground: 220 25% 10%;
 
-    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Success (for store open status etc) */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
 
-    /* Border & Input */
-    --border: 220 13% 91%;
-    /* #e5e7eb */
+    --border: 220 13% 91%;         /* #e5e7eb */
     --input: 220 13% 91%;
     --ring: 358 85% 56%;
 
-    /* Border Radius */
+    /* --- BORDER RADIUS --- synced from borderRadius */
+
     --radius: 0.5rem;
     --radius-sm: 0.375rem;
     --radius-lg: 0.75rem;
@@ -78,10 +57,8 @@
     --radius-2xl: 1.5rem;
     --radius-full: 9999px;
 
-    /* ===========================================
-       SHADOW SYSTEM
-       Soft, elegant shadows for depth
-       =========================================== */
+    /* --- SHADOWS (Light) --- synced from shadows.light */
+
     --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
     --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
     --shadow-soft: 0 4px 20px -2px rgb(0 0 0 / 0.05);
@@ -90,9 +67,26 @@
     --shadow-hover: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
 
-    /* ===========================================
-       TRANSITION SYSTEM
-       =========================================== */
+    /* --- TYPOGRAPHY --- synced from typography + textStyles tokens */
+
+    --text-display-xl: clamp(2.5rem, 5vw, 4rem);
+    --text-display-lg: clamp(2rem, 4vw, 3rem);
+    --text-h1: clamp(1.75rem, 3vw, 2.25rem);
+    --text-h2: clamp(1.375rem, 2.5vw, 1.75rem);
+    --text-h3: clamp(1.125rem, 2vw, 1.375rem);
+    --text-h4: 1.125rem;
+    --text-h5: 1rem;
+    --text-h6: 0.875rem;
+    --text-body-lg: 1.125rem;
+    --text-body: 1rem;
+    --text-body-sm: 0.875rem;
+    --text-caption: 0.8125rem;
+    --text-caption-sm: 0.75rem;
+    --text-overline: 0.6875rem;
+    --text-label: 0.8125rem;
+
+    /* --- TRANSITIONS --- synced from transitions */
+
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,8 +94,9 @@
   }
 
   .dark {
-    --background: 220 25% 6%;
-    /* #0e1116 */
+    /* --- COLORS (Dark Mode) --- synced from darkPalette */
+
+    --background: 220 25% 6%;     /* #0e1116 */
     --foreground: 220 14% 96%;
 
     --card: 220 25% 10%;
@@ -112,7 +107,6 @@
 
     --primary: 358 85% 56%;
     --primary-foreground: 0 0% 100%;
-
     --primary-dark: 358 85% 65%;
     --primary-light: 358 85% 15%;
 
@@ -134,6 +128,8 @@
     --border: 220 20% 18%;
     --input: 220 20% 18%;
     --ring: 358 85% 56%;
+
+    /* --- SHADOWS (Dark) --- synced from shadows.dark */
 
     --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.2);
     --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
@@ -172,14 +168,14 @@
 
   /* Display - Hero headlines */
   .display-xl {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: var(--text-display-xl);
     font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
 
   .display-lg {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: var(--text-display-lg);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.015em;
@@ -188,7 +184,7 @@
   /* Headings - inherit color from parent for flexibility in colored sections */
   h1,
   .h1 {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-size: var(--text-h1);
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -196,7 +192,7 @@
 
   h2,
   .h2 {
-    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+    font-size: var(--text-h2);
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.005em;
@@ -204,73 +200,73 @@
 
   h3,
   .h3 {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-size: var(--text-h3);
     font-weight: 600;
     line-height: 1.3;
   }
 
   h4,
   .h4 {
-    font-size: 1.125rem;
+    font-size: var(--text-h4);
     font-weight: 600;
     line-height: 1.35;
   }
 
   h5,
   .h5 {
-    font-size: 1rem;
+    font-size: var(--text-h5);
     font-weight: 600;
     line-height: 1.4;
   }
 
   h6,
   .h6 {
-    font-size: 0.875rem;
+    font-size: var(--text-h6);
     font-weight: 600;
     line-height: 1.4;
   }
 
   /* Body Text */
   .body-lg {
-    font-size: 1.125rem;
+    font-size: var(--text-body-lg);
     font-weight: 400;
     line-height: 1.6;
   }
 
   p,
   .body {
-    font-size: 1rem;
+    font-size: var(--text-body);
     font-weight: 400;
     line-height: 1.6;
   }
 
   .body-sm {
-    font-size: 0.875rem;
+    font-size: var(--text-body-sm);
     font-weight: 400;
     line-height: 1.5;
   }
 
   /* Small/Caption Text */
   .text-xs {
-    font-size: 0.75rem;
+    font-size: var(--text-caption-sm);
     line-height: 1.5;
   }
 
   .caption {
-    font-size: 0.8125rem;
+    font-size: var(--text-caption);
     font-weight: 400;
     line-height: 1.5;
   }
 
   .caption-sm {
-    font-size: 0.75rem;
+    font-size: var(--text-caption-sm);
     font-weight: 400;
     line-height: 1.5;
   }
 
   /* Labels & Overlines */
   .overline {
-    font-size: 0.6875rem;
+    font-size: var(--text-overline);
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: 0.08em;
@@ -278,7 +274,7 @@
   }
 
   .label {
-    font-size: 0.8125rem;
+    font-size: var(--text-label);
     font-weight: 500;
     line-height: 1.4;
   }

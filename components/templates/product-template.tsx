@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from 'react';
+import { ReactNode, useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Breadcrumbs, BreadcrumbItem } from '@/components/layout/breadcrumbs';
@@ -16,10 +16,12 @@ import { ProductSchema } from '@/components/shop/product-schema';
 import { StockIndicator } from '@/components/shop/stock-indicator';
 import { QuantitySelector } from '@/components/shop/quantity-selector';
 import { ProductRecommendations } from '@/components/ai/product-recommendations';
+import { StickyAddToCart } from '@/components/shop/sticky-add-to-cart';
 import { StripeExpressCheckout } from '@/components/checkout/stripe-express-checkout';
 import { WishlistButton } from '@/components/wishlist/wishlist-button';
 import { WhatsAppOrderButton } from '@/components/whatsapp/whatsapp-order-button';
 import { PaymentIcons } from '@/components/ui/payment-icons';
+import { TrustBadges } from '@/components/shared/trust-badges';
 import { formatPrice, getDiscountPercentage } from '@/lib/woocommerce';
 import { decodeHtmlEntities } from '@/lib/utils';
 import { trackViewContent } from '@/lib/analytics';
@@ -47,6 +49,7 @@ export function ProductTemplate({
   const [isLoadingVariations, setIsLoadingVariations] = useState(false);
   const [selectedVariation, setSelectedVariation] = useState<ProductVariation | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const addToCartRef = useRef<HTMLDivElement>(null);
 
   // Track product view event
   useEffect(() => {
@@ -379,7 +382,7 @@ export function ProductTemplate({
               )}
 
               {/* Add to Cart Section */}
-              <div className="space-y-3 bg-primary/5 rounded-2xl p-5">
+              <div ref={addToCartRef} className="space-y-3 bg-primary/5 rounded-2xl p-5">
                 {/* Quantity Selector */}
                 <div className="flex items-center gap-4">
                   <span style={{ fontSize: '15.13px', fontWeight: 500, lineHeight: 1.57, letterSpacing: '0.03em' }} className="text-foreground">Quantity:</span>
@@ -493,6 +496,9 @@ export function ProductTemplate({
                 <PaymentIcons size="sm" />
               </div>
 
+              {/* Trust Badges */}
+              <TrustBadges variant="compact" className="pt-3" />
+
               {/* Additional Product Info */}
               {additionalContent}
             </div>
@@ -589,6 +595,14 @@ export function ProductTemplate({
           <ProductRecommendations currentProduct={product} maxRecommendations={6} />
         </div>
       </div>
+
+      {/* Mobile Sticky Add-to-Cart */}
+      <StickyAddToCart
+        product={product}
+        variation={selectedVariation}
+        quantity={quantity}
+        triggerRef={addToCartRef}
+      />
     </>
   );
 }

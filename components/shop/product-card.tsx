@@ -8,10 +8,11 @@ import type { Product } from '@/types/woocommerce';
 import { formatPrice, getDiscountPercentage, getVariableProductPrice, hasVariations } from '@/lib/woocommerce';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Star, Plus } from 'lucide-react';
+import { ShoppingBag, Star, Plus, Check, Eye } from 'lucide-react';
 import { useCartStore } from '@/store/cart-store';
 import { cn, decodeHtmlEntities } from '@/lib/utils';
 import { WishlistToggle } from '@/components/wishlist/wishlist-button';
+import { QuickViewModal } from '@/components/shop/quick-view-modal';
 
 interface ProductCardProps {
   product: Product;
@@ -23,6 +24,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
   const discount = getDiscountPercentage(product);
   const { addItem, openCart } = useCartStore();
   const [isAdding, setIsAdding] = useState(false);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -87,16 +89,37 @@ export function ProductCard({ product, className }: ProductCardProps) {
               <WishlistToggle product={product} />
             </div>
 
-            {/* Quick Add Button (Desktop: Hover) - Clean & Minimal */}
-            <div className="absolute bottom-3 right-3 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-10">
+            {/* Quick View & Quick Add Buttons (Desktop: Hover) */}
+            <div className="absolute bottom-3 right-3 flex gap-2 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-10">
+              {/* Quick View Button */}
               <Button
                 size="icon"
-                className="h-10 w-10 rounded-full bg-primary text-primary-foreground shadow-md hover:bg-primary/90 hover:scale-105 transition-all"
+                variant="secondary"
+                className="h-10 w-10 rounded-full shadow-md transition-all hover:scale-105 bg-background/90 backdrop-blur-sm hover:bg-background"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsQuickViewOpen(true);
+                }}
+              >
+                <Eye className="h-5 w-5" />
+                <span className="sr-only">Quick view</span>
+              </Button>
+
+              {/* Quick Add Button */}
+              <Button
+                size="icon"
+                className={cn(
+                  "h-10 w-10 rounded-full shadow-md transition-all hover:scale-105",
+                  isAdding
+                    ? "bg-green-500 text-white hover:bg-green-500"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
+                )}
                 onClick={handleAddToCart}
-                disabled={product.stock_status === 'outofstock' || isAdding}
+                disabled={product.stock_status === 'outofstock'}
               >
                 {isAdding ? (
-                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  <Check className="h-5 w-5" />
                 ) : (
                   <Plus className="h-5 w-5" />
                 )}
@@ -175,14 +198,19 @@ export function ProductCard({ product, className }: ProductCardProps) {
               {/* Add to Cart Button */}
               <Button
                 size="sm"
-                className="shrink-0 h-8 px-3 text-xs bg-primary text-primary-foreground hover:bg-primary/90"
+                className={cn(
+                  "shrink-0 h-8 px-3 text-xs transition-all",
+                  isAdding
+                    ? "bg-green-500 text-white hover:bg-green-500"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
+                )}
                 onClick={handleAddToCart}
-                disabled={product.stock_status === 'outofstock' || isAdding}
+                disabled={product.stock_status === 'outofstock'}
               >
                 {isAdding ? (
                   <>
-                    <span className="h-3 w-3 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    <span className="ml-1.5">Adding...</span>
+                    <Check className="h-3.5 w-3.5" />
+                    <span className="ml-1.5">Added</span>
                   </>
                 ) : (
                   <>
@@ -195,6 +223,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </div>
         </article>
       </Link>
+
+      {/* Quick View Modal */}
+      <QuickViewModal
+        product={product}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </motion.div>
   );
 }
