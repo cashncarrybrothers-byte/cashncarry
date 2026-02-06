@@ -33,23 +33,23 @@
 
 ## Phase 2: Navigation & Discovery (P1)
 
-### 2.1 [ ] Recently Viewed Products
+### 2.1 [x] Recently Viewed Products
 - Track last 10 viewed products in localStorage
 - Show as a horizontal scroll section on homepage (below hero) and on product pages
-- File: new `store/recently-viewed-store.ts`, new `components/shared/recently-viewed.tsx`
+- File: `store/recently-viewed-store.ts`, `components/shared/recently-viewed.tsx`
 
-### 2.2 [ ] Back-to-Top Button
+### 2.2 [x] Back-to-Top Button
 - Floating button that appears after scrolling 400px down
 - Smooth scroll to top, subtle fade animation
-- File: new `components/shared/back-to-top.tsx`, add to `app/layout.tsx`
+- File: `components/shared/back-to-top.tsx`, `app/layout.tsx`
 
-### 2.3 [ ] Enhanced Breadcrumbs
+### 2.3 [x] Enhanced Breadcrumbs
 - Current breadcrumbs exist but could be more prominent
 - Add structured data (JSON-LD) for SEO
 - Show category hierarchy on product pages (Home > Category > Subcategory > Product)
 - File: `components/layout/breadcrumbs.tsx`
 
-### 2.4 [ ] Mega Menu with Images
+### 2.4 [x] Mega Menu with Images
 - Current nav is text-only links
 - Add category images/icons in a dropdown mega menu on desktop hover
 - Show featured products or deals in the mega menu

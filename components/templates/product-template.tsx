@@ -22,6 +22,8 @@ import { WishlistButton } from '@/components/wishlist/wishlist-button';
 import { WhatsAppOrderButton } from '@/components/whatsapp/whatsapp-order-button';
 import { PaymentIcons } from '@/components/ui/payment-icons';
 import { TrustBadges } from '@/components/shared/trust-badges';
+import { RecentlyViewed } from '@/components/shared/recently-viewed';
+import { useRecentlyViewedStore } from '@/store/recently-viewed-store';
 import { formatPrice, getDiscountPercentage } from '@/lib/woocommerce';
 import { decodeHtmlEntities } from '@/lib/utils';
 import { trackViewContent } from '@/lib/analytics';
@@ -50,10 +52,12 @@ export function ProductTemplate({
   const [selectedVariation, setSelectedVariation] = useState<ProductVariation | null>(null);
   const [quantity, setQuantity] = useState(1);
   const addToCartRef = useRef<HTMLDivElement>(null);
+  const { addProduct } = useRecentlyViewedStore();
 
-  // Track product view event
+  // Track product view event and add to recently viewed
   useEffect(() => {
     trackViewContent(product);
+    addProduct(product);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product.id]);
 
@@ -588,6 +592,9 @@ export function ProductTemplate({
           </div>
         </div>
       </div>
+
+      {/* Recently Viewed Products */}
+      <RecentlyViewed excludeProductId={product.id} />
 
       {/* AI-Powered Recommendations */}
       <div className="bg-primary/5 py-12">

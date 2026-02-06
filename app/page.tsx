@@ -1,5 +1,6 @@
 import { SplitHero } from "@/components/home/split-hero";
 import { TrustBadges } from "@/components/shared/trust-badges";
+import { RecentlyViewed } from "@/components/shared/recently-viewed";
 import { CategoryCircleLinks } from "@/components/home/category-circle-links";
 import { LightningDeals } from "@/components/home/lightning-deals";
 import { BannerStrip } from "@/components/home/banner-strip";
@@ -45,6 +46,9 @@ export default async function HomePage() {
 
       {/* 3. Category Quick-Links */}
       <CategoryCircleLinks />
+
+      {/* 3.5. Recently Viewed Products */}
+      <RecentlyViewed />
 
       {/* 3. Lightning Deals (Full Width Background) */}
       <LightningDeals products={dealProducts} />
