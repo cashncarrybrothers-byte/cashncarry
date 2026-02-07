@@ -246,6 +246,12 @@ export async function getProducts(params: ProductQueryParams = {}): Promise<{
             case 'menu_order':
               comparison = (a.menu_order || 0) - (b.menu_order || 0);
               break;
+            case 'popularity':
+              comparison = (Number(a.total_sales) || 0) - (Number(b.total_sales) || 0);
+              break;
+            case 'rating':
+              comparison = (Number(a.average_rating) || 0) - (Number(b.average_rating) || 0);
+              break;
             case 'date':
             default:
               const dateA = new Date(a.date_created || 0).getTime();

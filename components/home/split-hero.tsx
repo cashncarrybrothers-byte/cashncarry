@@ -15,18 +15,33 @@ const heroSlides = [
         image: "https://crm.cashncarry.se/wp-content/uploads/2026/01/AASHIRVAD-BANNER.jpg",
         alt: "Aashirvad Products",
         link: "/shop?brand=aashirvad",
+        title: "Premium Aashirvaad Selection",
+        subtitle: "Authentic staples for your kitchen. Freshly packed and delivered to your doorstep.",
+        buttonText: "Shop Aashirvaad",
+        secondaryButtonText: "View All Brands",
+        secondaryLink: "/brands"
     },
     {
         id: 2,
         image: "https://crm.cashncarry.se/wp-content/uploads/2026/01/vitalgroup1-2.png",
         alt: "Vital Group Products",
         link: "/shop",
+        title: "Vital Everyday Essentials",
+        subtitle: "Quality products from Vital Group. Everything you need for your daily cooking.",
+        buttonText: "Explore Range",
+        secondaryButtonText: "Weekly Deals",
+        secondaryLink: "/deals"
     },
     {
         id: 3,
         image: "https://crm.cashncarry.se/wp-content/uploads/2026/01/ambala-banner.jpg",
         alt: "Ambala Products",
         link: "/shop?brand=ambala",
+        title: "Authentic Ambala Sweets",
+        subtitle: "Experience the tradition of fine Asian confectionery and snacks.",
+        buttonText: "Shop Sweets",
+        secondaryButtonText: "Quick View",
+        secondaryLink: "/shop"
     },
 ];
 
@@ -87,17 +102,63 @@ export function SplitHero() {
                                 transition={{ duration: 0.5 }}
                                 className="absolute inset-0"
                             >
-                                <Link href={heroSlides[currentSlide].link} className="block w-full h-full">
-                                    <Image
-                                        src={heroSlides[currentSlide].image}
-                                        alt={heroSlides[currentSlide].alt}
-                                        fill
-                                        className="object-cover"
-                                        priority={currentSlide === 0}
-                                        quality={90}
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                                    />
-                                </Link>
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-10" />
+                                <Image
+                                    src={heroSlides[currentSlide].image}
+                                    alt={heroSlides[currentSlide].alt}
+                                    fill
+                                    className="object-cover"
+                                    priority={currentSlide === 0}
+                                    quality={90}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                                />
+
+                                {/* Slide Content Overlay */}
+                                <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 sm:px-10 md:px-16 max-w-2xl bg-black/5 sm:bg-transparent">
+                                    <motion.h2
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.2, duration: 0.5 }}
+                                        className="display-lg md:display-xl text-white mb-3 md:mb-4 drop-shadow-xl font-heading"
+                                    >
+                                        {heroSlides[currentSlide].title}
+                                    </motion.h2>
+                                    <motion.p
+                                        initial={{ opacity: 0, x: -15 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.4, duration: 0.5 }}
+                                        className="body md:body-lg text-white/90 mb-6 md:mb-8 max-w-xs sm:max-w-md drop-shadow-md font-medium line-clamp-2 sm:line-clamp-none"
+                                    >
+                                        {heroSlides[currentSlide].subtitle}
+                                    </motion.p>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.6, duration: 0.5 }}
+                                        className="flex flex-wrap gap-2 sm:gap-4"
+                                    >
+                                        <Button
+                                            asChild
+                                            size="sm"
+                                            className="sm:size-lg rounded-full px-5 sm:px-8 h-10 sm:h-14 text-sm sm:text-base font-bold shadow-xl hover:scale-105 transition-transform"
+                                        >
+                                            <Link href={heroSlides[currentSlide].link}>
+                                                {heroSlides[currentSlide].buttonText}
+                                                <ArrowRight className="ml-1.5 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                                            </Link>
+                                        </Button>
+                                        <Button
+                                            asChild
+                                            variant="outline"
+                                            size="sm"
+                                            className="sm:size-lg rounded-full px-5 sm:px-8 h-10 sm:h-14 text-sm sm:text-base font-bold bg-white/10 hover:bg-white/20 text-white border-white/40 backdrop-blur-md shadow-lg hover:scale-105 transition-transform"
+                                        >
+                                            <Link href={heroSlides[currentSlide].secondaryLink}>
+                                                {heroSlides[currentSlide].secondaryButtonText}
+                                            </Link>
+                                        </Button>
+                                    </motion.div>
+                                </div>
                             </motion.div>
                         </AnimatePresence>
 

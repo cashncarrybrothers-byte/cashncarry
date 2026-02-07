@@ -11,6 +11,7 @@ interface ProductShowcaseProps {
     subtitle?: string;
     products: Product[];
     moreLink?: string;
+    variant?: 'default' | 'subtle' | 'featured' | 'dark';
 }
 
 export function ProductShowcase({
@@ -18,6 +19,7 @@ export function ProductShowcase({
     subtitle,
     products,
     moreLink = "/shop",
+    variant = 'default',
 }: ProductShowcaseProps) {
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -33,17 +35,35 @@ export function ProductShowcase({
         }
     };
 
+    const getVariantStyles = () => {
+        switch (variant) {
+            case 'subtle':
+                return 'bg-muted/30';
+            case 'featured':
+                return 'bg-primary/5 border-y border-primary/10';
+            case 'dark':
+                return 'bg-primary-950 text-white';
+            default:
+                return 'bg-background';
+        }
+    };
+
+    const getTitleStyles = () => {
+        if (variant === 'dark') return 'text-white';
+        return 'text-foreground';
+    };
+
     return (
-        <section className="w-full py-6 md:py-10">
+        <section className={`w-full py-8 md:py-14 transition-colors duration-500 ${getVariantStyles()}`}>
             <div className="w-full px-4 md:px-[50px]">
                 {/* Section Header */}
-                <div className="flex items-end justify-between mb-5">
+                <div className="flex items-end justify-between mb-8">
                     <div>
-                        <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground">
+                        <h2 className={`h2 ${getTitleStyles()} tracking-tight`}>
                             {title}
                         </h2>
                         {subtitle && (
-                            <p className="text-xs md:text-sm text-muted-foreground mt-1">
+                            <p className={`body-sm mt-2 opacity-80 ${variant === 'dark' ? 'text-white/70' : 'text-muted-foreground'}`}>
                                 {subtitle}
                             </p>
                         )}
@@ -52,23 +72,30 @@ export function ProductShowcase({
                         {/* Navigation Arrows - Hidden on mobile */}
                         <button
                             onClick={() => scroll('left')}
-                            className="hidden md:flex w-9 h-9 rounded-full bg-card border border-border items-center justify-center hover:bg-muted transition-colors"
+                            className={`hidden md:flex w-10 h-10 rounded-full border items-center justify-center transition-all hover:scale-105 active:scale-95 ${variant === 'dark'
+                                ? 'bg-white/10 border-white/20 hover:bg-white/20 text-white'
+                                : 'bg-white border-border hover:bg-muted text-foreground shadow-sm'
+                                }`}
                             aria-label="Scroll left"
                         >
-                            <ChevronLeft className="h-5 w-5 text-foreground" />
+                            <ChevronLeft className="h-5 w-5" />
                         </button>
                         <button
                             onClick={() => scroll('right')}
-                            className="hidden md:flex w-9 h-9 rounded-full bg-card border border-border items-center justify-center hover:bg-muted transition-colors"
+                            className={`hidden md:flex w-10 h-10 rounded-full border items-center justify-center transition-all hover:scale-105 active:scale-95 ${variant === 'dark'
+                                ? 'bg-white/10 border-white/20 hover:bg-white/20 text-white'
+                                : 'bg-white border-border hover:bg-muted text-foreground shadow-sm'
+                                }`}
                             aria-label="Scroll right"
                         >
-                            <ChevronRight className="h-5 w-5 text-foreground" />
+                            <ChevronRight className="h-5 w-5" />
                         </button>
                         <Link
                             href={moreLink}
-                            className="flex items-center gap-1 text-xs md:text-sm font-semibold text-primary hover:underline transition-colors"
+                            className={`flex items-center gap-1.5 text-xs md:text-sm font-bold uppercase tracking-wider transition-all hover:gap-2 ${variant === 'dark' ? 'text-white' : 'text-primary'
+                                }`}
                         >
-                            <span className="hidden sm:inline">View All</span>
+                            <span className="hidden sm:inline">Explore All</span>
                             <ArrowRight className="h-4 w-4" />
                         </Link>
                     </div>
@@ -77,16 +104,32 @@ export function ProductShowcase({
                 {/* Single Row Horizontal Scroll - 2 products on mobile, more on desktop */}
                 <div
                     ref={scrollRef}
-                    className="flex gap-3 md:gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-2"
+                    className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4"
                 >
-                    {products.slice(0, 8).map((product) => (
+                    {products.slice(0, 10).map((product) => (
                         <div
                             key={product.id}
-                            className="min-w-[calc(50%-6px)] w-[calc(50%-6px)] sm:min-w-[200px] sm:w-[200px] md:min-w-[220px] md:w-[220px] lg:min-w-[240px] lg:w-[240px] flex-shrink-0"
+                            className="min-w-[calc(60%-12px)] w-[calc(60%-12px)] sm:min-w-[220px] sm:w-[220px] md:min-w-[260px] md:w-[260px] lg:min-w-[280px] lg:w-[280px] flex-shrink-0"
                         >
                             <ProductCard product={product} />
                         </div>
                     ))}
+                    {/* View More Card at the end */}
+                    <div className="min-w-[120px] sm:min-w-[180px] flex items-center justify-center">
+                        <Link
+                            href={moreLink}
+                            className={`group flex flex-col items-center gap-3 transition-transform hover:scale-105 ${variant === 'dark' ? 'text-white' : 'text-muted-foreground hover:text-primary'
+                                }`}
+                        >
+                            <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center border-2 transition-colors ${variant === 'dark'
+                                ? 'border-white/20 group-hover:bg-white/10'
+                                : 'border-neutral-100 group-hover:border-primary group-hover:bg-primary/5'
+                                }`}>
+                                <ArrowRight className="h-6 w-6" />
+                            </div>
+                            <span className="text-sm font-bold uppercase tracking-tight">Show All</span>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>

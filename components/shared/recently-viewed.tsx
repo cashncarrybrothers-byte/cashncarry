@@ -80,8 +80,8 @@ export function RecentlyViewed({
                             <Eye className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-bold text-foreground">{title}</h2>
-                            <p className="text-sm text-muted-foreground">
+                            <h2 className="h2 text-foreground">{title}</h2>
+                            <p className="body-sm text-muted-foreground">
                                 {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
                             </p>
                         </div>

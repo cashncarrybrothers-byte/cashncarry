@@ -27,12 +27,12 @@ export function BannerStrip() {
                             <div>
                                 <div className="flex items-center gap-2 mb-2 text-white/80">
                                     <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                                    <span className="text-[10px] font-bold tracking-widest uppercase">Premium Quality</span>
+                                    <span className="overline text-white">Premium Quality</span>
                                 </div>
-                                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 leading-tight">
+                                <h2 className="h2 md:h1 text-white mb-1">
                                     Basmati Rice & Authentic Spices
                                 </h2>
-                                <p className="text-white/80 text-sm md:text-base max-w-xl">
+                                <p className="body-sm text-white/80 max-w-xl">
                                     Explore our selection of premium Indian & Pakistani ingredients
                                 </p>
                             </div>

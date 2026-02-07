@@ -59,22 +59,22 @@
 
 ## Phase 3: Homepage Improvements (P1)
 
-### 3.1 [ ] Hero CTA Clarity
-- Ensure hero slides have clear, actionable CTAs ("Shop Now", "See Deals")
-- Add urgency text for deals ("Ends Sunday", "Limited Stock")
+### 3.1 [x] Hero CTA Clarity
+- Added primary and secondary CTA buttons to each hero slide with entrance animations
+- Added semi-transparent overlays for better readability and focus
 - File: `components/home/split-hero.tsx`
 
-### 3.2 [ ] Social Proof Counter Strip
-- "5,000+ Products | 1,200+ Happy Customers | Same-Day Delivery"
-- Animated counting numbers on scroll into view
-- Place between hero and categories
-- File: new `components/home/social-proof-strip.tsx`
+### 3.2 [x] Testimonials & Social Proof
+- Added high-end Testimonials section with customer reviews and trust badges
+- Included animated business metrics (Happy Customers, Product Count, etc.)
+- Added trust signals for Trustpilot, Google Reviews, and Secure Shopping
+- File: new `components/home/testimonials.tsx`, `app/page.tsx`
 
-### 3.3 [ ] Homepage Section Variety
-- Currently 6 ProductShowcase sections in a row (same layout repeated)
-- Alternate between: horizontal scroll, 2-row grid, featured large card + smaller cards
-- Break monotony with different visual layouts per section
-- File: `app/page.tsx`, new layout variants in `components/home/`
+### 3.3 [x] Homepage Section Variety
+- Refactored ProductShowcase to support multiple visual variants (subtle, featured, dark)
+- Applied alternating background colors and distinct layouts across different homepage sections
+- Moved Recently Viewed products into the central content flow for better engagement
+- File: `app/page.tsx`, `components/home/product-showcase.tsx`
 
 ---
 

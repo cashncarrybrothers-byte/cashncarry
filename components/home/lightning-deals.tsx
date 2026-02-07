@@ -63,15 +63,15 @@ export function LightningDeals({ products }: LightningDealsProps) {
                     <div className="flex flex-wrap items-center gap-3">
                         <div className="flex items-center gap-2">
                             <Zap className="h-5 w-5 md:h-6 md:w-6 text-primary fill-primary" />
-                            <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground">
+                            <h2 className="h2 text-foreground">
                                 Lightning Deals
                             </h2>
                         </div>
-                        <div className="flex items-center gap-2 text-primary font-semibold text-xs md:text-sm bg-card px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-primary/20"
+                        <div className="flex items-center gap-2 text-primary bg-card px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-primary/20"
                             style={{ boxShadow: 'var(--shadow-sm)' }}
                         >
                             <Timer className="h-3.5 w-3.5 md:h-4 md:w-4 animate-pulse" />
-                            <span className="hidden sm:inline">Ends in:</span>
+                            <span className="label-text hidden sm:inline">Ends in:</span>
                             <span className="font-mono tabular-nums font-bold text-sm md:text-base">
                                 {String(timeLeft.hours).padStart(2, '0')}:
                                 {String(timeLeft.minutes).padStart(2, '0')}:
